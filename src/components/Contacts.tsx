@@ -12,7 +12,7 @@ export default function Contacts({ onContactClick }: ContactsProps) {
     <div className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">Kontakty</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">Kontakt</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Jsme tu pro vás kdykoliv potřebujete pomoc s výběrem, servisem nebo dotazem
           </p>

@@ -93,16 +93,11 @@ export default function Rental({ onBack, onContactClick }: RentalProps) {
   return (
     <div className="py-8 px-4">
       <div className="container mx-auto">
-        {onBack && (
-          <Button 
-            variant="ghost" 
-            onClick={onBack}
-            className="mb-6"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Zpět na hlavní stránku
-          </Button>
-        )}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+            Pronájem
+          </h1>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Column - Info */}

@@ -128,7 +128,7 @@ export default function Service({ onContactClick }: ServiceProps) {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              Rychlý a odborný servis
+              Servis
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Zajišťujeme servis zemědělské a manipulační techniky všech značek 

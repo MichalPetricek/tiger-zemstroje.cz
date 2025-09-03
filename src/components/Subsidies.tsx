@@ -66,7 +66,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              Dotace na zemědělskou techniku
+              Dotace
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Pomoháme získat dotace na nákup zemědělské a stavební techniky. Zajistíme celý proces od výběru programu až po úspěšné vyúčtování.
