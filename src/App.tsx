@@ -14,6 +14,7 @@ import ProductCard from '@/components/ProductCard'
 import ProductDetail from '@/components/ProductDetail'
 import Subsidies from '@/components/Subsidies'
 import Service from '@/components/Service'
+import Contacts from '@/components/Contacts'
 import Footer from '@/components/Footer'
 
 interface Product {
@@ -42,7 +43,7 @@ interface NewsItem {
 function AppContent() {
   const [showContactForm, setShowContactForm] = useKV('showContactForm', false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts'>('home')
   
   const [products, setProducts] = useKV<Product[]>('products', [])
   const [news, setNews] = useKV<NewsItem[]>('news', [])
@@ -176,8 +177,26 @@ function AppContent() {
     { name: 'Servis', href: '#service', onClick: () => setCurrentView('service'), active: currentView === 'service' },
     { name: 'Pronájem', href: '#rental', onClick: () => setCurrentView('home'), active: false },
     { name: 'Dotace', href: '#subsidies', onClick: () => setCurrentView('subsidies'), active: currentView === 'subsidies' },
-    { name: 'Kontakt', href: '#contact', onClick: () => setCurrentView('home'), active: false }
+    { name: 'Kontakt', href: '#contact', onClick: () => setCurrentView('contacts'), active: currentView === 'contacts' }
   ]
+
+  // If showing contacts, render contacts component
+  if (currentView === 'contacts') {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-[Inter]">
+        <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
+        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+          <Contacts onContactClick={() => setShowContactForm(true)} />
+        </div>
+        <Footer 
+          onProductsClick={() => setCurrentView('products')} 
+          onSubsidiesClick={() => setCurrentView('subsidies')}
+        />
+        <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
+        <Toaster />
+      </div>
+    )
+  }
 
   // If showing service, render service component
   if (currentView === 'service') {
@@ -522,9 +541,9 @@ function AppContent() {
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-accent-foreground"
-              onClick={() => setShowContactForm(true)}
+              onClick={() => setCurrentView('contacts')}
             >
-              Napište nám
+              Zobrazit všechny kontakty
               <Mail className="w-5 h-5 ml-2" />
             </Button>
           </div>
