@@ -94,9 +94,9 @@ const subsidyPrograms: SubsidyProgram[] = [
 
 export default function Subsidies({ onContactClick }: SubsidiesProps) {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       {/* Header Section */}
-      <section className="py-12 px-4">
+      <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">

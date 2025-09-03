@@ -180,7 +180,9 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <Subsidies onContactClick={() => setShowContactForm(true)} />
+        <div className="pt-0"> {/* Remove extra padding since Navigation is sticky */}
+          <Subsidies onContactClick={() => setShowContactForm(true)} />
+        </div>
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
       </div>

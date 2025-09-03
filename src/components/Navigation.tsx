@@ -6,8 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { useTheme } from '@/contexts/ThemeContext'
 import Icon from '@mdi/react'
 import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
-import logoBlack from '@/assets/images/logo-black.svg'
-import logoWhite from '@/assets/images/logo-white.svg'
+import { logoBlack, logoWhite } from '@/assets'
 
 interface NavigationProps {
   navigation: Array<{
