@@ -3,13 +3,10 @@ import { useState } from 'react'
 import { Phone, Mail, Menu, Moon, Sun } from '@phosphor-icons/react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
-// Temporarily removed theme context
-// import { useTheme } from '@/contexts/ThemeContext'
-// Temporarily removed MDI icons
-// import Icon from '@mdi/react'
-// import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
-// Temporarily removed logo imports
-// import { logoBlack, logoWhite } from '@/assets'
+import { useTheme } from '@/contexts/ThemeContext'
+import { logoBlack, logoWhite } from '@/assets'
+import Icon from '@mdi/react'
+import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
 
 interface NavigationProps {
   navigation: Array<{
@@ -22,9 +19,7 @@ interface NavigationProps {
 
 export default function Navigation({ navigation, onContactClick }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  // const { theme, toggleTheme } = useTheme()
-  const theme = 'dark' // Hardcoded for now
-  const toggleTheme = () => {} // Empty function for now
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -32,7 +27,11 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <span className="text-xl font-bold text-accent">TIGER CZ</span>
+            <img 
+              src={theme === 'light' ? logoBlack : logoWhite} 
+              alt="TIGER CZ Logo" 
+              className="h-8 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}
@@ -68,8 +67,15 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
             </div>
             <Separator orientation="vertical" className="h-6" />
             <div className="flex items-center space-x-2">
-              {/* Social icons temporarily removed */}
-              <span className="text-sm">Social</span>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                <Icon path={mdiFacebook} size={0.8} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                <Icon path={mdiInstagram} size={0.8} />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                <Icon path={mdiYoutube} size={0.8} />
+              </a>
             </div>
           </div>
 
@@ -111,6 +117,18 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                   <div className="flex items-center space-x-2">
                     <Phone className="w-4 h-4 text-accent" />
                     <span className="text-sm font-medium">+420 601 017 000</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-sm text-muted-foreground">Sledujte nás:</span>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                      <Icon path={mdiFacebook} size={1} />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                      <Icon path={mdiInstagram} size={1} />
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                      <Icon path={mdiYoutube} size={1} />
+                    </a>
                   </div>
                   <Button 
                     onClick={() => {
