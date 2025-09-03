@@ -1,26 +1,32 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useKV } from '@github/spark/hooks'
 
-type Theme = 'dark' | 'light'
-
 interface ThemeContextType {
-  theme: Theme
+  theme: 'light' | 'dark'
   toggleTheme: () => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useKV<Theme>('theme', 'dark')
+  const [theme, setTheme] = useKV<'light' | 'dark'>('theme', 'dark')
 
   useEffect(() => {
     const root = window.document.documentElement
+    
+    // Remove both classes first
     root.classList.remove('light', 'dark')
-    root.classList.add(theme)
+    
+    // Add the current theme class
+    if (theme === 'light') {
+      root.classList.add('light')
+    }
+    // Dark mode is the default CSS, so no class needed
+    
   }, [theme])
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    setTheme(current => current === 'light' ? 'dark' : 'light')
   }
 
   return (

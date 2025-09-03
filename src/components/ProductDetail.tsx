@@ -27,7 +27,7 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ product, onBack, onContact }: ProductDetailProps) {
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
+    <div className="min-h-screen bg-background pt-20 pb-8 px-4">
       <div className="container mx-auto">
         {/* Back button */}
         <Button 

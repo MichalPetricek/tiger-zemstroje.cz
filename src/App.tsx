@@ -224,7 +224,8 @@ function AppContent() {
   // If showing product detail, render that component
   if (currentView === 'product-detail' && selectedProduct) {
     return (
-      <>
+      <div className="min-h-screen bg-background text-foreground font-[Inter]">
+        <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
         <ProductDetail 
           product={selectedProduct} 
           onBack={handleBackToProducts}
@@ -232,7 +233,7 @@ function AppContent() {
         />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
-      </>
+      </div>
     )
   }
 

@@ -1,9 +1,11 @@
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Star, Shield, Wrench, Clock, ArrowRight, Menu, Moon, Sun } from '@phosphor-icons/react'
+import { Phone, Mail, Menu, Moon, Sun } from '@phosphor-icons/react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
 import { useTheme } from '@/contexts/ThemeContext'
+import Icon from '@mdi/react'
+import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
 import pozitivniLogo from '@/assets/images/pozitivni.svg'
 import sPozadimLogo from '@/assets/images/s-pozadim.svg'
 
@@ -66,9 +68,15 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
             </div>
             <Separator orientation="vertical" className="h-6" />
             <div className="flex items-center space-x-2">
-              <Facebook className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-              <Instagram className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-              <Youtube className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
+              <a href="#" className="hover:text-accent cursor-pointer transition-colors">
+                <Icon path={mdiFacebook} size={0.8} />
+              </a>
+              <a href="#" className="hover:text-accent cursor-pointer transition-colors">
+                <Icon path={mdiInstagram} size={0.8} />
+              </a>
+              <a href="#" className="hover:text-accent cursor-pointer transition-colors">
+                <Icon path={mdiYoutube} size={0.8} />
+              </a>
             </div>
           </div>
 
@@ -112,9 +120,15 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                     <span className="text-sm font-medium">+420 601 017 000</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <Facebook className="w-6 h-6 hover:text-accent cursor-pointer transition-colors" />
-                    <Instagram className="w-6 h-6 hover:text-accent cursor-pointer transition-colors" />
-                    <Youtube className="w-6 h-6 hover:text-accent cursor-pointer transition-colors" />
+                    <a href="#" className="hover:text-accent cursor-pointer transition-colors">
+                      <Icon path={mdiFacebook} size={1} />
+                    </a>
+                    <a href="#" className="hover:text-accent cursor-pointer transition-colors">
+                      <Icon path={mdiInstagram} size={1} />
+                    </a>
+                    <a href="#" className="hover:text-accent cursor-pointer transition-colors">
+                      <Icon path={mdiYoutube} size={1} />
+                    </a>
                   </div>
                   <Button 
                     onClick={() => {
