@@ -3,10 +3,13 @@ import { useState } from 'react'
 import { Phone, Mail, Menu, Moon, Sun } from '@phosphor-icons/react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
-import { useTheme } from '@/contexts/ThemeContext'
-import Icon from '@mdi/react'
-import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
-import { logoBlack, logoWhite } from '@/assets'
+// Temporarily removed theme context
+// import { useTheme } from '@/contexts/ThemeContext'
+// Temporarily removed MDI icons
+// import Icon from '@mdi/react'
+// import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
+// Temporarily removed logo imports
+// import { logoBlack, logoWhite } from '@/assets'
 
 interface NavigationProps {
   navigation: Array<{
@@ -19,7 +22,9 @@ interface NavigationProps {
 
 export default function Navigation({ navigation, onContactClick }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
+  // const { theme, toggleTheme } = useTheme()
+  const theme = 'dark' // Hardcoded for now
+  const toggleTheme = () => {} // Empty function for now
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -27,11 +32,7 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <img 
-              src={theme === 'dark' ? logoWhite : logoBlack}
-              alt="TIGER CZ Logo" 
-              className="h-8 w-auto"
-            />
+            <span className="text-xl font-bold text-accent">TIGER CZ</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -67,15 +68,8 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
             </div>
             <Separator orientation="vertical" className="h-6" />
             <div className="flex items-center space-x-2">
-              <a href="#" className="hover:text-accent cursor-pointer transition-colors">
-                <Icon path={mdiFacebook} size={0.8} />
-              </a>
-              <a href="#" className="hover:text-accent cursor-pointer transition-colors">
-                <Icon path={mdiInstagram} size={0.8} />
-              </a>
-              <a href="#" className="hover:text-accent cursor-pointer transition-colors">
-                <Icon path={mdiYoutube} size={0.8} />
-              </a>
+              {/* Social icons temporarily removed */}
+              <span className="text-sm">Social</span>
             </div>
           </div>
 
@@ -117,17 +111,6 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                   <div className="flex items-center space-x-2">
                     <Phone className="w-4 h-4 text-accent" />
                     <span className="text-sm font-medium">+420 601 017 000</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <a href="#" className="hover:text-accent cursor-pointer transition-colors">
-                      <Icon path={mdiFacebook} size={1} />
-                    </a>
-                    <a href="#" className="hover:text-accent cursor-pointer transition-colors">
-                      <Icon path={mdiInstagram} size={1} />
-                    </a>
-                    <a href="#" className="hover:text-accent cursor-pointer transition-colors">
-                      <Icon path={mdiYoutube} size={1} />
-                    </a>
                   </div>
                   <Button 
                     onClick={() => {

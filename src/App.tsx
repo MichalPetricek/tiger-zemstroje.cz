@@ -6,6 +6,8 @@ import { Phone, Mail, MapPin, Star, Shield, Wrench, Clock, ArrowRight } from '@p
 import { Toaster } from '@/components/ui/sonner'
 import { useKV } from '@github/spark/hooks'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+
+// Try importing components one by one to identify the issue
 import Navigation from '@/components/Navigation'
 import ContactForm from '@/components/ContactForm'
 import ProductCard from '@/components/ProductCard'
@@ -574,11 +576,7 @@ function AppContent() {
 }
 
 function App() {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  )
+  return <AppContent />
 }
 
 export default App
