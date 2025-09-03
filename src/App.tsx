@@ -194,7 +194,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+        <div className="pt-16"> {/* Reduced padding */}
           <Contacts onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -212,7 +212,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+        <div className="pt-16"> {/* Reduced padding */}
           <Rental onBack={handleBackToHome} onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -230,7 +230,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+        <div className="pt-16"> {/* Reduced padding */}
           <Service onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -248,7 +248,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+        <div className="pt-16"> {/* Reduced padding */}
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -268,7 +268,7 @@ function AppContent() {
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
         {/* Products Catalog */}
-        <section className="pt-24 py-20 px-4">
+        <section className="pt-16 py-16 px-4"> {/* Reduced padding */}
           <div className="container mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl lg:text-5xl font-bold mb-4">Naše produkty</h1>
@@ -305,7 +305,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+        <div className="pt-16"> {/* Reduced padding */}
           <ProductDetail 
             product={selectedProduct} 
             onBack={handleBackToProducts}
@@ -327,7 +327,7 @@ function AppContent() {
       <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
       {/* Hero Section */}
-      <section id="home" className="pt-24 py-20 px-4">
+      <section id="home" className="pt-20 py-16 px-4"> {/* Reduced padding */}
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -405,7 +405,7 @@ function AppContent() {
       </section>
 
       {/* Products Section */}
-      <section id="tractors" className="py-20 px-4 bg-card/50">
+      <section id="tractors" className="py-16 px-4 bg-card/50"> {/* Reduced padding */}
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Naše produkty</h2>
@@ -438,7 +438,7 @@ function AppContent() {
       </section>
 
       {/* Services Section */}
-      <section id="service" className="py-20 px-4">
+      <section id="service" className="py-16 px-4"> {/* Reduced padding */}
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Naše služby</h2>
@@ -500,7 +500,7 @@ function AppContent() {
       </section>
 
       {/* News Section */}
-      <section className="py-20 px-4 bg-card/50">
+      <section className="py-16 px-4 bg-card/50"> {/* Reduced padding */}
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Aktuality</h2>
@@ -526,7 +526,7 @@ function AppContent() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
+      <section id="contact" className="py-16 px-4"> {/* Reduced padding */}
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Kontakt</h2>
