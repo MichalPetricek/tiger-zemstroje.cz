@@ -6,8 +6,8 @@ import { Separator } from '@/components/ui/separator'
 import { useTheme } from '@/contexts/ThemeContext'
 import Icon from '@mdi/react'
 import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
-import pozitivniLogo from '@/assets/images/pozitivni.svg'
-import sPozadimLogo from '@/assets/images/s-pozadim.svg'
+import logoBlack from '@/assets/images/logo-black.svg'
+import logoWhite from '@/assets/images/logo-white.svg'
 
 interface NavigationProps {
   navigation: Array<{
@@ -29,7 +29,7 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <img 
-              src={theme === 'dark' ? sPozadimLogo : pozitivniLogo}
+              src={theme === 'dark' ? logoWhite : logoBlack}
               alt="TIGER CZ Logo" 
               className="h-8 w-auto"
             />

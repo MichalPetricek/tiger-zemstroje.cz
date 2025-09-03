@@ -20,39 +20,75 @@ interface SubsidyProgram {
 const subsidyPrograms: SubsidyProgram[] = [
   {
     id: 'oslavka',
-    region: 'Oslavka',
+    region: 'Oslavka (Kraj Vysočina)',
     description: 'Pro firmy a podnikatele provozující nezemědělskou činnost na stroje mobilní i nemobilní.',
     supportRate: '50%',
     deadline: '18. 8. – 17. 10. 2025',
-    municipalities: ['Budišov', 'Březník', 'Hartvíkovice', 'Hluboké', 'Jasenice', 'Jinošov', 'Kladeruby nad Oslavou', 'a další'],
-    fiches: ['Fiche 4 - mobilní i nemobilní stroje']
+    municipalities: ['Budišov', 'Březník', 'Hartvíkovice', 'Hluboké', 'Jasenice', 'Jinošov', 'Kladeruby nad Oslavou', 'Kojatín', 'Koněšín', 'Kozlany', 'Kralice nad Oslavou', 'a další'],
+    fiches: ['Fiche 4 - mobilní i nemobilní stroje pro nezemědělskou činnost']
   },
   {
     id: 'rokytna',
-    region: 'Rokytná',
+    region: 'Rokytná (Kraj Vysočina)',
     description: 'Pro obce, svazky obcí a neziskové organizace na komunální techniku.',
     supportRate: 'min. 70%',
     deadline: '22. 8. – 22. 9. 2025',
-    municipalities: ['Babice', 'Bačice', 'Biskupice-Pulkov', 'Blatnice', 'Bohušice', 'Cidlina', 'a další'],
-    fiches: ['Fiche 5 - komunální technika', 'Fiche 4 - stroje pro firmy (max. 50%)']
+    municipalities: ['Babice', 'Bačice', 'Biskupice-Pulkov', 'Blatnice', 'Bohušice', 'Cidlina', 'Dalešice', 'Dešov', 'Dolní Lažany', 'Dukovany', 'a další'],
+    fiches: ['Fiche 5 - komunální technika (min. 70%)', 'Fiche 4 - stroje pro firmy (max. 50%)']
   },
   {
     id: 'sedlcansko',
-    region: 'Sedlčansko',
+    region: 'Sedlčansko (Středočeský kraj)',
     description: 'Pro podnikatele v oblasti lesnické činnosti a zemědělství.',
     supportRate: 'max. 60%',
     deadline: '1. 9. - 21. 10. 2025',
-    municipalities: ['Bohostice', 'Cetyně', 'Dolní Hbity', 'Dublovice', 'Jablonná', 'Jesenice', 'a další'],
-    fiches: ['Fiche 2 - lesnická činnost', 'Fiche 1 - zemědělství (60%)']
+    municipalities: ['Bohostice', 'Cetyně', 'Dolní Hbity', 'Dublovice', 'Jablonná', 'Jesenice', 'Kamýk nad Vltavou', 'Klučenice', 'Kosova Hora', 'a další'],
+    fiches: ['Fiche 2 - lesnická činnost (max. 60%)', 'Fiche 1 - zemědělství a školkařství (60%)']
   },
   {
     id: 'mezi-hrady',
-    region: 'Mezi Hrady',
+    region: 'Mezi Hrady (Středočeský kraj)',
     description: 'Pro obce a neziskové organizace na komunální techniku.',
     supportRate: '80%',
     deadline: '1. 9. – 12. 10. 2025',
-    municipalities: ['Broumy', 'Hudlice', 'Hýskov', 'Chyňava', 'Kublov', 'Nižbor', 'a další'],
-    fiches: ['Fiche 5 - malotraktory, štěpkovače, sekačky, křovinořezy']
+    municipalities: ['Broumy', 'Hudlice', 'Hýskov', 'Chyňava', 'Kublov', 'Nižbor', 'Nový Jáchymov', 'Otročiněves', 'Svatá', 'Trubská', 'a další'],
+    fiches: ['Fiche 5 - malotraktory, štěpkovače, sekačky, křovinořezy, sypače a frézy']
+  },
+  {
+    id: 'vychodni-slovacko',
+    region: 'Východní Slovácko (Zlínský kraj)',
+    description: 'Pro obce, svazky obcí a neziskové organizace na komunální techniku.',
+    supportRate: 'min. 70%',
+    deadline: '1. 9. – 2. 10. 2025',
+    municipalities: ['Bystřice pod Lopeníkem', 'Bánov', 'Březová', 'Dolní Němčí', 'Horní Němčí', 'Korytná', 'Nivnice', 'Slavkov', 'Strání', 'Uherský Brod'],
+    fiches: ['Fiche 5 - komunální technika, multifunkční stroje a nástavby']
+  },
+  {
+    id: 'roznovsky',
+    region: 'Rožnovsko (Zlínský kraj)',
+    description: 'Komplexní dotační program pro různé typy žadatelů.',
+    supportRate: '50-70%',
+    deadline: '1. 9. – 3. 10. 2025',
+    municipalities: ['Branky', 'Choryně', 'Dolní Bečva', 'Horní Bečva', 'Hutisko-Solanec', 'Kelč', 'Rožnov pod Radhoštěm', 'Valašské Meziříčí', 'Zubří', 'a další'],
+    fiches: ['Fiche 1 - zemědělství (50%)', 'Fiche 3 - zemědělské/nezemědělské firmy (50%)', 'Fiche 4 - zpracování produktů (50%)', 'Fiche 5 - komunální technika (min. 70%)']
+  },
+  {
+    id: 'region-poodri',
+    region: 'Region Poodří (Moravskoslezský kraj)',
+    description: 'Pro obce a firmy na komunální a lesnickou techniku.',
+    supportRate: '50-70%',
+    deadline: '20. 8. – 26. 9. 2025',
+    municipalities: ['Albrechtičky', 'Bartošovice', 'Bernartice nad Odrou', 'Bravantice', 'Bílov', 'Bílovec', 'Fulnek', 'Klimkovice', 'Studénka', 'a další'],
+    fiches: ['Fiche 5 - komunální a silniční technika (min. 70%)', 'Fiche 4 - lesnická a nezemědělská činnost (max. 50%)']
+  },
+  {
+    id: 'brana-pisecka',
+    region: 'Brána Písecka (Jihočeský kraj)',
+    description: 'Pro firmy a podnikatele na zemědělskou, lesnickou a nezemědělskou techniku.',
+    supportRate: 'max. 50%',
+    deadline: '15. 9. – 16. 10. 2025',
+    municipalities: ['Boudy', 'Cerhonice', 'Dobev', 'Drhovle', 'Horosedly', 'Kestřany', 'Minice', 'Mirotice', 'Orlík nad Vltavou', 'Čimelice'],
+    fiches: ['Fiche 4 - mobilní i nemobilní stroje pro různé činnosti']
   }
 ]
 
