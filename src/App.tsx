@@ -180,7 +180,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-0"> {/* Remove extra padding since Navigation is sticky */}
+        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
@@ -196,7 +196,7 @@ function AppContent() {
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
         {/* Products Catalog */}
-        <section className="py-20 px-4">
+        <section className="pt-24 py-20 px-4">
           <div className="container mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl lg:text-5xl font-bold mb-4">Naše produkty</h1>
@@ -228,11 +228,13 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <ProductDetail 
-          product={selectedProduct} 
-          onBack={handleBackToProducts}
-          onContact={() => setShowContactForm(true)}
-        />
+        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+          <ProductDetail 
+            product={selectedProduct} 
+            onBack={handleBackToProducts}
+            onContact={() => setShowContactForm(true)}
+          />
+        </div>
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
       </div>
@@ -244,7 +246,7 @@ function AppContent() {
       <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
       {/* Hero Section */}
-      <section id="home" className="py-20 px-4">
+      <section id="home" className="pt-24 py-20 px-4">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
