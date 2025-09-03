@@ -15,6 +15,7 @@ import ProductDetail from '@/components/ProductDetail'
 import Subsidies from '@/components/Subsidies'
 import Service from '@/components/Service'
 import Contacts from '@/components/Contacts'
+import Rental from '@/components/Rental'
 import Footer from '@/components/Footer'
 
 interface Product {
@@ -43,7 +44,7 @@ interface NewsItem {
 function AppContent() {
   const [showContactForm, setShowContactForm] = useKV('showContactForm', false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'>('home')
   
   const [products, setProducts] = useKV<Product[]>('products', [])
   const [news, setNews] = useKV<NewsItem[]>('news', [])
@@ -169,15 +170,23 @@ function AppContent() {
   const handleBackToHome = () => {
     setCurrentView('home')
     setSelectedProduct(null)
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleViewChange = (view: 'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental') => {
+    setCurrentView(view)
+    // Scroll to top when navigating to different page
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const navigation = [
     { name: 'Domů', href: '#home', onClick: handleBackToHome, active: currentView === 'home' },
-    { name: 'Traktory', href: '#tractors', onClick: () => setCurrentView('products'), active: currentView === 'products' || currentView === 'product-detail' },
-    { name: 'Servis', href: '#service', onClick: () => setCurrentView('service'), active: currentView === 'service' },
-    { name: 'Pronájem', href: '#rental', onClick: () => setCurrentView('home'), active: false },
-    { name: 'Dotace', href: '#subsidies', onClick: () => setCurrentView('subsidies'), active: currentView === 'subsidies' },
-    { name: 'Kontakt', href: '#contact', onClick: () => setCurrentView('contacts'), active: currentView === 'contacts' }
+    { name: 'Traktory', href: '#tractors', onClick: () => handleViewChange('products'), active: currentView === 'products' || currentView === 'product-detail' },
+    { name: 'Servis', href: '#service', onClick: () => handleViewChange('service'), active: currentView === 'service' },
+    { name: 'Pronájem', href: '#rental', onClick: () => handleViewChange('rental'), active: currentView === 'rental' },
+    { name: 'Dotace', href: '#subsidies', onClick: () => handleViewChange('subsidies'), active: currentView === 'subsidies' },
+    { name: 'Kontakt', href: '#contact', onClick: () => handleViewChange('contacts'), active: currentView === 'contacts' }
   ]
 
   // If showing contacts, render contacts component
@@ -189,8 +198,26 @@ function AppContent() {
           <Contacts onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
-          onProductsClick={() => setCurrentView('products')} 
-          onSubsidiesClick={() => setCurrentView('subsidies')}
+          onProductsClick={() => handleViewChange('products')} 
+          onSubsidiesClick={() => handleViewChange('subsidies')}
+        />
+        <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
+        <Toaster />
+      </div>
+    )
+  }
+
+  // If showing rental, render rental component  
+  if (currentView === 'rental') {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-[Inter]">
+        <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
+        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+          <Rental onBack={handleBackToHome} onContactClick={() => setShowContactForm(true)} />
+        </div>
+        <Footer 
+          onProductsClick={() => handleViewChange('products')} 
+          onSubsidiesClick={() => handleViewChange('subsidies')}
         />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
@@ -207,8 +234,8 @@ function AppContent() {
           <Service onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
-          onProductsClick={() => setCurrentView('products')} 
-          onSubsidiesClick={() => setCurrentView('subsidies')}
+          onProductsClick={() => handleViewChange('products')} 
+          onSubsidiesClick={() => handleViewChange('subsidies')}
         />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
@@ -225,8 +252,8 @@ function AppContent() {
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
-          onProductsClick={() => setCurrentView('products')} 
-          onSubsidiesClick={() => setCurrentView('subsidies')}
+          onProductsClick={() => handleViewChange('products')} 
+          onSubsidiesClick={() => handleViewChange('subsidies')}
         />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
@@ -263,8 +290,8 @@ function AppContent() {
         </section>
 
         <Footer 
-          onProductsClick={() => setCurrentView('products')} 
-          onSubsidiesClick={() => setCurrentView('subsidies')}
+          onProductsClick={() => handleViewChange('products')} 
+          onSubsidiesClick={() => handleViewChange('subsidies')}
         />
 
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
@@ -286,8 +313,8 @@ function AppContent() {
           />
         </div>
         <Footer 
-          onProductsClick={() => setCurrentView('products')} 
-          onSubsidiesClick={() => setCurrentView('subsidies')}
+          onProductsClick={() => handleViewChange('products')} 
+          onSubsidiesClick={() => handleViewChange('subsidies')}
         />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
@@ -344,6 +371,13 @@ function AppContent() {
                 <Button 
                   size="lg" 
                   variant="outline"
+                  onClick={() => handleViewChange('rental')}
+                >
+                  Pronájem
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
                   onClick={() => {
                     const tiger504 = products.find(p => p.id === 'tiger-504')
                     if (tiger504) handleProductSelect(tiger504)
@@ -394,7 +428,7 @@ function AppContent() {
             <Button 
               size="lg" 
               variant="outline"
-              onClick={() => setCurrentView('products')}
+              onClick={() => handleViewChange('products')}
             >
               Zobrazit všechny produkty
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -541,7 +575,7 @@ function AppContent() {
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-accent-foreground"
-              onClick={() => setCurrentView('contacts')}
+              onClick={() => handleViewChange('contacts')}
             >
               Zobrazit všechny kontakty
               <Mail className="w-5 h-5 ml-2" />
@@ -551,8 +585,8 @@ function AppContent() {
       </section>
 
       <Footer 
-        onProductsClick={() => setCurrentView('products')} 
-        onSubsidiesClick={() => setCurrentView('subsidies')}
+        onProductsClick={() => handleViewChange('products')} 
+        onSubsidiesClick={() => handleViewChange('subsidies')}
       />
 
       {/* Contact Form Modal */}
