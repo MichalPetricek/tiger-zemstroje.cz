@@ -13,6 +13,7 @@ interface NavigationProps {
     name: string
     href: string
     onClick?: () => void
+    active?: boolean
   }>
   onContactClick: () => void
 }
@@ -40,7 +41,9 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
               <button 
                 key={item.name} 
                 onClick={item.onClick || (() => {})}
-                className="text-sm hover:text-accent transition-colors"
+                className={`text-sm transition-colors ${
+                  item.active ? 'text-accent font-semibold' : 'hover:text-accent'
+                }`}
               >
                 {item.name}
               </button>
@@ -108,7 +111,9 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                         if (item.onClick) item.onClick()
                         setMobileMenuOpen(false)
                       }}
-                      className="text-lg hover:text-accent transition-colors text-left"
+                      className={`text-lg transition-colors text-left ${
+                        item.active ? 'text-accent font-semibold' : 'hover:text-accent'
+                      }`}
                     >
                       {item.name}
                     </button>

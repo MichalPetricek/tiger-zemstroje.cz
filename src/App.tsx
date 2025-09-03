@@ -13,6 +13,8 @@ import ContactForm from '@/components/ContactForm'
 import ProductCard from '@/components/ProductCard'
 import ProductDetail from '@/components/ProductDetail'
 import Subsidies from '@/components/Subsidies'
+import Service from '@/components/Service'
+import Footer from '@/components/Footer'
 
 interface Product {
   id: string
@@ -40,7 +42,7 @@ interface NewsItem {
 function AppContent() {
   const [showContactForm, setShowContactForm] = useKV('showContactForm', false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service'>('home')
   
   const [products, setProducts] = useKV<Product[]>('products', [])
   const [news, setNews] = useKV<NewsItem[]>('news', [])
@@ -169,13 +171,31 @@ function AppContent() {
   }
 
   const navigation = [
-    { name: 'Domů', href: '#home', onClick: handleBackToHome },
-    { name: 'Traktory', href: '#tractors', onClick: () => setCurrentView('products') },
-    { name: 'Servis', href: '#service', onClick: () => setCurrentView('home') },
-    { name: 'Pronájem', href: '#rental', onClick: () => setCurrentView('home') },
-    { name: 'Dotace', href: '#subsidies', onClick: () => setCurrentView('subsidies') },
-    { name: 'Kontakt', href: '#contact', onClick: () => setCurrentView('home') }
+    { name: 'Domů', href: '#home', onClick: handleBackToHome, active: currentView === 'home' },
+    { name: 'Traktory', href: '#tractors', onClick: () => setCurrentView('products'), active: currentView === 'products' || currentView === 'product-detail' },
+    { name: 'Servis', href: '#service', onClick: () => setCurrentView('service'), active: currentView === 'service' },
+    { name: 'Pronájem', href: '#rental', onClick: () => setCurrentView('home'), active: false },
+    { name: 'Dotace', href: '#subsidies', onClick: () => setCurrentView('subsidies'), active: currentView === 'subsidies' },
+    { name: 'Kontakt', href: '#contact', onClick: () => setCurrentView('home'), active: false }
   ]
+
+  // If showing service, render service component
+  if (currentView === 'service') {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-[Inter]">
+        <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
+        <div className="pt-20"> {/* Add padding to account for sticky navbar */}
+          <Service onContactClick={() => setShowContactForm(true)} />
+        </div>
+        <Footer 
+          onProductsClick={() => setCurrentView('products')} 
+          onSubsidiesClick={() => setCurrentView('subsidies')}
+        />
+        <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
+        <Toaster />
+      </div>
+    )
+  }
 
   // If showing subsidies, render subsidies component
   if (currentView === 'subsidies') {
@@ -185,6 +205,10 @@ function AppContent() {
         <div className="pt-20"> {/* Add padding to account for sticky navbar */}
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
+        <Footer 
+          onProductsClick={() => setCurrentView('products')} 
+          onSubsidiesClick={() => setCurrentView('subsidies')}
+        />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
       </div>
@@ -219,6 +243,11 @@ function AppContent() {
           </div>
         </section>
 
+        <Footer 
+          onProductsClick={() => setCurrentView('products')} 
+          onSubsidiesClick={() => setCurrentView('subsidies')}
+        />
+
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
       </div>
@@ -237,6 +266,10 @@ function AppContent() {
             onContact={() => setShowContactForm(true)}
           />
         </div>
+        <Footer 
+          onProductsClick={() => setCurrentView('products')} 
+          onSubsidiesClick={() => setCurrentView('subsidies')}
+        />
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
       </div>
@@ -498,73 +531,10 @@ function AppContent() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-12 px-4">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="text-2xl font-bold text-accent mb-4">TIGER CZ</div>
-              <p className="text-sm text-muted-foreground mb-4">
-                Rychlost - Spolehlivost - Flexibilita
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Produkty</h3>
-              <div className="space-y-2 text-sm">
-                <button 
-                  onClick={() => setCurrentView('products')} 
-                  className="block text-muted-foreground hover:text-foreground text-left"
-                >
-                  Traktory TIGER
-                </button>
-                <button 
-                  onClick={() => setCurrentView('products')} 
-                  className="block text-muted-foreground hover:text-foreground text-left"
-                >
-                  Nakladače MANITECH
-                </button>
-                <button 
-                  onClick={() => setCurrentView('products')} 
-                  className="block text-muted-foreground hover:text-foreground text-left"
-                >
-                  VZV LIZZARD
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Služby</h3>
-              <div className="space-y-2 text-sm">
-                <a href="#service" className="block text-muted-foreground hover:text-foreground">Servis</a>
-                <a href="#rental" className="block text-muted-foreground hover:text-foreground">Pronájem</a>
-                <button 
-                  onClick={() => setCurrentView('subsidies')} 
-                  className="block text-muted-foreground hover:text-foreground text-left"
-                >
-                  Dotace
-                </button>
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Financování</a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Kontakt</h3>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p>zemstroje@gmail.com</p>
-                <p>+420 601 017 000</p>
-                <p>Skuhrov 13<br/>468 22 Železný Brod</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-border pt-8">
-            <div className="text-center text-sm text-muted-foreground">
-              <p>&copy; 2025 TIGER CZ s.r.o. Všechna práva vyhrazena.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer 
+        onProductsClick={() => setCurrentView('products')} 
+        onSubsidiesClick={() => setCurrentView('subsidies')}
+      />
 
       {/* Contact Form Modal */}
       <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
