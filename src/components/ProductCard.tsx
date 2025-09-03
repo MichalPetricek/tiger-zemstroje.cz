@@ -8,9 +8,14 @@ interface Product {
   name: string
   price: string
   power: string
+  category: string
+  brand: string
   image: string
   badges: string[]
   description: string
+  specs: Record<string, string>
+  features: string[]
+  available: boolean
 }
 
 interface ProductCardProps {

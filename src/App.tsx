@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Star, Shield, Wrench, Clock, ArrowRight, Menu } from '@phosphor-icons/react'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Phone, Mail, MapPin, Star, Shield, Wrench, Clock, ArrowRight } from '@phosphor-icons/react'
 import { Toaster } from '@/components/ui/sonner'
 import { useKV } from '@github/spark/hooks'
+import { ThemeProvider } from '@/contexts/ThemeContext'
+import Navigation from '@/components/Navigation'
 import ContactForm from '@/components/ContactForm'
 import ProductCard from '@/components/ProductCard'
 import ProductDetail from '@/components/ProductDetail'
+import Subsidies from '@/components/Subsidies'
 
 interface Product {
   id: string
@@ -34,14 +35,121 @@ interface NewsItem {
   featured: boolean
 }
 
-function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+function AppContent() {
   const [showContactForm, setShowContactForm] = useKV('showContactForm', false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies'>('home')
   
-  const [products] = useKV<Product[]>('products', [])
-  const [news] = useKV<NewsItem[]>('news', [])
+  const [products, setProducts] = useKV<Product[]>('products', [])
+  const [news, setNews] = useKV<NewsItem[]>('news', [])
+
+  // Initialize sample data on first load
+  useEffect(() => {
+    if (products.length === 0) {
+      const sampleProducts: Product[] = [
+        {
+          id: 'tiger-504',
+          name: 'TIGER 504',
+          price: '199 000 Kč',
+          power: '50 HP',
+          category: 'Traktory',
+          brand: 'TIGER',
+          image: '/api/placeholder/400/300',
+          badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
+          description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Plný výkon za cenu běžných zahradních traktorů.',
+          specs: {
+            'Výkon motoru': '50 HP',
+            'Palivová nádrž': '45 l',
+            'Hydraulika': 'Jednoduché vývodové okruhy',
+            'Záruka': '2 roky'
+          },
+          features: [
+            'Přímý dovoz od výrobce',
+            'Bez prostředníků - nejlepší cena',
+            'Lokální servis v ČR',
+            'Dostupné náhradní díly'
+          ],
+          available: true
+        },
+        {
+          id: 'tiger-704',
+          name: 'TIGER 704',
+          price: '299 000 Kč',
+          power: '70 HP',
+          category: 'Traktory',
+          brand: 'TIGER',
+          image: '/api/placeholder/400/300',
+          badges: ['VÝKONNÝ'],
+          description: 'Výkonnější traktor pro náročnější práce s možností připojení nakladače.',
+          specs: {
+            'Výkon motoru': '70 HP',
+            'Palivová nádrž': '65 l',
+            'Hydraulika': 'Dvoucestná s nakladačem',
+            'Rozchod kol': 'Nastavitelný'
+          },
+          features: [
+            'Kompatibilní s nakladačem TZ04D',
+            'Rozšiřitelný rozchod pro stabilitu',
+            'Profesionální hydraulický systém',
+            '2 roky záruky'
+          ],
+          available: true
+        },
+        {
+          id: 'manitech-ml280',
+          name: 'MANITECH ML280',
+          price: 'Na dotaz',
+          power: '80 HP',
+          category: 'Nakladače',
+          brand: 'MANITECH',
+          image: '/api/placeholder/400/300',
+          badges: ['MANIPULAČNÍ TECHNIKA'],
+          description: 'Kolový nakladač pro profesionální použití ve stavebnictví a zemědělství.',
+          specs: {
+            'Výkon motoru': '80 HP',
+            'Zdvihací síla': '2800 kg',
+            'Objem lžíce': '1.2 m³',
+            'Pracovní tlak': '180 bar'
+          },
+          features: [
+            'Ergonomická kabina s klimatizací',
+            'Široká škála příslušenství',
+            'Jednoduchá obsluha',
+            'Vysoká spolehlivost'
+          ],
+          available: true
+        }
+      ]
+      setProducts(sampleProducts)
+    }
+
+    if (news.length === 0) {
+      const sampleNews: NewsItem[] = [
+        {
+          id: '1',
+          title: 'TIGER 504 v nabídce pronájmu',
+          content: 'Nově můžete traktor TIGER 504 vyzkoušet v pronájmu se zvýhodněním při následné koupi.',
+          date: '13. 8. 2025',
+          featured: true
+        },
+        {
+          id: '2',
+          title: 'Dorazilo 50 nových traktorů',
+          content: 'Do skladu jsme přijali 40× TIGER 504 a 10× TIGER 704. Část stále k dispozici.',
+          date: '25. 7. 2025',
+          featured: false
+        },
+        {
+          id: '3',
+          title: 'Nový dealer ve Velké Británii',
+          content: 'Autorizovaný dealer v Norwichi rozšiřuje naši síť. Expedovali jsme 6 traktorů.',
+          date: '23. 7. 2025',
+          featured: false
+        }
+      ]
+      setNews(sampleNews)
+    }
+  }, [products.length, news.length, setProducts, setNews])
 
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product)
@@ -61,55 +169,29 @@ function App() {
   const navigation = [
     { name: 'Domů', href: '#home', onClick: handleBackToHome },
     { name: 'Traktory', href: '#tractors', onClick: () => setCurrentView('products') },
-    { name: 'Servis', href: '#service' },
-    { name: 'Pronájem', href: '#rental' },
-    { name: 'Dotace', href: '#subsidies' },
-    { name: 'Kontakt', href: '#contact' }
+    { name: 'Servis', href: '#service', onClick: () => setCurrentView('home') },
+    { name: 'Pronájem', href: '#rental', onClick: () => setCurrentView('home') },
+    { name: 'Dotace', href: '#subsidies', onClick: () => setCurrentView('subsidies') },
+    { name: 'Kontakt', href: '#contact', onClick: () => setCurrentView('home') }
   ]
+
+  // If showing subsidies, render subsidies component
+  if (currentView === 'subsidies') {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-[Inter]">
+        <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
+        <Subsidies onContactClick={() => setShowContactForm(true)} />
+        <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
+        <Toaster />
+      </div>
+    )
+  }
 
   // If showing products catalog, render product catalog
   if (currentView === 'products') {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
-        {/* Navigation */}
-        <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="text-2xl font-bold text-accent cursor-pointer" onClick={handleBackToHome}>TIGER</div>
-              </div>
-              <div className="hidden md:flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-medium">+420 601 017 000</span>
-                </div>
-              </div>
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="sm" className="lg:hidden">
-                    <Menu className="w-6 h-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent>
-                  <div className="flex flex-col space-y-6 mt-6">
-                    {navigation.map((item) => (
-                      <button
-                        key={item.name}
-                        onClick={() => {
-                          if (item.onClick) item.onClick()
-                          setMobileMenuOpen(false)
-                        }}
-                        className="text-lg hover:text-accent transition-colors text-left"
-                      >
-                        {item.name}
-                      </button>
-                    ))}
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
-        </nav>
+        <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
         {/* Products Catalog */}
         <section className="py-20 px-4">
@@ -156,79 +238,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-[Inter]">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-4">
-              <div className="text-2xl font-bold text-accent">TIGER</div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <button 
-                  key={item.name} 
-                  onClick={item.onClick || (() => {})}
-                  className="text-sm hover:text-accent transition-colors"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Contact Info */}
-            <div className="hidden md:flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">+420 601 017 000</span>
-              </div>
-              <Separator orientation="vertical" className="h-6" />
-              <div className="flex items-center space-x-2">
-                <Facebook className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-                <Instagram className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-                <Youtube className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-              </div>
-            </div>
-
-            {/* Mobile Menu */}
-            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="lg:hidden">
-                  <Menu className="w-6 h-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <div className="flex flex-col space-y-6 mt-6">
-                  {navigation.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => {
-                        if (item.onClick) item.onClick()
-                        setMobileMenuOpen(false)
-                      }}
-                      className="text-lg hover:text-accent transition-colors text-left"
-                    >
-                      {item.name}
-                    </button>
-                  ))}
-                  <Separator />
-                  <div className="flex items-center space-x-2">
-                    <Phone className="w-4 h-4 text-accent" />
-                    <span className="text-sm font-medium">+420 601 017 000</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <Facebook className="w-6 h-6 hover:text-accent cursor-pointer transition-colors" />
-                    <Instagram className="w-6 h-6 hover:text-accent cursor-pointer transition-colors" />
-                    <Youtube className="w-6 h-6 hover:text-accent cursor-pointer transition-colors" />
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-      </nav>
+      <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
       {/* Hero Section */}
       <section id="home" className="py-20 px-4">
@@ -490,29 +500,43 @@ function App() {
               <p className="text-sm text-muted-foreground mb-4">
                 Rychlost - Spolehlivost - Flexibilita
               </p>
-              <div className="flex space-x-4">
-                <Facebook className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-                <Instagram className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-                <Youtube className="w-5 h-5 hover:text-accent cursor-pointer transition-colors" />
-              </div>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Produkty</h3>
               <div className="space-y-2 text-sm">
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Traktory TIGER</a>
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Nakladače MANITECH</a>
-                <a href="#" className="block text-muted-foreground hover:text-foreground">VZV LIZZARD</a>
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Příslušenství</a>
+                <button 
+                  onClick={() => setCurrentView('products')} 
+                  className="block text-muted-foreground hover:text-foreground text-left"
+                >
+                  Traktory TIGER
+                </button>
+                <button 
+                  onClick={() => setCurrentView('products')} 
+                  className="block text-muted-foreground hover:text-foreground text-left"
+                >
+                  Nakladače MANITECH
+                </button>
+                <button 
+                  onClick={() => setCurrentView('products')} 
+                  className="block text-muted-foreground hover:text-foreground text-left"
+                >
+                  VZV LIZZARD
+                </button>
               </div>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Služby</h3>
               <div className="space-y-2 text-sm">
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Servis</a>
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Pronájem</a>
-                <a href="#" className="block text-muted-foreground hover:text-foreground">Dotace</a>
+                <a href="#service" className="block text-muted-foreground hover:text-foreground">Servis</a>
+                <a href="#rental" className="block text-muted-foreground hover:text-foreground">Pronájem</a>
+                <button 
+                  onClick={() => setCurrentView('subsidies')} 
+                  className="block text-muted-foreground hover:text-foreground text-left"
+                >
+                  Dotace
+                </button>
                 <a href="#" className="block text-muted-foreground hover:text-foreground">Financování</a>
               </div>
             </div>
@@ -527,10 +551,10 @@ function App() {
             </div>
           </div>
 
-          <Separator className="mb-8" />
-          
-          <div className="text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 TIGER CZ s.r.o. Všechna práva vyhrazena.</p>
+          <div className="border-t border-border pt-8">
+            <div className="text-center text-sm text-muted-foreground">
+              <p>&copy; 2025 TIGER CZ s.r.o. Všechna práva vyhrazena.</p>
+            </div>
           </div>
         </div>
       </footer>
@@ -541,6 +565,14 @@ function App() {
       {/* Toast notifications */}
       <Toaster />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 
