@@ -169,7 +169,6 @@ export default function Contacts({ onContactClick }: ContactsProps) {
         {/* Quick Contact CTA */}
         <div className="text-center mt-12">
           <div className="bg-card rounded-2xl p-8">
-            <h2 className="text-2xl font-bold mb-4">Máte dotaz nebo potřebujete poradenství?</h2>
             <p className="text-muted-foreground mb-6">
               Neváhejte nás kontaktovat. Rádi vám pomůžeme s výběrem vhodné techniky, 
               servisem nebo zodpovíme jakékoli dotazy.
