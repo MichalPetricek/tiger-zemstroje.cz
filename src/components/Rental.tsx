@@ -91,7 +91,7 @@ export default function Rental({ onBack, onContactClick }: RentalProps) {
   ]
 
   return (
-    <div className="py-8 px-4">
+    <div className="py-16 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">

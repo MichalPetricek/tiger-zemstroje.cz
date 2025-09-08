@@ -124,7 +124,7 @@ export default function Service({ onContactClick }: ServiceProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
@@ -266,7 +266,7 @@ export default function Service({ onContactClick }: ServiceProps) {
       </section>
 
       {/* Service Request Form */}
-      <section className="py-20 px-4 bg-card/50">
+      <section className="py-16 px-4 bg-card/50">
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-12">
