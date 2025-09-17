@@ -25,7 +25,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onSelect }: ProductCardProps) {
   return (
-    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
       <div className="aspect-square bg-muted relative overflow-hidden">
         <img 
           src={product.image}
@@ -44,19 +44,19 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
         </div>
       </div>
 
-      <CardHeader>
+      <CardHeader className="flex-1">
         <div className="flex items-start justify-between">
-          <div>
+          <div className="flex-1">
             <CardTitle className="text-xl">{product.name}</CardTitle>
-            <CardDescription className="mt-2">{product.description}</CardDescription>
+            <CardDescription className="mt-2 line-clamp-3">{product.description}</CardDescription>
           </div>
-          <Badge variant="outline" className="ml-2 text-accent border-accent">
+          <Badge variant="outline" className="ml-2 text-accent border-accent shrink-0">
             {product.power}
           </Badge>
         </div>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="pt-0">
         <Button 
           className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
           onClick={() => onSelect?.(product)}
