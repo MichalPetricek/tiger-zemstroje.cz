@@ -47,7 +47,7 @@ function AppContent() {
   const [currentView, setCurrentView] = React.useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'>('home')
   
   const [products] = React.useState<Product[]>([
-    // Traktory
+    // Traktory - TIGER
     {
       id: 'tiger-504',
       name: 'TIGER 504',
@@ -120,6 +120,225 @@ function AppContent() {
       ],
       available: true
     },
+    {
+      id: 'tiger-1504',
+      name: 'TIGER 1504',
+      price: '899 000 Kč',
+      power: '150 HP',
+      category: 'Traktory',
+      brand: 'TIGER',
+      image: '/api/placeholder/400/300',
+      badges: ['VÝKONNÝ', 'PROFESIONÁLNÍ'],
+      description: 'Výkonný traktor pro profesionální zemědělské podniky.',
+      specs: {
+        'Výkon motoru': '150 HP',
+        'Palivová nádrž': '120 l',
+        'Hydraulika': 'Profesionální s load-sensing',
+        'Kabina': 'Klimatizovaná'
+      },
+      features: [
+        'Vysoký výkon pro náročné práce',
+        'Klimatizovaná kabina',
+        'Pokročilá hydraulika',
+        'Profesionální vybavení'
+      ],
+      available: true
+    },
+    {
+      id: 'tiger-2504',
+      name: 'TIGER 2504',
+      price: '1 299 000 Kč',
+      power: '250 HP',
+      category: 'Traktory',
+      brand: 'TIGER',
+      image: '/api/placeholder/400/300',
+      badges: ['NEJVÝKONNĚJŠÍ', 'PROFESIONÁLNÍ'],
+      description: 'Nejvýkonnější traktor v naší nabídce pro velké zemědělské podniky.',
+      specs: {
+        'Výkon motoru': '250 HP',
+        'Palivová nádrž': '200 l',
+        'Hydraulika': 'Výkonná s load-sensing',
+        'Kabina': 'Luxusní s klimatizací'
+      },
+      features: [
+        'Maximální výkon a efektivita',
+        'Luxusní kabina s plným vybavením',
+        'Nejmodernější hydraulika',
+        'Pro nejnáročnější práce'
+      ],
+      available: true
+    },
+    // Traktory - JINMA
+    {
+      id: 'jinma-254e',
+      name: 'JINMA 254E',
+      price: '289 000 Kč',
+      power: '25 HP',
+      category: 'Traktory',
+      brand: 'JINMA',
+      image: '/api/placeholder/400/300',
+      badges: ['KOMPAKTNÍ'],
+      description: 'Kompaktní traktor s elektrickým startérem pro menší zemědělské práce.',
+      specs: {
+        'Výkon motoru': '25 HP',
+        'Palivová nádrž': '25 l',
+        'Startér': 'Elektrický',
+        'Převodovka': '8F+2R'
+      },
+      features: [
+        'Kompaktní rozměry',
+        'Elektrický start',
+        'Nízká spotřeba paliva',
+        'Snadná obsluha'
+      ],
+      available: true
+    },
+    // Traktory - YTO NLY série
+    {
+      id: 'yto-nly954',
+      name: 'YTO NLY954',
+      price: '799 000 Kč',
+      power: '95 HP',
+      category: 'Traktory',
+      brand: 'YTO',
+      image: '/api/placeholder/400/300',
+      badges: ['KLIMATIZACE'],
+      description: 'Profesionální traktor s klimatizovanou kabinou a pokročilou hydraulikou.',
+      specs: {
+        'Výkon motoru': '95 HP',
+        'Palivová nádrž': '95 l',
+        'Kabina': 'Klimatizovaná',
+        'Hydraulika': 'Load-sensing'
+      },
+      features: [
+        'Klimatizovaná kabina',
+        'Ergonomické ovládání',
+        'Pokročilá hydraulika',
+        'Vysoký komfort práce'
+      ],
+      available: true
+    },
+    {
+      id: 'yto-nly1054',
+      name: 'YTO NLY1054',
+      price: '899 000 Kč',
+      power: '105 HP',
+      category: 'Traktory',
+      brand: 'YTO',
+      image: '/api/placeholder/400/300',
+      badges: ['KLIMATIZACE', 'VÝKONNÝ'],
+      description: 'Výkonný traktor s klimatizací pro středně velké zemědělské podniky.',
+      specs: {
+        'Výkon motoru': '105 HP',
+        'Palivová nádrž': '105 l',
+        'Kabina': 'Klimatizovaná s filtry',
+        'Hydraulika': 'Dual-pump'
+      },
+      features: [
+        'Výkonný a spolehlivý motor',
+        'Luxusní kabina s filtrací vzduchu',
+        'Dual-pump hydraulika',
+        'Profesionální vybavení'
+      ],
+      available: true
+    },
+    {
+      id: 'yto-nly1154',
+      name: 'YTO NLY1154',
+      price: '999 000 Kč',
+      power: '115 HP',
+      category: 'Traktory',
+      brand: 'YTO',
+      image: '/api/placeholder/400/300',
+      badges: ['KLIMATIZACE', 'VÝKONNÝ'],
+      description: 'Nejsilnější model v NLY sérii s maximálním výkonem a komfortem.',
+      specs: {
+        'Výkon motoru': '115 HP',
+        'Palivová nádrž': '115 l',
+        'Kabina': 'Premium s klimatizací',
+        'Hydraulika': 'High-flow'
+      },
+      features: [
+        'Maximální výkon v NLY sérii',
+        'Premium kabina s plným komfortem',
+        'High-flow hydraulika',
+        'Pro nejnáročnější aplikace'
+      ],
+      available: true
+    },
+    // Traktory - YTO NMF série
+    {
+      id: 'yto-nmf554c',
+      name: 'YTO NMF554C',
+      price: '549 000 Kč',
+      power: '55 HP',
+      category: 'Traktory',
+      brand: 'YTO',
+      image: '/api/placeholder/400/300',
+      badges: ['UNIVERZÁLNÍ'],
+      description: 'Univerzální traktor pro různé zemědělské aplikace.',
+      specs: {
+        'Výkon motoru': '55 HP',
+        'Palivová nádrž': '55 l',
+        'Převodovka': '12F+12R',
+        'Hydraulika': 'Standardní'
+      },
+      features: [
+        'Univerzální použití',
+        '12-rychlostní převodovka',
+        'Spolehlivý motor',
+        'Dobrý poměr cena/výkon'
+      ],
+      available: true
+    },
+    {
+      id: 'yto-nmf604c',
+      name: 'YTO NMF604C',
+      price: '599 000 Kč',
+      power: '60 HP',
+      category: 'Traktory',
+      brand: 'YTO',
+      image: '/api/placeholder/400/300',
+      badges: ['UNIVERZÁLNÍ'],
+      description: 'Výkonnější model NMF série pro středně náročné práce.',
+      specs: {
+        'Výkon motoru': '60 HP',
+        'Palivová nádrž': '60 l',
+        'Převodovka': '12F+12R Creeper',
+        'Hydraulika': 'Vylepšená'
+      },
+      features: [
+        'Vyšší výkon než NMF554C',
+        'Creeper převodovka',
+        'Vylepšená hydraulika',
+        'Větší palivová nádrž'
+      ],
+      available: true
+    },
+    {
+      id: 'yto-nmf704c',
+      name: 'YTO NMF704C',
+      price: '649 000 Kč',
+      power: '70 HP',
+      category: 'Traktory',
+      brand: 'YTO',
+      image: '/api/placeholder/400/300',
+      badges: ['UNIVERZÁLNÍ', 'VÝKONNÝ'],
+      description: 'Nejsilnější model NMF série pro náročnější zemědělské práce.',
+      specs: {
+        'Výkon motoru': '70 HP',
+        'Palivová nádrž': '70 l',
+        'Převodovka': '16F+16R Creeper',
+        'Hydraulika': 'Pokročilá'
+      },
+      features: [
+        'Nejvyšší výkon v NMF sérii',
+        '16-rychlostní převodovka',
+        'Pokročilá hydraulika',
+        'Pro náročnější aplikace'
+      ],
+      available: true
+    },
     // Bagry
     {
       id: 'bat08',
@@ -142,6 +361,126 @@ function AppContent() {
         'Snadná manipulace',
         'Ekonomický provoz',
         'Univerzální použití'
+      ],
+      available: true
+    },
+    {
+      id: 'bat10',
+      name: 'Bagr BAT10',
+      price: 'Na dotaz',
+      power: '24 HP',
+      category: 'Bagry',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['KOMPAKTNÍ'],
+      description: 'Výkonnější kompaktní bagr pro středně náročné práce.',
+      specs: {
+        'Výkon motoru': '24 HP',
+        'Hmotnost': '1000 kg',
+        'Hloubka výkopu': '2.2 m',
+        'Dosah': '3.8 m'
+      },
+      features: [
+        'Vyšší výkon než BAT08',
+        'Větší dosah a hloubka',
+        'Robustnější konstrukce',
+        'Profesionální použití'
+      ],
+      available: true
+    },
+    {
+      id: 'bat12',
+      name: 'Bagr BAT12',
+      price: 'Na dotaz',
+      power: '28 HP',
+      category: 'Bagry',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['STŘEDNĚ VELKÝ'],
+      description: 'Středně velký bagr pro profesionální stavební práce.',
+      specs: {
+        'Výkon motoru': '28 HP',
+        'Hmotnost': '1200 kg',
+        'Hloubka výkopu': '2.5 m',
+        'Dosah': '4.2 m'
+      },
+      features: [
+        'Optimální pro stavební práce',
+        'Výborný výkon/hmotnost poměr',
+        'Stabilní a bezpečný',
+        'Nízké provozní náklady'
+      ],
+      available: true
+    },
+    {
+      id: 'bat15',
+      name: 'Bagr BAT15',
+      price: 'Na dotaz',
+      power: '38 HP',
+      category: 'Bagry',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['VÝKONNÝ'],
+      description: 'Výkonný bagr pro náročné stavební a zemní práce.',
+      specs: {
+        'Výkon motoru': '38 HP',
+        'Hmotnost': '1500 kg',
+        'Hloubka výkopu': '3.0 m',
+        'Dosah': '5.0 m'
+      },
+      features: [
+        'Vysoký výkon pro náročné práce',
+        'Velká hloubka výkopu',
+        'Stabilní podvozek',
+        'Profesionální hydraulika'
+      ],
+      available: true
+    },
+    {
+      id: 'bat17',
+      name: 'Bagr BAT17',
+      price: 'Na dotaz',
+      power: '42 HP',
+      category: 'Bagry',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['VÝKONNÝ'],
+      description: 'Výkonný bagr s vysokou produktivitou práce.',
+      specs: {
+        'Výkon motoru': '42 HP',
+        'Hmotnost': '1700 kg',
+        'Hloubka výkopu': '3.2 m',
+        'Dosah': '5.2 m'
+      },
+      features: [
+        'Vysoká produktivita',
+        'Pokročilá hydraulika',
+        'Komfortní kabina',
+        'Nízké emise'
+      ],
+      available: true
+    },
+    {
+      id: 'bat18',
+      name: 'Bagr BAT18',
+      price: 'Na dotaz',
+      power: '45 HP',
+      category: 'Bagry',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['NEJSILNĚJŠÍ'],
+      description: 'Nejsilnější bagr v naší nabídce pro nejvýkonnější práce.',
+      specs: {
+        'Výkon motoru': '45 HP',
+        'Hmotnost': '1800 kg',
+        'Hloubka výkopu': '3.5 m',
+        'Dosah': '5.5 m'
+      },
+      features: [
+        'Maximální výkon v kategorii',
+        'Nejmodernější hydraulika',
+        'Luxusní kabina',
+        'Pro nejnáročnější aplikace'
       ],
       available: true
     },
@@ -170,6 +509,126 @@ function AppContent() {
       ],
       available: true
     },
+    {
+      id: 'mtech-1160',
+      name: 'MTECH 1160',
+      price: 'Na dotaz',
+      power: '60 HP',
+      category: 'Nakladače',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['VÝKONNÝ'],
+      description: 'Výkonný kolový nakladač pro střední stavební práce.',
+      specs: {
+        'Výkon motoru': '60 HP',
+        'Zdvihací výška': '3.2 m',
+        'Nosnost': '1100 kg',
+        'Objem lžíce': '0.6 m³'
+      },
+      features: [
+        'Výkonný motor',
+        'Robustní konstrukce',
+        'Jednoduchá údržba',
+        'Spolehlivý provoz'
+      ],
+      available: true
+    },
+    {
+      id: 'mtech-45',
+      name: 'MTECH 4.5',
+      price: 'Na dotaz',
+      power: '75 HP',
+      category: 'Nakladače',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['TELESKOPICKÝ'],
+      description: 'Teleskopický nakladač s nosností 4.5 tuny.',
+      specs: {
+        'Výkon motoru': '75 HP',
+        'Zdvihací výška': '6.0 m',
+        'Nosnost': '4500 kg',
+        'Dosah': '3.5 m'
+      },
+      features: [
+        'Vysoká zdvihací výška',
+        'Velká nosnost',
+        'Teleskopické rameno',
+        'Profesionální vybavení'
+      ],
+      available: true
+    },
+    {
+      id: 'mtech-45t',
+      name: 'MTECH 4.5T',
+      price: 'Na dotaz',
+      power: '75 HP',
+      category: 'Nakladače',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['TELESKOPICKÝ', 'OTOČNÝ'],
+      description: 'Otočný teleskopický nakladač s nosností 4.5 tuny.',
+      specs: {
+        'Výkon motoru': '75 HP',
+        'Zdvihací výška': '6.0 m',
+        'Nosnost': '4500 kg',
+        'Otočení': '360°'
+      },
+      features: [
+        'Plné otočení 360°',
+        'Vysoká flexibilita práce',
+        'Výborná stabilita',
+        'Pokročilé ovládání'
+      ],
+      available: true
+    },
+    {
+      id: 'mtech-55',
+      name: 'MTECH 5.5',
+      price: 'Na dotaz',
+      power: '95 HP',
+      category: 'Nakladače',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['TELESKOPICKÝ', 'VÝKONNÝ'],
+      description: 'Výkonný teleskopický nakladač pro náročné práce.',
+      specs: {
+        'Výkon motoru': '95 HP',
+        'Zdvihací výška': '7.0 m',
+        'Nosnost': '5500 kg',
+        'Dosah': '4.0 m'
+      },
+      features: [
+        'Vysoký výkon a nosnost',
+        'Maximální zdvihací výška',
+        'Robustní konstrukce',
+        'Pro těžké práce'
+      ],
+      available: true
+    },
+    {
+      id: 'mtech-55t',
+      name: 'MTECH 5.5T',
+      price: 'Na dotaz',
+      power: '95 HP',
+      category: 'Nakladače',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['TELESKOPICKÝ', 'OTOČNÝ', 'NEJSILNĚJŠÍ'],
+      description: 'Nejsilnější otočný teleskopický nakladač v naší nabídce.',
+      specs: {
+        'Výkon motoru': '95 HP',
+        'Zdvihací výška': '7.0 m',
+        'Nosnost': '5500 kg',
+        'Otočení': '360°'
+      },
+      features: [
+        'Maximální výkon a flexibilita',
+        'Plné otočení s nejvyšší nosností',
+        'Pro nejtěžší aplikace',
+        'Prémiové vybavení'
+      ],
+      available: true
+    },
     // Ještěrky
     {
       id: 'lizard-30',
@@ -192,6 +651,78 @@ function AppContent() {
         'Nulové emise',
         'Lithiové baterie',
         'Snadná obsluha'
+      ],
+      available: true
+    },
+    {
+      id: 'lizard-35',
+      name: 'LIZARD 35',
+      price: 'Na dotaz',
+      power: 'Elektrický',
+      category: 'Ještěrky',
+      brand: 'LIZZARD-VZV',
+      image: '/api/placeholder/400/300',
+      badges: ['ELEKTRICKÝ'],
+      description: 'Výkonnější elektrický vysokozdvižný vozík pro náročnější práce.',
+      specs: {
+        'Nosnost': '3500 kg',
+        'Zdvihací výška': '3.5 m',
+        'Pohon': 'Elektrický',
+        'Baterie': 'Li-Ion Extended'
+      },
+      features: [
+        'Vyšší nosnost než LIZARD 30',
+        'Prodloužená výdrž baterie',
+        'Rychlé nabíjení',
+        'Ergonomické ovládání'
+      ],
+      available: true
+    },
+    {
+      id: 'lizard-35-pro',
+      name: 'LIZARD 35 PRO',
+      price: 'Na dotaz',
+      power: 'Elektrický',
+      category: 'Ještěrky',
+      brand: 'LIZZARD-VZV',
+      image: '/api/placeholder/400/300',
+      badges: ['ELEKTRICKÝ', 'PROFESIONÁLNÍ'],
+      description: 'Profesionální elektrický vysokozdvižný vozík s pokročilými funkcemi.',
+      specs: {
+        'Nosnost': '3500 kg',
+        'Zdvihací výška': '4.0 m',
+        'Pohon': 'Elektrický s regenerací',
+        'Baterie': 'Li-Ion Premium'
+      },
+      features: [
+        'Regenerativní brzdění',
+        'Pokročilé bezpečnostní systémy',
+        'Premium baterie s dlouhou životností',
+        'Inteligentní řízení výkonu'
+      ],
+      available: true
+    },
+    {
+      id: 'lizard-50',
+      name: 'LIZARD 50',
+      price: 'Na dotaz',
+      power: 'Elektrický',
+      category: 'Ještěrky',
+      brand: 'LIZZARD-VZV',
+      image: '/api/placeholder/400/300',
+      badges: ['ELEKTRICKÝ', 'NEJSILNĚJŠÍ'],
+      description: 'Nejsilnější elektrický vysokozdvižný vozík pro těžké náklady.',
+      specs: {
+        'Nosnost': '5000 kg',
+        'Zdvihací výška': '4.5 m',
+        'Pohon': 'Elektrický heavy-duty',
+        'Baterie': 'Li-Ion Industrial'
+      },
+      features: [
+        'Maximální nosnost 5 tun',
+        'Nejrobustnější konstrukce',
+        'Industriální baterie',
+        'Pro nejtěžší aplikace'
       ],
       available: true
     }
