@@ -57,18 +57,21 @@ function AppContent() {
       brand: 'TIGER',
       image: '/api/placeholder/400/300',
       badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
-      description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Plný výkon za cenu běžných zahradních traktorů.',
+      description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Jednoduchá mechanika, 2letá záruka. Traktor není určen k registraci na SPZ.',
       specs: {
         'Výkon motoru': '50 HP',
-        'Palivová nádrž': '45 l',
-        'Hydraulika': 'Jednoduché vývodové okruhy',
+        'Pohon': '4×4',
+        'Převodovka': '8F/8R',
+        'Hmotnost (vč. nakladače)': 'cca 2100 kg',
+        'Přední nakladač': 'TZ04D (nosnost ~400 kg)',
         'Záruka': '2 roky'
       },
       features: [
         'Přímý dovoz od výrobce',
         'Bez prostředníků - nejlepší cena',
         'Lokální servis v ČR',
-        'Dostupné náhradní díly'
+        'Jednoduchá mechanika',
+        'Možnost připojení nakladače TZ04D'
       ],
       available: true
     },
@@ -81,18 +84,20 @@ function AppContent() {
       brand: 'TIGER',
       image: '/api/placeholder/400/300',
       badges: ['VÝKONNÝ'],
-      description: 'Výkonnější traktor pro náročnější práce s možností připojení nakladače.',
+      description: 'Model s možností zvětšení rozchodu prostým otočením kol pro vyšší stabilitu. Nelze přihlásit na SPZ.',
       specs: {
         'Výkon motoru': '70 HP',
-        'Palivová nádrž': '65 l',
-        'Hydraulika': 'Dvoucestná s naladačem',
-        'Rozchod kol': 'Nastavitelný'
+        'Pohon': '4×4',
+        'Převodovka': 'Mechanická',
+        'Rozchod kol': 'Nastavitelný otočením kol',
+        'Registrace': 'Nelze přihlásit na SPZ'
       },
       features: [
         'Kompatibilní s nakladačem TZ04D',
         'Rozšiřitelný rozchod pro stabilitu',
-        'Profesionální hydraulický systém',
-        '2 roky záruky'
+        'Jednoduchá mechanika',
+        '2 roky záruky',
+        'Vyšší výkon pro náročnější práce'
       ],
       available: true
     },
@@ -105,18 +110,20 @@ function AppContent() {
       brand: 'TIGER',
       image: '/api/placeholder/400/300',
       badges: ['VÝKONNÝ'],
-      description: 'Profesionální traktor pro náročné zemědělské práce.',
+      description: 'Vyšší výkonová třída TIGER pro profesionální použití. Nelze přihlásit na SPZ.',
       specs: {
         'Výkon motoru': '90 HP',
-        'Palivová nádrž': '75 l',
-        'Hydraulika': 'Pokročilá',
+        'Pohon': '4×4',
+        'Řada šasi': 'Těžší kategorie',
+        'Registrace': 'Nelze přihlásit na SPZ',
         'Záruka': '2 roky'
       },
       features: [
         'Vysoký výkon pro náročné práce',
-        'Robustní konstrukce',
-        'Pokročilá hydraulika',
-        'Lokální servis'
+        'Robustní konstrukce těžšího šasi',
+        'Profesionální hydraulika',
+        'Lokální servis v ČR',
+        'Vhodný pro větší farmy'
       ],
       available: true
     },
@@ -129,18 +136,20 @@ function AppContent() {
       brand: 'TIGER',
       image: '/api/placeholder/400/300',
       badges: ['VÝKONNÝ', 'PROFESIONÁLNÍ'],
-      description: 'Výkonný traktor pro profesionální zemědělské podniky.',
+      description: 'Výkonný traktor ze série těžších šasi TB/TD. Profesionální stroj pro náročné zemědělské podniky.',
       specs: {
         'Výkon motoru': '150 HP',
-        'Palivová nádrž': '120 l',
-        'Hydraulika': 'Profesionální s load-sensing',
-        'Kabina': 'Klimatizovaná'
+        'Řada šasi': 'TB/TD - těžší konstrukce',
+        'Výkonová třída': 'Až 300 HP v řadě',
+        'Kabina': 'Klimatizovaná',
+        'Hydraulika': 'Profesionální'
       },
       features: [
-        'Vysoký výkon pro náročné práce',
+        'Těžší šasi pro náročné podmínky',
         'Klimatizovaná kabina',
-        'Pokročilá hydraulika',
-        'Profesionální vybavení'
+        'Profesionální hydraulický systém',
+        'Vysoká nosnost a stabilita',
+        'Pro velkoprodukční zemědělství'
       ],
       available: true
     },
@@ -153,18 +162,20 @@ function AppContent() {
       brand: 'TIGER',
       image: '/api/placeholder/400/300',
       badges: ['NEJVÝKONNĚJŠÍ', 'PROFESIONÁLNÍ'],
-      description: 'Nejvýkonnější traktor v naší nabídce pro velké zemědělské podniky.',
+      description: 'Nejvýkonnější traktor v naší nabídce ze série těžších šasi TB/TD. Pro velké zemědělské podniky s nejvyšším nasazením.',
       specs: {
         'Výkon motoru': '250 HP',
-        'Palivová nádrž': '200 l',
-        'Hydraulika': 'Výkonná s load-sensing',
-        'Kabina': 'Luxusní s klimatizací'
+        'Řada šasi': 'TB/TD - nejtěžší konstrukce',
+        'Výkonové pokrytí': 'Až 300 HP v této řadě',
+        'Kabina': 'Luxusní s klimatizací',
+        'Hydraulika': 'Heavy-duty profesionální'
       },
       features: [
         'Maximální výkon a efektivita',
+        'Nejtěžší šasi pro extrémní zátěž',
         'Luxusní kabina s plným vybavením',
-        'Nejmodernější hydraulika',
-        'Pro nejnáročnější práce'
+        'Nejmodernější hydraulické systémy',
+        'Pro největší zemědělské podniky'
       ],
       available: true
     },
@@ -178,18 +189,23 @@ function AppContent() {
       brand: 'JINMA',
       image: '/api/placeholder/400/300',
       badges: ['KOMPAKTNÍ'],
-      description: 'Kompaktní traktor s elektrickým startérem pro menší zemědělské práce.',
+      description: 'Kompaktní 25HP traktor s možností 4×4, jednoduchá mechanika pro menší farmy a zahrady.',
       specs: {
         'Výkon motoru': '25 HP',
-        'Palivová nádrž': '25 l',
-        'Startér': 'Elektrický',
-        'Převodovka': '8F+2R'
+        'Pohon': '2WD / 4WD',
+        'Rozměry (D×Š×V)': '3265×1440–1640×2450 mm',
+        'Rozvor': '1670 mm',
+        'Světlá výška': '320 mm',
+        'Rychlost': 'až 28 km/h',
+        'Převodovka': '8F/2R',
+        'Hmotnost': '1527 kg'
       },
       features: [
-        'Kompaktní rozměry',
-        'Elektrický start',
+        'Kompaktní rozměry pro malé prostory',
+        'Volitelný pohon 4WD',
+        'ROPS ochrana / kabina s topením',
         'Nízká spotřeba paliva',
-        'Snadná obsluha'
+        'Jednoduchá obsluha a údržba'
       ],
       available: true
     },
@@ -203,18 +219,20 @@ function AppContent() {
       brand: 'YTO',
       image: '/api/placeholder/400/300',
       badges: ['KLIMATIZACE'],
-      description: 'Profesionální traktor s klimatizovanou kabinou a pokročilou hydraulikou.',
+      description: 'Profesionální traktor z řady NLY s motorem YTO Stage V (nízké vibrace/hluk) a vysokou pracovní účinností.',
       specs: {
         'Výkon motoru': '95 HP',
-        'Palivová nádrž': '95 l',
+        'Motor': 'YTO Stage V (nízké vibrace/hluk)',
+        'Převodovka': '12F/12R',
         'Kabina': 'Klimatizovaná',
-        'Hydraulika': 'Load-sensing'
+        'Hydraulika': 'Vysoká pracovní účinnost'
       },
       features: [
+        'Motor Stage V s nízkými vibracemi',
         'Klimatizovaná kabina',
-        'Ergonomické ovládání',
-        'Pokročilá hydraulika',
-        'Vysoký komfort práce'
+        '12-rychlostní převodovka',
+        'Vysoká pracovní účinnost',
+        'Ergonomické ovládání'
       ],
       available: true
     },
@@ -227,18 +245,20 @@ function AppContent() {
       brand: 'YTO',
       image: '/api/placeholder/400/300',
       badges: ['KLIMATIZACE', 'VÝKONNÝ'],
-      description: 'Výkonný traktor s klimatizací pro středně velké zemědělské podniky.',
+      description: 'Výkonný traktor z řady NLY s motorem Stage V a vysokou pracovní účinností pro středně velké zemědělské podniky.',
       specs: {
         'Výkon motoru': '105 HP',
-        'Palivová nádrž': '105 l',
+        'Motor': 'YTO Stage V (nízké vibrace/hluk)',
+        'Převodovka': '12F/12R',
         'Kabina': 'Klimatizovaná s filtry',
-        'Hydraulika': 'Dual-pump'
+        'Hydraulika': 'Vysoká pracovní účinnost'
       },
       features: [
-        'Výkonný a spolehlivý motor',
+        'Výkonný a tichý motor Stage V',
         'Luxusní kabina s filtrací vzduchu',
-        'Dual-pump hydraulika',
-        'Profesionální vybavení'
+        '12-rychlostní převodovka s vysokou účinností',
+        'Profesionální hydraulické systémy',
+        'Optimální pro střední farmy'
       ],
       available: true
     },
@@ -251,18 +271,20 @@ function AppContent() {
       brand: 'YTO',
       image: '/api/placeholder/400/300',
       badges: ['KLIMATIZACE', 'VÝKONNÝ'],
-      description: 'Nejsilnější model v NLY sérii s maximálním výkonem a komfortem.',
+      description: 'Nejsilnější model v NLY sérii s motorem Stage V, maximálním výkonem a komfortem pro náročné aplikace.',
       specs: {
         'Výkon motoru': '115 HP',
-        'Palivová nádrž': '115 l',
+        'Motor': 'YTO Stage V (nízké vibrace/hluk)',
+        'Převodovka': '12F/12R vysoká účinnost',
         'Kabina': 'Premium s klimatizací',
-        'Hydraulika': 'High-flow'
+        'Hydraulika': 'High-flow profesionální'
       },
       features: [
         'Maximální výkon v NLY sérii',
+        'Nejmodernější Stage V motor',
         'Premium kabina s plným komfortem',
-        'High-flow hydraulika',
-        'Pro nejnáročnější aplikace'
+        'High-flow hydraulické systémy',
+        'Pro nejnáročnější zemědělské aplikace'
       ],
       available: true
     },
@@ -276,18 +298,20 @@ function AppContent() {
       brand: 'YTO',
       image: '/api/placeholder/400/300',
       badges: ['UNIVERZÁLNÍ'],
-      description: 'Univerzální traktor pro různé zemědělské aplikace.',
+      description: 'Kompaktní traktor z řady NMF určené pro menší a střední farmy. Univerzální použití s výborným poměrem cena/výkon.',
       specs: {
         'Výkon motoru': '55 HP',
-        'Palivová nádrž': '55 l',
+        'Řada': 'NMF - kompaktní pro malé/střední farmy',
+        'Výkonové pokrytí řady': '55-70 HP',
         'Převodovka': '12F+12R',
         'Hydraulika': 'Standardní'
       },
       features: [
+        'Ideální pro menší a střední farmy',
         'Univerzální použití',
         '12-rychlostní převodovka',
-        'Spolehlivý motor',
-        'Dobrý poměr cena/výkon'
+        'Spolehlivý a ekonomický motor',
+        'Výborný poměr cena/výkon'
       ],
       available: true
     },
@@ -300,18 +324,20 @@ function AppContent() {
       brand: 'YTO',
       image: '/api/placeholder/400/300',
       badges: ['UNIVERZÁLNÍ'],
-      description: 'Výkonnější model NMF série pro středně náročné práce.',
+      description: 'Výkonnější model NMF série pro středně náročné práce na menších a středních farmách.',
       specs: {
         'Výkon motoru': '60 HP',
-        'Palivová nádrž': '60 l',
+        'Řada': 'NMF - kompaktní pro malé/střední farmy',
+        'Výkonové pokrytí řady': '55-70 HP',
         'Převodovka': '12F+12R Creeper',
         'Hydraulika': 'Vylepšená'
       },
       features: [
         'Vyšší výkon než NMF554C',
-        'Creeper převodovka',
-        'Vylepšená hydraulika',
-        'Větší palivová nádrž'
+        'Creeper převodovka pro pomalé práce',
+        'Vylepšené hydraulické systémy',
+        'Větší výkonové rezervy',
+        'Optimální pro střední farmy'
       ],
       available: true
     },
@@ -324,18 +350,20 @@ function AppContent() {
       brand: 'YTO',
       image: '/api/placeholder/400/300',
       badges: ['UNIVERZÁLNÍ', 'VÝKONNÝ'],
-      description: 'Nejsilnější model NMF série pro náročnější zemědělské práce.',
+      description: 'Nejsilnější model NMF série pro náročnější zemědělské práce na středních farmách.',
       specs: {
         'Výkon motoru': '70 HP',
-        'Palivová nádrž': '70 l',
+        'Řada': 'NMF - max. výkon v kompaktní řadě',
+        'Výkonové pokrytí řady': '55-70 HP',
         'Převodovka': '16F+16R Creeper',
         'Hydraulika': 'Pokročilá'
       },
       features: [
         'Nejvyšší výkon v NMF sérii',
-        '16-rychlostní převodovka',
-        'Pokročilá hydraulika',
-        'Pro náročnější aplikace'
+        '16-rychlostní převodovka s Creeper',
+        'Pokročilé hydraulické systémy',
+        'Pro náročnější zemědělské aplikace',
+        'Maximální výkon v kompaktní kategorii'
       ],
       available: true
     },
@@ -634,23 +662,29 @@ function AppContent() {
       id: 'lizard-30',
       name: 'LIZARD 30',
       price: 'Na dotaz',
-      power: 'Elektrický',
+      power: '58 kW',
       category: 'Ještěrky',
       brand: 'LIZZARD-VZV',
       image: '/api/placeholder/400/300',
-      badges: ['ELEKTRICKÝ'],
-      description: 'Elektrický vysokozdvižný vozík pro sklady a haly.',
+      badges: ['TERÉNNÍ'],
+      description: 'Terénní VZV 3,5–3,8 t s pohonem 4×4 a hydrodynamickou převodovkou pro náročné terény.',
       specs: {
-        'Nosnost': '3000 kg',
-        'Zdvihací výška': '3.0 m',
-        'Pohon': 'Elektrický',
-        'Baterie': 'Li-Ion'
+        'Nosnost': '3500–3800 kg',
+        'Zdvih': '3–6 m',
+        'Hmotnost': '4600 kg',
+        'Náklon': '≤ 35°',
+        'Světlá výška': '280 mm',
+        'Rozvor': '1850 mm',
+        'Výkon motoru': '58 kW',
+        'Rychlost': '28 km/h',
+        'Rozměry stroje': '3800×1850×2200 mm'
       },
       features: [
-        'Tichý provoz',
-        'Nulové emise',
-        'Lithiové baterie',
-        'Snadná obsluha'
+        'Pohon 4×4 pro náročné terény',
+        'Hydrodynamická převodovka',  
+        'Vysoká nosnost až 3,8 tuny',
+        'Variabilní zdvih 3-6 metrů',
+        'Kompaktní rozměry pro manévrovatelnost'
       ],
       available: true
     },
@@ -658,23 +692,31 @@ function AppContent() {
       id: 'lizard-35',
       name: 'LIZARD 35',
       price: 'Na dotaz',
-      power: 'Elektrický',
+      power: '58 kW',
       category: 'Ještěrky',
       brand: 'LIZZARD-VZV',
       image: '/api/placeholder/400/300',
-      badges: ['ELEKTRICKÝ'],
-      description: 'Výkonnější elektrický vysokozdvižný vozík pro náročnější práce.',
+      badges: ['TERÉNNÍ'],
+      description: 'Terénní VZV 3,5–3,8 t s pohonem 4×4 a hydrodynamickou převodovkou. Parametrově shodná třída s LIZARD 30.',
       specs: {
-        'Nosnost': '3500 kg',
-        'Zdvihací výška': '3.5 m',
-        'Pohon': 'Elektrický',
-        'Baterie': 'Li-Ion Extended'
+        'Nosnost': '3500–3800 kg',
+        'Zdvih': '3–6 m',
+        'Hmotnost': '4600 kg',
+        'Náklon': '≤ 35°',
+        'Světlá výška': '280 mm',
+        'Rozvor': '1850 mm',
+        'Poloměr otáčení': '3500 mm',
+        'Motor': '58 kW',
+        'Rychlost': '28 km/h',
+        'Délky vidlí': '1220–1820 mm',
+        'Rozměry': '3800×1850×2200 mm'
       },
       features: [
-        'Vyšší nosnost než LIZARD 30',
-        'Prodloužená výdrž baterie',
-        'Rychlé nabíjení',
-        'Ergonomické ovládání'
+        'Stejná nosnost jako LIZARD 30',
+        'Pohon 4×4 s hydrodynamickou převodovkou',
+        'Variabilní délky vidlí',
+        'Kompaktní poloměr otáčení',
+        'Optimalizované rozměry pro práci'
       ],
       available: true
     },
@@ -682,23 +724,31 @@ function AppContent() {
       id: 'lizard-35-pro',
       name: 'LIZARD 35 PRO',
       price: 'Na dotaz',
-      power: 'Elektrický',
+      power: '58 kW',
       category: 'Ještěrky',
       brand: 'LIZZARD-VZV',
       image: '/api/placeholder/400/300',
-      badges: ['ELEKTRICKÝ', 'PROFESIONÁLNÍ'],
-      description: 'Profesionální elektrický vysokozdvižný vozík s pokročilými funkcemi.',
+      badges: ['TERÉNNÍ', 'ZESÍLENÝ'],
+      description: 'Zesílená varianta LIZARD 35 s vyšší pohotovostní hmotností pro náročnější aplikace.',
       specs: {
-        'Nosnost': '3500 kg',
-        'Zdvihací výška': '4.0 m',
-        'Pohon': 'Elektrický s regenerací',
-        'Baterie': 'Li-Ion Premium'
+        'Nosnost': '3500–3800 kg',
+        'Zdvih': '3–6 m',
+        'Hmotnost': '5100 kg (zesílená)',
+        'Náklon': '≤ 35°',
+        'Světlá výška': '280 mm',
+        'Rozvor': '1950 mm (prodloužený)',
+        'Poloměr otáčení': '3500 mm',
+        'Motor': '58 kW',
+        'Rychlost': '28 km/h',
+        'Délky vidlí': '1220–1820 mm',
+        'Rozměry': '3600×1850×2200 mm'
       },
       features: [
-        'Regenerativní brzdění',
+        'Zesílená konstrukce (+500 kg hmotnosti)',
+        'Prodloužený rozvor pro vyšší stabilitu',
+        'Stejná nosnost s lepší stabilitou',
         'Pokročilé bezpečnostní systémy',
-        'Premium baterie s dlouhou životností',
-        'Inteligentní řízení výkonu'
+        'Pro nejnáročnější terénní podmínky'
       ],
       available: true
     },
@@ -706,23 +756,28 @@ function AppContent() {
       id: 'lizard-50',
       name: 'LIZARD 50',
       price: 'Na dotaz',
-      power: 'Elektrický',
+      power: '76 kW',
       category: 'Ještěrky',
       brand: 'LIZZARD-VZV',
       image: '/api/placeholder/400/300',
-      badges: ['ELEKTRICKÝ', 'NEJSILNĚJŠÍ'],
-      description: 'Nejsilnější elektrický vysokozdvižný vozík pro těžké náklady.',
+      badges: ['TERÉNNÍ', 'NEJSILNĚJŠÍ'],
+      description: 'Nejvyšší třída LIZZARD s nosností 5 tun a zdvihem až 6 metrů. 4válcový motor pro maximální výkon.',
       specs: {
         'Nosnost': '5000 kg',
-        'Zdvihací výška': '4.5 m',
-        'Pohon': 'Elektrický heavy-duty',
-        'Baterie': 'Li-Ion Industrial'
+        'Zdvih': '3–6 m',
+        'Hmotnost': '7800 kg',
+        'Světlá výška': '380 mm',
+        'Motor': '4válcový 4,8 l, 76 kW',
+        'Rychlost': '28 km/h',
+        'Pohon': '4×4',
+        'Převodovka': 'Hydrodynamická'
       },
       features: [
         'Maximální nosnost 5 tun',
-        'Nejrobustnější konstrukce',
-        'Industriální baterie',
-        'Pro nejtěžší aplikace'
+        '4válcový motor 4,8 l pro nejvyšší výkon',
+        'Nejrobustnější konstrukce v řadě',
+        'Nejvyšší světlá výška 380 mm',
+        'Pro nejtěžší terénní aplikace'
       ],
       available: true
     }
