@@ -21,11 +21,11 @@ interface ProductsProps {
   products: Product[]
   onProductSelect: (product: Product) => void
   onBack: () => void
+  selectedCategory: string
+  onCategoryChange: (category: string) => void
 }
 
-export default function Products({ products, onProductSelect, onBack }: ProductsProps) {
-  const [selectedCategory, setSelectedCategory] = React.useState<string>('Traktory')
-  
+export default function Products({ products, onProductSelect, onBack, selectedCategory, onCategoryChange }: ProductsProps) {
   const categories = [
     { id: 'Traktory', name: 'Traktory' },
     { id: 'Nakladače', name: 'Nakladače' },
@@ -54,7 +54,7 @@ export default function Products({ products, onProductSelect, onBack }: Products
               <Button
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => onCategoryChange(category.id)}
                 className={selectedCategory === category.id ? "bg-accent hover:bg-accent/90 text-accent-foreground" : ""}
               >
                 {category.name}

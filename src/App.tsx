@@ -45,6 +45,7 @@ function AppContent() {
   const [showContactForm, setShowContactForm] = React.useState(false)
   const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null)
   const [currentView, setCurrentView] = React.useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'>('home')
+  const [selectedCategory, setSelectedCategory] = React.useState<string>('Traktory')
   
   const [products] = React.useState<Product[]>([
     // Traktory - TIGER
@@ -810,11 +811,13 @@ function AppContent() {
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product)
     setCurrentView('product-detail')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleBackToProducts = () => {
     setCurrentView('products')
     setSelectedProduct(null)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleBackToHome = () => {
@@ -919,6 +922,8 @@ function AppContent() {
             products={products || []} 
             onProductSelect={handleProductSelect}
             onBack={handleBackToHome}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
           />
         </div>
         <Footer 
