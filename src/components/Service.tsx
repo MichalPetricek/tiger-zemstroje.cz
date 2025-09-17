@@ -416,11 +416,11 @@ export default function Service({ onContactClick }: ServiceProps) {
             {/* Contact Info */}
             <div className="grid md:grid-cols-2 gap-6 mt-12">
               <Card>
-                <CardHeader>
-                  <Phone className="w-8 h-8 text-accent mb-2" />
+                <CardHeader className="text-center">
+                  <Phone className="w-8 h-8 text-accent mb-2 mx-auto" />
                   <CardTitle>Přímý kontakt na servis</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="text-center">
                   <p className="font-semibold text-lg">+420 602 458 177</p>
                   <p className="text-muted-foreground">servis@zemstroje.cz</p>
                   <p className="text-sm text-muted-foreground mt-2">
