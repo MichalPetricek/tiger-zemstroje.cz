@@ -845,7 +845,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-8">
+        <div className="pt-4">
           <Contacts onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -863,7 +863,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-8">
+        <div className="pt-4">
           <Rental onBack={handleBackToHome} onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -881,7 +881,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-8">
+        <div className="pt-4">
           <Service onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -899,7 +899,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-8">
+        <div className="pt-4">
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -917,7 +917,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-8">
+        <div className="pt-4">
           <Products 
             products={products || []} 
             onProductSelect={handleProductSelect}
@@ -941,7 +941,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-8">
+        <div className="pt-4">
           <ProductDetail 
             product={selectedProduct} 
             onBack={handleBackToProducts}
