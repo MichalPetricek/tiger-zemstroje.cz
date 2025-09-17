@@ -57,18 +57,13 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
       </CardHeader>
 
       <CardContent>
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button 
-            className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
-            onClick={() => onSelect?.(product)}
-          >
-            Více informací
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-          <Button variant="outline" className="flex-1">
-            Kontakt
-          </Button>
-        </div>
+        <Button 
+          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+          onClick={() => onSelect?.(product)}
+        >
+          Více informací
+          <ArrowRight className="w-4 h-4 ml-2" />
+        </Button>
       </CardContent>
     </Card>
   )
