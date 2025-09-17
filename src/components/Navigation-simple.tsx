@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { Phone, Mail, Menu, Moon, Sun } from '@phosphor-icons/react'
+import { Phone, Envelope, List, Moon, Sun } from '@phosphor-icons/react'
 
 interface NavigationProps {
   navigation: Array<{
@@ -45,7 +45,7 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
             <Button variant="ghost" size="sm">
-              <Menu className="w-6 h-6" />
+              <List className="w-6 h-6" />
             </Button>
           </div>
         </div>

@@ -14,7 +14,7 @@ import {
   CheckCircle,
   Star,
   Gear,
-  Tool
+  Toolbox
 } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 
@@ -87,7 +87,7 @@ export default function Service({ onContactClick }: ServiceProps) {
       description: "Náhradní technika během opravy vašeho stroje"
     },
     {
-      icon: <Tool className="w-8 h-8 text-accent" />,
+      icon: <Toolbox className="w-8 h-8 text-accent" />,
       title: "Certifikace EWT",
       description: "Odborné svařování a opravy konstrukcí dle EU norem"
     },
@@ -430,24 +430,6 @@ export default function Service({ onContactClick }: ServiceProps) {
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <Wrench className="w-8 h-8 text-accent mb-2" />
-                  <CardTitle>Servisní centrum</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="font-medium">Skuhrov 13</p>
-                  <p className="text-muted-foreground">468 22 Železný Brod</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="mt-3"
-                    onClick={onContactClick}
-                  >
-                    Zobrazit na mapě
-                  </Button>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>

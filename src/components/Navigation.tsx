@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { Phone, Mail, Menu, Moon, Sun } from '@phosphor-icons/react'
+import { Phone, Envelope, List, Moon, Sun } from '@phosphor-icons/react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
 import { useTheme } from '@/contexts/ThemeContext'
@@ -97,7 +97,7 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="sm" className="lg:hidden">
-                  <Menu className="w-6 h-6" />
+                  <List className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent>
@@ -141,7 +141,7 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                     className="bg-accent hover:bg-accent/90 text-accent-foreground"
                   >
                     Napište nám
-                    <Mail className="w-4 h-4 ml-2" />
+                    <Envelope className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
               </SheetContent>

@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { ArrowLeft, Phone, Mail, Star } from '@phosphor-icons/react'
+import { ArrowLeft, Phone, Envelope, Star, DownloadSimple, Video } from '@phosphor-icons/react'
 
 interface Product {
   id: string
@@ -105,8 +105,16 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
                 Kontaktovat obchod
               </Button>
               <Button size="lg" variant="outline" onClick={onContact}>
-                <Mail className="w-5 h-5 mr-2" />
+                <Envelope className="w-5 h-5 mr-2" />
                 Získat nabídku
+              </Button>
+              <Button size="lg" variant="outline">
+                <DownloadSimple className="w-5 h-5 mr-2" />
+                Stažení dokumentace
+              </Button>
+              <Button size="lg" variant="outline">
+                <Video className="w-5 h-5 mr-2" />
+                Odkaz na video
               </Button>
             </div>
           </div>

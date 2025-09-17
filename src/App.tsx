@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Phone, Mail, MapPin, Star, Shield, Wrench, Clock, ArrowRight } from '@phosphor-icons/react'
+import { Phone, MapPin, Star, Shield, Wrench, Clock, ArrowRight, Envelope } from '@phosphor-icons/react'
 import { Toaster } from '@/components/ui/sonner'
-import { useKV } from '@github/spark/hooks'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 // Import components
@@ -16,6 +15,7 @@ import Subsidies from '@/components/Subsidies'
 import Service from '@/components/Service'
 import Contacts from '@/components/Contacts'
 import Rental from '@/components/Rental'
+import Products from '@/components/Products'
 import Footer from '@/components/Footer'
 
 interface Product {
@@ -42,120 +42,184 @@ interface NewsItem {
 }
 
 function AppContent() {
-  const [showContactForm, setShowContactForm] = useKV('showContactForm', false)
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [currentView, setCurrentView] = useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'>('home')
+  const [showContactForm, setShowContactForm] = React.useState(false)
+  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null)
+  const [currentView, setCurrentView] = React.useState<'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'>('home')
   
-  const [products, setProducts] = useKV<Product[]>('products', [])
-  const [news, setNews] = useKV<NewsItem[]>('news', [])
-
-  // Initialize sample data on first load
-  useEffect(() => {
-    if (products.length === 0) {
-      const sampleProducts: Product[] = [
-        {
-          id: 'tiger-504',
-          name: 'TIGER 504',
-          price: '199 000 Kč',
-          power: '50 HP',
-          category: 'Traktory',
-          brand: 'TIGER',
-          image: '/api/placeholder/400/300',
-          badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
-          description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Plný výkon za cenu běžných zahradních traktorů.',
-          specs: {
-            'Výkon motoru': '50 HP',
-            'Palivová nádrž': '45 l',
-            'Hydraulika': 'Jednoduché vývodové okruhy',
-            'Záruka': '2 roky'
-          },
-          features: [
-            'Přímý dovoz od výrobce',
-            'Bez prostředníků - nejlepší cena',
-            'Lokální servis v ČR',
-            'Dostupné náhradní díly'
-          ],
-          available: true
-        },
-        {
-          id: 'tiger-704',
-          name: 'TIGER 704',
-          price: '299 000 Kč',
-          power: '70 HP',
-          category: 'Traktory',
-          brand: 'TIGER',
-          image: '/api/placeholder/400/300',
-          badges: ['VÝKONNÝ'],
-          description: 'Výkonnější traktor pro náročnější práce s možností připojení nakladače.',
-          specs: {
-            'Výkon motoru': '70 HP',
-            'Palivová nádrž': '65 l',
-            'Hydraulika': 'Dvoucestná s nakladačem',
-            'Rozchod kol': 'Nastavitelný'
-          },
-          features: [
-            'Kompatibilní s nakladačem TZ04D',
-            'Rozšiřitelný rozchod pro stabilitu',
-            'Profesionální hydraulický systém',
-            '2 roky záruky'
-          ],
-          available: true
-        },
-        {
-          id: 'manitech-ml280',
-          name: 'MANITECH ML280',
-          price: 'Na dotaz',
-          power: '80 HP',
-          category: 'Nakladače',
-          brand: 'MANITECH',
-          image: '/api/placeholder/400/300',
-          badges: ['MANIPULAČNÍ TECHNIKA'],
-          description: 'Kolový nakladač pro profesionální použití ve stavebnictví a zemědělství.',
-          specs: {
-            'Výkon motoru': '80 HP',
-            'Zdvihací síla': '2800 kg',
-            'Objem lžíce': '1.2 m³',
-            'Pracovní tlak': '180 bar'
-          },
-          features: [
-            'Ergonomická kabina s klimatizací',
-            'Široká škála příslušenství',
-            'Jednoduchá obsluha',
-            'Vysoká spolehlivost'
-          ],
-          available: true
-        }
-      ]
-      setProducts(sampleProducts)
+  const [products] = React.useState<Product[]>([
+    // Traktory
+    {
+      id: 'tiger-504',
+      name: 'TIGER 504',
+      price: '199 000 Kč',
+      power: '50 HP',
+      category: 'Traktory',
+      brand: 'TIGER',
+      image: '/api/placeholder/400/300',
+      badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
+      description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Plný výkon za cenu běžných zahradních traktorů.',
+      specs: {
+        'Výkon motoru': '50 HP',
+        'Palivová nádrž': '45 l',
+        'Hydraulika': 'Jednoduché vývodové okruhy',
+        'Záruka': '2 roky'
+      },
+      features: [
+        'Přímý dovoz od výrobce',
+        'Bez prostředníků - nejlepší cena',
+        'Lokální servis v ČR',
+        'Dostupné náhradní díly'
+      ],
+      available: true
+    },
+    {
+      id: 'tiger-704',
+      name: 'TIGER 704',
+      price: '299 000 Kč',
+      power: '70 HP',
+      category: 'Traktory',
+      brand: 'TIGER',
+      image: '/api/placeholder/400/300',
+      badges: ['VÝKONNÝ'],
+      description: 'Výkonnější traktor pro náročnější práce s možností připojení nakladače.',
+      specs: {
+        'Výkon motoru': '70 HP',
+        'Palivová nádrž': '65 l',
+        'Hydraulika': 'Dvoucestná s naladačem',
+        'Rozchod kol': 'Nastavitelný'
+      },
+      features: [
+        'Kompatibilní s nakladačem TZ04D',
+        'Rozšiřitelný rozchod pro stabilitu',
+        'Profesionální hydraulický systém',
+        '2 roky záruky'
+      ],
+      available: true
+    },
+    {
+      id: 'tiger-904',
+      name: 'TIGER 904',
+      price: '399 000 Kč',
+      power: '90 HP',
+      category: 'Traktory',
+      brand: 'TIGER',
+      image: '/api/placeholder/400/300',
+      badges: ['VÝKONNÝ'],
+      description: 'Profesionální traktor pro náročné zemědělské práce.',
+      specs: {
+        'Výkon motoru': '90 HP',
+        'Palivová nádrž': '75 l',
+        'Hydraulika': 'Pokročilá',
+        'Záruka': '2 roky'
+      },
+      features: [
+        'Vysoký výkon pro náročné práce',
+        'Robustní konstrukce',
+        'Pokročilá hydraulika',
+        'Lokální servis'
+      ],
+      available: true
+    },
+    // Bagry
+    {
+      id: 'bat08',
+      name: 'Bagr BAT08',
+      price: 'Na dotaz',
+      power: '18 HP',
+      category: 'Bagry',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['KOMPAKTNÍ'],
+      description: 'Kompaktní bagr pro menší stavební práce.',
+      specs: {
+        'Výkon motoru': '18 HP',
+        'Hmotnost': '800 kg',
+        'Hloubka výkopu': '1.8 m',
+        'Dosah': '3.2 m'
+      },
+      features: [
+        'Kompaktní rozměry',
+        'Snadná manipulace',
+        'Ekonomický provoz',
+        'Univerzální použití'
+      ],
+      available: true
+    },
+    // Nakladače
+    {
+      id: 't135',
+      name: 'T 135',
+      price: 'Na dotaz',
+      power: '35 HP',
+      category: 'Nakladače',
+      brand: 'MANITECH',
+      image: '/api/placeholder/400/300',
+      badges: ['KOMPAKTNÍ'],
+      description: 'Kompaktní teleskopický nakladač pro univerzální použití.',
+      specs: {
+        'Výkon motoru': '35 HP',
+        'Zdvihací výška': '3.5 m',
+        'Nosnost': '1350 kg',
+        'Dosah': '2.8 m'
+      },
+      features: [
+        'Kompaktní rozměry',
+        'Teleskopické rameno',
+        'Univerzální použití',
+        'Snadná obsluha'
+      ],
+      available: true
+    },
+    // Ještěrky
+    {
+      id: 'lizard-30',
+      name: 'LIZARD 30',
+      price: 'Na dotaz',
+      power: 'Elektrický',
+      category: 'Ještěrky',
+      brand: 'LIZZARD-VZV',
+      image: '/api/placeholder/400/300',
+      badges: ['ELEKTRICKÝ'],
+      description: 'Elektrický vysokozdvižný vozík pro sklady a haly.',
+      specs: {
+        'Nosnost': '3000 kg',
+        'Zdvihací výška': '3.0 m',
+        'Pohon': 'Elektrický',
+        'Baterie': 'Li-Ion'
+      },
+      features: [
+        'Tichý provoz',
+        'Nulové emise',
+        'Lithiové baterie',
+        'Snadná obsluha'
+      ],
+      available: true
     }
+  ])
 
-    if (news.length === 0) {
-      const sampleNews: NewsItem[] = [
-        {
-          id: '1',
-          title: 'TIGER 504 v nabídce pronájmu',
-          content: 'Nově můžete traktor TIGER 504 vyzkoušet v pronájmu se zvýhodněním při následné koupi.',
-          date: '13. 8. 2025',
-          featured: true
-        },
-        {
-          id: '2',
-          title: 'Dorazilo 50 nových traktorů',
-          content: 'Do skladu jsme přijali 40× TIGER 504 a 10× TIGER 704. Část stále k dispozici.',
-          date: '25. 7. 2025',
-          featured: false
-        },
-        {
-          id: '3',
-          title: 'Nový dealer ve Velké Británii',
-          content: 'Autorizovaný dealer v Norwichi rozšiřuje naši síť. Expedovali jsme 6 traktorů.',
-          date: '23. 7. 2025',
-          featured: false
-        }
-      ]
-      setNews(sampleNews)
+  const [news] = React.useState<NewsItem[]>([
+    {
+      id: '1',
+      title: 'TIGER 504 v nabídce pronájmu',
+      content: 'Nově můžete traktor TIGER 504 vyzkoušet v pronájmu se zvýhodněním při následné koupi.',
+      date: '13. 8. 2025',
+      featured: true
+    },
+    {
+      id: '2',
+      title: 'Dorazilo 50 nových traktorů',
+      content: 'Do skladu jsme přijali 40× TIGER 504 a 10× TIGER 704. Část stále k dispozici.',
+      date: '25. 7. 2025',
+      featured: false
+    },
+    {
+      id: '3',
+      title: 'Nový dealer ve Velké Británii',
+      content: 'Autorizovaný dealer v Norwichi rozšiřuje naši síť. Expedovali jsme 6 traktorů.',
+      date: '23. 7. 2025',
+      featured: false
     }
-  }, [products.length, news.length, setProducts, setNews])
+  ])
 
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product)
@@ -170,19 +234,17 @@ function AppContent() {
   const handleBackToHome = () => {
     setCurrentView('home')
     setSelectedProduct(null)
-    // Scroll to top when navigating
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleViewChange = (view: 'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental') => {
     setCurrentView(view)
-    // Scroll to top when navigating to different page
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const navigation = [
     { name: 'Domů', href: '#home', onClick: handleBackToHome, active: currentView === 'home' },
-    { name: 'Traktory', href: '#tractors', onClick: () => handleViewChange('products'), active: currentView === 'products' || currentView === 'product-detail' },
+    { name: 'Produkty', href: '#products', onClick: () => handleViewChange('products'), active: currentView === 'products' || currentView === 'product-detail' },
     { name: 'Servis', href: '#service', onClick: () => handleViewChange('service'), active: currentView === 'service' },
     { name: 'Pronájem', href: '#rental', onClick: () => handleViewChange('rental'), active: currentView === 'rental' },
     { name: 'Dotace', href: '#subsidies', onClick: () => handleViewChange('subsidies'), active: currentView === 'subsidies' },
@@ -194,7 +256,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16"> {/* Reduced padding */}
+        <div className="pt-16">
           <Contacts onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -212,7 +274,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16"> {/* Reduced padding */}
+        <div className="pt-16">
           <Rental onBack={handleBackToHome} onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -230,7 +292,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16"> {/* Reduced padding */}
+        <div className="pt-16">
           <Service onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -248,7 +310,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16"> {/* Reduced padding */}
+        <div className="pt-16">
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -266,34 +328,17 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-
-        {/* Products Catalog */}
-        <section className="pt-16 py-16 px-4"> {/* Reduced padding */}
-          <div className="container mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl lg:text-5xl font-bold mb-4">Naše produkty</h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Kompletní sortiment zemědělské a manipulační techniky přímo od výrobců
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  onSelect={handleProductSelect}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
+        <div className="pt-16">
+          <Products 
+            products={products || []} 
+            onProductSelect={handleProductSelect}
+            onBack={handleBackToHome}
+          />
+        </div>
         <Footer 
           onProductsClick={() => handleViewChange('products')} 
           onSubsidiesClick={() => handleViewChange('subsidies')}
         />
-
         <ContactForm open={showContactForm} onOpenChange={setShowContactForm} />
         <Toaster />
       </div>
@@ -305,7 +350,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16"> {/* Reduced padding */}
+        <div className="pt-16">
           <ProductDetail 
             product={selectedProduct} 
             onBack={handleBackToProducts}
@@ -327,7 +372,7 @@ function AppContent() {
       <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
       {/* Hero Section */}
-      <section id="home" className="pt-16 py-16 px-4"> {/* Reduced padding */}
+      <section id="home" className="pt-16 py-16 px-4">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -405,7 +450,7 @@ function AppContent() {
       </section>
 
       {/* Products Section */}
-      <section id="tractors" className="py-16 px-4 bg-card/50"> {/* Reduced padding */}
+      <section id="products" className="py-16 px-4 bg-card/50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Naše produkty</h2>
@@ -438,7 +483,7 @@ function AppContent() {
       </section>
 
       {/* Services Section */}
-      <section id="service" className="py-16 px-4"> {/* Reduced padding */}
+      <section id="service" className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Naše služby</h2>
@@ -500,7 +545,7 @@ function AppContent() {
       </section>
 
       {/* News Section */}
-      <section className="py-16 px-4 bg-card/50"> {/* Reduced padding */}
+      <section className="py-16 px-4 bg-card/50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Aktuality</h2>
@@ -526,7 +571,7 @@ function AppContent() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4"> {/* Reduced padding */}
+      <section id="contact" className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Kontakt</h2>
@@ -578,7 +623,7 @@ function AppContent() {
               onClick={() => handleViewChange('contacts')}
             >
               Zobrazit všechny kontakty
-              <Mail className="w-5 h-5 ml-2" />
+              <Envelope className="w-5 h-5 ml-2" />
             </Button>
           </div>
         </div>

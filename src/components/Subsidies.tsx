@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Warning, Phone, Mail, Euro, Calendar, Info } from '@phosphor-icons/react'
+import { CheckCircle, Warning, Phone, Envelope, CurrencyEur, Calendar, Info } from '@phosphor-icons/react'
 
 interface SubsidiesProps {
   onContactClick: () => void
@@ -105,7 +105,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
 
             <Card>
               <CardHeader className="text-center">
-                <Euro className="w-12 h-12 text-accent mx-auto mb-4" />
+                <CurrencyEur className="w-12 h-12 text-accent mx-auto mb-4" />
                 <CardTitle>Kompletní administrace</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
@@ -134,7 +134,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
             <Card className="border-accent/20 bg-accent/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-accent">
-                  <Euro className="w-6 h-6" />
+                  <CurrencyEur className="w-6 h-6" />
                   Nemáte dostatek prostředků?
                 </CardTitle>
               </CardHeader>
@@ -234,7 +234,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
                   <span>+420 601 017 000</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4 text-accent" />
+                  <Envelope className="w-4 h-4 text-accent" />
                   <span>zemstroje@gmail.com</span>
                 </div>
               </div>
@@ -246,7 +246,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
                   onClick={onContactClick}
                 >
                   Napište nám
-                  <Mail className="w-5 h-5 ml-2" />
+                  <Envelope className="w-5 h-5 ml-2" />
                 </Button>
                 <Button 
                   size="lg" 

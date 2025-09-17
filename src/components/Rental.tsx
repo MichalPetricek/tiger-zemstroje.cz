@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Checkbox } from '@/components/ui/checkbox'
-import { ArrowLeft, Phone, Mail, MapPin, Shield, Wrench, Star, Truck, Clock, CreditCard } from '@phosphor-icons/react'
+import { ArrowLeft, Phone, Envelope, MapPin, Shield, Wrench, Star, Truck, Clock, CreditCard } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 
 interface RentalProps {
@@ -205,7 +205,7 @@ export default function Rental({ onBack, onContactClick }: RentalProps) {
                   <span className="font-medium">+420 601 017 000</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-accent" />
+                  <Envelope className="w-5 h-5 text-accent" />
                   <span>zemstroje@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
