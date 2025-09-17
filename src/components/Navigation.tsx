@@ -120,67 +120,97 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                   <List className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent>
-                <div className="flex flex-col space-y-6 mt-6">
-                  {navigation.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => {
-                        if (item.onClick) item.onClick()
-                        setMobileMenuOpen(false)
-                      }}
-                      className={`text-lg transition-colors text-left ${
-                        item.active ? 'text-accent font-semibold' : 'text-foreground hover:text-accent'
-                      }`}
-                    >
-                      {item.name}
-                    </button>
-                  ))}
+              <SheetContent className="w-80">
+                <div className="flex flex-col h-full">
+                  {/* Logo in mobile menu */}
+                  <div className="flex items-center justify-center py-6">
+                    <img 
+                      src={theme === 'light' ? logoBlack : logoWhite} 
+                      alt="TIGER CZ Logo" 
+                      className="h-8 w-auto"
+                    />
+                  </div>
+                  
                   <Separator />
-                  <div className="flex items-center space-x-2">
-                    <Phone className="w-4 h-4 text-accent" />
-                    <span className="text-sm font-medium">+420 601 017 000</span>
+                  
+                  {/* Navigation items */}
+                  <div className="flex flex-col py-6 space-y-4">
+                    {navigation.map((item) => (
+                      <button
+                        key={item.name}
+                        onClick={() => {
+                          if (item.onClick) item.onClick()
+                          setMobileMenuOpen(false)
+                        }}
+                        className={`text-lg py-2 px-4 rounded-lg transition-colors text-left ${
+                          item.active 
+                            ? 'text-accent font-semibold bg-accent/10' 
+                            : 'text-foreground hover:text-accent hover:bg-accent/5'
+                        }`}
+                      >
+                        {item.name}
+                      </button>
+                    ))}
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm text-muted-foreground">Sledujte nás:</span>
-                    <a 
-                      href="https://facebook.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="hover:text-accent transition-colors"
-                      title="Facebook"
-                    >
-                      <Icon path={mdiFacebook} size={1} />
-                    </a>
-                    <a 
-                      href="https://instagram.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="hover:text-accent transition-colors"
-                      title="Instagram"
-                    >
-                      <Icon path={mdiInstagram} size={1} />
-                    </a>
-                    <a 
-                      href="https://youtube.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="hover:text-accent transition-colors"
-                      title="YouTube"
-                    >
-                      <Icon path={mdiYoutube} size={1} />
-                    </a>
+                  
+                  <Separator />
+                  
+                  {/* Contact info and social links */}
+                  <div className="flex-1 flex flex-col justify-end space-y-6 py-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-3 px-4">
+                        <Phone className="w-5 h-5 text-accent" />
+                        <span className="text-base font-medium">+420 601 017 000</span>
+                      </div>
+                      
+                      <div className="px-4">
+                        <div className="text-sm text-muted-foreground mb-3">Sledujte nás:</div>
+                        <div className="flex items-center space-x-4">
+                          <a 
+                            href="https://facebook.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="hover:text-accent transition-colors"
+                            title="Facebook"
+                          >
+                            <Icon path={mdiFacebook} size={1.2} />
+                          </a>
+                          <a 
+                            href="https://instagram.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="hover:text-accent transition-colors"
+                            title="Instagram"
+                          >
+                            <Icon path={mdiInstagram} size={1.2} />
+                          </a>
+                          <a 
+                            href="https://youtube.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="hover:text-accent transition-colors"
+                            title="YouTube"
+                          >
+                            <Icon path={mdiYoutube} size={1.2} />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="px-4">
+                      <Button 
+                        onClick={() => {
+                          onContactClick()
+                          setMobileMenuOpen(false)
+                        }}
+                        className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                        size="lg"
+                      >
+                        Napište nám
+                        <Envelope className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
                   </div>
-                  <Button 
-                    onClick={() => {
-                      onContactClick()
-                      setMobileMenuOpen(false)
-                    }}
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground"
-                  >
-                    Napište nám
-                    <Envelope className="w-4 h-4 ml-2" />
-                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
