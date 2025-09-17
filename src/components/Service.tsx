@@ -414,7 +414,7 @@ export default function Service({ onContactClick }: ServiceProps) {
             </Card>
 
             {/* Contact Info */}
-            <div className="grid md:grid-cols-2 gap-6 mt-12">
+            <div className="mt-12">
               <Card>
                 <CardHeader className="text-center">
                   <Phone className="w-8 h-8 text-accent mb-2 mx-auto" />
@@ -429,7 +429,6 @@ export default function Service({ onContactClick }: ServiceProps) {
                   </p>
                 </CardContent>
               </Card>
-
             </div>
           </div>
         </div>
