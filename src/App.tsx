@@ -842,7 +842,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16">
+        <div className="pt-8">
           <Contacts onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -860,7 +860,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16">
+        <div className="pt-8">
           <Rental onBack={handleBackToHome} onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -878,7 +878,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16">
+        <div className="pt-8">
           <Service onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -896,7 +896,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16">
+        <div className="pt-8">
           <Subsidies onContactClick={() => setShowContactForm(true)} />
         </div>
         <Footer 
@@ -914,7 +914,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16">
+        <div className="pt-8">
           <Products 
             products={products || []} 
             onProductSelect={handleProductSelect}
@@ -936,7 +936,7 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background text-foreground font-[Inter]">
         <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
-        <div className="pt-16">
+        <div className="pt-8">
           <ProductDetail 
             product={selectedProduct} 
             onBack={handleBackToProducts}
@@ -958,10 +958,10 @@ function AppContent() {
       <Navigation navigation={navigation} onContactClick={() => setShowContactForm(true)} />
 
       {/* Hero Section */}
-      <section id="home" className="pt-16 py-16 px-4">
+      <section id="home" className="pt-16 py-12 px-4">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-6">
               <div className="space-y-4">
                 <Badge className="bg-accent text-accent-foreground text-sm font-bold px-3 py-1">
                   CENOVÁ BOMBA!
@@ -1036,16 +1036,16 @@ function AppContent() {
       </section>
 
       {/* Products Section */}
-      <section id="products" className="py-16 px-4 bg-card/50">
+      <section id="products" className="py-12 px-4 bg-card/50">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Naše produkty</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Kompletní sortiment zemědělské a manipulační techniky přímo od výrobců
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.slice(0, 3).map((product) => (
               <ProductCard 
                 key={product.id} 
@@ -1055,7 +1055,7 @@ function AppContent() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8">
             <Button 
               size="lg" 
               variant="outline"
@@ -1069,16 +1069,16 @@ function AppContent() {
       </section>
 
       {/* Services Section */}
-      <section id="service" className="py-16 px-4">
+      <section id="service" className="py-12 px-4">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Naše služby</h2>
             <p className="text-xl text-muted-foreground">
               Komplexní péče o vaši techniku
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card>
               <CardHeader className="text-center">
                 <Wrench className="w-12 h-12 text-accent mx-auto mb-4" />
@@ -1131,16 +1131,16 @@ function AppContent() {
       </section>
 
       {/* News Section */}
-      <section className="py-16 px-4 bg-card/50">
+      <section className="py-12 px-4 bg-card/50">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Aktuality</h2>
             <p className="text-xl text-muted-foreground">
               Nejnovější informace ze světa TIGER CZ
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.slice(0, 3).map((item) => (
               <Card key={item.id}>
                 <CardHeader>
@@ -1157,16 +1157,16 @@ function AppContent() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4">
+      <section id="contact" className="py-12 px-4">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Kontakt</h2>
             <p className="text-xl text-muted-foreground">
               Jsme tu pro vás kdykoliv potřebujete
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
                 <Phone className="w-8 h-8 text-accent mb-2" />
@@ -1202,7 +1202,7 @@ function AppContent() {
             </Card>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8">
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-accent-foreground"

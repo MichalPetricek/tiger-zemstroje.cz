@@ -27,19 +27,19 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ product, onBack, onContact }: ProductDetailProps) {
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
+    <div className="min-h-screen bg-background py-4 px-4">
       <div className="container mx-auto">
         {/* Back button */}
         <Button 
           variant="ghost" 
           onClick={onBack}
-          className="mb-6 hover:text-accent"
+          className="mb-4 hover:text-accent"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Zpět na produkty
         </Button>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Product Image */}
           <div className="space-y-4">
             <div className="aspect-square rounded-2xl bg-card p-8 flex items-center justify-center relative overflow-hidden">
@@ -64,7 +64,7 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
           </div>
 
           {/* Product Info */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
               <div className="flex items-center gap-4 mb-4">
                 <h1 className="text-3xl lg:text-4xl font-bold">{product.name}</h1>
@@ -95,33 +95,40 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
-                onClick={onContact}
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Kontaktovat obchod
-              </Button>
-              <Button size="lg" variant="outline" onClick={onContact}>
-                <Envelope className="w-5 h-5 mr-2" />
-                Získat nabídku
-              </Button>
-              <Button size="lg" variant="outline">
-                <DownloadSimple className="w-5 h-5 mr-2" />
-                Stažení dokumentace
-              </Button>
-              <Button size="lg" variant="outline">
-                <Video className="w-5 h-5 mr-2" />
-                Odkaz na video
-              </Button>
+            <div className="space-y-4">
+              {/* Main action buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  size="lg" 
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
+                  onClick={onContact}
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Kontaktovat obchod
+                </Button>
+                <Button size="lg" variant="outline" onClick={onContact}>
+                  <Envelope className="w-5 h-5 mr-2" />
+                  Kontaktovat obchod
+                </Button>
+              </div>
+              
+              {/* Documentation and video buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" variant="outline">
+                  <DownloadSimple className="w-5 h-5 mr-2" />
+                  Stažení dokumentace
+                </Button>
+                <Button size="lg" variant="outline">
+                  <Video className="w-5 h-5 mr-2" />
+                  Odkaz na video
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Technical Specifications */}
-        <div className="mt-16">
+        <div className="mt-12">
           <Card>
             <CardHeader>
               <CardTitle>Technické specifikace</CardTitle>
@@ -145,7 +152,7 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
         </div>
 
         {/* Additional Info */}
-        <div className="mt-8 grid md:grid-cols-2 gap-8">
+        <div className="mt-6 grid md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
               <CardTitle>Servis a podpora</CardTitle>
