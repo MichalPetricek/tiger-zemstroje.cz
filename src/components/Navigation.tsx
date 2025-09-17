@@ -5,6 +5,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
 import { useTheme } from '@/contexts/ThemeContext'
 import { logoBlack, logoWhite } from '@/assets'
+import Icon from '@mdi/react'
+import { mdiFacebook, mdiInstagram, mdiYoutube } from '@mdi/js'
 
 interface NavigationProps {
   navigation: Array<{
@@ -67,15 +69,33 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
               <span className="text-sm font-medium">+420 601 017 000</span>
             </div>
             <Separator orientation="vertical" className="h-6" />
-            <div className="flex items-center space-x-2">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-sm">
-                FB
+            <div className="flex items-center space-x-3">
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-accent transition-colors"
+                title="Facebook"
+              >
+                <Icon path={mdiFacebook} size={0.8} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-sm">
-                IG
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-accent transition-colors"
+                title="Instagram"
+              >
+                <Icon path={mdiInstagram} size={0.8} />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-sm">
-                YT
+              <a 
+                href="https://youtube.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-accent transition-colors"
+                title="YouTube"
+              >
+                <Icon path={mdiYoutube} size={0.8} />
               </a>
             </div>
           </div>
@@ -121,16 +141,34 @@ export default function Navigation({ navigation, onContactClick }: NavigationPro
                     <Phone className="w-4 h-4 text-accent" />
                     <span className="text-sm font-medium">+420 601 017 000</span>
                   </div>
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-4">
                     <span className="text-sm text-muted-foreground">Sledujte nás:</span>
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-sm">
-                      FB
+                    <a 
+                      href="https://facebook.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-accent transition-colors"
+                      title="Facebook"
+                    >
+                      <Icon path={mdiFacebook} size={1} />
                     </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-sm">
-                      IG
+                    <a 
+                      href="https://instagram.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-accent transition-colors"
+                      title="Instagram"
+                    >
+                      <Icon path={mdiInstagram} size={1} />
                     </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-sm">
-                      YT
+                    <a 
+                      href="https://youtube.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-accent transition-colors"
+                      title="YouTube"
+                    >
+                      <Icon path={mdiYoutube} size={1} />
                     </a>
                   </div>
                   <Button 
