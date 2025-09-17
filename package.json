@@ -7,9 +7,16 @@
         "dev": "vite",
         "kill": "fuser -k 5000/tcp",
         "build": "tsc -b --noCheck && vite build",
+        "build:check": "tsc --noEmit",
         "lint": "eslint .",
         "optimize": "vite optimize",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "type-check": "tsc --noEmit --skipLibCheck",
+        "debug": "node debug-start.js",
+        "check-components": "node check-components.js",
+        "switch-simple": "node switch-app.js simple",
+        "switch-minimal": "node switch-app.js minimal", 
+        "switch-full": "node switch-app.js full"
     },
     "dependencies": {
         "@github/spark": "^0.39.0",
