@@ -27,13 +27,13 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ product, onBack, onContact }: ProductDetailProps) {
   return (
-    <div className="min-h-screen bg-background pt-20 pb-8 px-4">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto">
         {/* Back button */}
         <Button 
           variant="ghost" 
           onClick={onBack}
-          className="mb-8 hover:text-accent"
+          className="mb-6 hover:text-accent"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Zpět na produkty
