@@ -418,7 +418,7 @@ export default function Service({ onContactClick }: ServiceProps) {
               <Card>
                 <CardHeader className="text-center">
                   <Phone className="w-8 h-8 text-accent mb-2 mx-auto" />
-                  <CardTitle>Přímý kontakt na servis</CardTitle>
+                  <CardTitle className="text-center">Přímý kontakt na servis</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="font-semibold text-lg">+420 602 458 177</p>
