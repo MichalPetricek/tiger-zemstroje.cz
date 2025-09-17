@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { useKV } from '@github/spark/hooks'
 
 interface ThemeContextType {
   theme: 'light' | 'dark'
@@ -9,8 +8,14 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [themeState, setTheme] = useKV<'light' | 'dark'>('theme', 'dark')
-  const theme = themeState || 'dark' // Provide fallback
+  // Initialize theme from localStorage or default to 'dark'
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme')
+      return (saved === 'light' || saved === 'dark') ? saved : 'dark'
+    }
+    return 'dark'
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -23,6 +28,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.add('light')
     }
     // Dark mode is the default CSS, so no class needed
+    
+    // Save to localStorage
+    localStorage.setItem('theme', theme)
     
   }, [theme])
 
