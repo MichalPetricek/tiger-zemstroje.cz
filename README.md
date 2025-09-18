@@ -2,7 +2,19 @@
 
 Moderní webová aplikace pro prodej a servis zemědělské a manipulační techniky TIGER CZ s.r.o.
 
-## 🚜 O projektu
+## � Rychlý start
+
+```bash
+# Instalace závislostí
+npm install
+
+# Spuštění vývojového serveru
+npm run dev
+
+# Aplikace běží na http://localhost:8085
+```
+
+## �🚜 O projektu
 
 Webová aplikace pro společnost TIGER CZ s.r.o., specializující se na prodej a servis zemědělské techniky včetně traktorů, nakladačů, bagrů a vysokozdvižných vozíků.
 
@@ -11,7 +23,7 @@ Webová aplikace pro společnost TIGER CZ s.r.o., specializující se na prodej 
 - **Produktový katalog** - Traktory TIGER, YTO, JINMA, nakladače MANITECH, bagry a ještěrky LIZZARD
 - **Servisní služby** - Online objednání servisu, diagnostika, náhradní díly
 - **Pronájem techniky** - Rezervační systém pro pronájem traktorů
-- **Dotační poradenství** - Aktuální informace o dotacích na zemědělskou techniku  
+- **Dotační poradenství** - Aktuální informace o dotacích na zemědělskou techniku
 - **Kontaktní systém** - Kompletní kontaktní informace včetně interaktivní mapy
 
 ### Technické specifikace
@@ -74,38 +86,47 @@ src/
 ## 📝 Klíčové komponenty
 
 ### Navigation
+
 Responzivní navigace s přepínačem témat, telefonním číslem a sociálními sítěmi.
 
-### Products  
+### Products
+
 Katalog produktů s filtrováním podle kategorií (Traktory, Nakladače, Bagry, Ještěrky).
 
 ### ProductDetail
+
 Detailní zobrazení produktu s technickými specifikacemi a kontaktními možnostmi.
 
 ### Service
+
 Servisní stránka s ceníkem služeb a formulářem pro objednání.
 
-### Subsidies  
+### Subsidies
+
 Přehled aktuálních dotačních programů pro zemědělskou techniku.
 
 ### Contacts
+
 Kontaktní stránka s mapou Google Maps a všemi kontaktními údaji.
 
 ## 🔧 Konfigurace
 
 ### Barevné schéma
+
 Upravte barevné proměnné v `src/index.css`:
 
 ```css
 :root {
-  --background: oklch(0.145 0.02 250);  /* Tmavé pozadí */
-  --accent: oklch(0.65 0.15 40);        /* Oranžová akcent */
+  --background: oklch(0.145 0.02 250); /* Tmavé pozadí */
+  --accent: oklch(0.65 0.15 40); /* Oranžová akcent */
   /* ... další barvy */
 }
 ```
 
 ### Produktová data
+
 Produkty jsou definovány v `src/App.tsx` v poli `products`. Každý produkt obsahuje:
+
 - Základní informace (název, cena, výkon)
 - Technické specifikace
 - Seznam vlastností
@@ -114,8 +135,9 @@ Produkty jsou definovány v `src/App.tsx` v poli `products`. Každý produkt obs
 ## 📱 Responzivnost
 
 Aplikace je optimalizována pro všechna zařízení:
+
 - **Mobile**: < 768px
-- **Tablet**: 768px - 1024px  
+- **Tablet**: 768px - 1024px
 - **Desktop**: > 1024px
 
 ## 🛠 Dostupné skripty
@@ -129,8 +151,9 @@ Aplikace je optimalizována pro všechna zařízení:
 ## 📞 Kontakt
 
 **TIGER CZ s.r.o.**
+
 - **Obchod**: +420 601 017 000, zemstroje@gmail.com
-- **Servis**: +420 602 458 177, servis@zemstroje.cz  
+- **Servis**: +420 602 458 177, servis@zemstroje.cz
 - **Adresa**: Skuhrov 13, 468 22 Železný Brod
 - **Otevírací doba**: Po-Pá 9:00-16:00
 
@@ -140,4 +163,4 @@ Projekt je vlastnictvím společnosti TIGER CZ s.r.o.
 
 ---
 
-*"RYCHLOST – SPOLEHLIVOST – FLEXIBILITA"*
+_"RYCHLOST – SPOLEHLIVOST – FLEXIBILITA"_
