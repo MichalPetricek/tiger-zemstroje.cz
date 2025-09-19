@@ -25,5 +25,10 @@ export default defineConfig({
   preview: {
     port: 4173,
     host: '0.0.0.0',
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
   }
 });
