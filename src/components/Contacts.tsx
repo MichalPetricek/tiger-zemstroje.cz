@@ -150,9 +150,9 @@ export default function Contacts({ onContactClick }: ContactsProps) {
             <CardTitle>Mapa</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="relative w-full h-96 rounded-b-lg overflow-hidden">
+            <div className="relative w-full h-96 rounded-b-lg overflow-hidden bg-muted">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2570.34!2d15.27342!3d50.64462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e7b2e7b2e7b2e%3A0x123456789abcdef0!2sSkuhrov+13%2C+468+22+%C5%BDelezn%C3%BD+Brod%2C+Czechia!5e0!3m2!1sen!2scz!4v1000000000000!5m2!1sen!2scz"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.4!2d15.2733!3d50.6444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e7b2e7b2e7b2e%3A0x8b8b8b8b8b8b8b8b!2sSkuhrov%2013%2C%20468%2022%20%C5%BDelezn%C3%BD%20Brod%2C%20Czechia!5e0!3m2!1sen!2scz!4v1697123456789!5m2!1sen!2scz"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -162,6 +162,20 @@ export default function Contacts({ onContactClick }: ContactsProps) {
                 className="absolute inset-0"
                 title="TIGER CZ s.r.o. - Mapa provozovny"
               />
+              {/* Fallback for CSP issues */}
+              <noscript>
+                <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
+                  <div className="text-center p-6">
+                    <MapPin className="w-12 h-12 mx-auto mb-4 text-accent" />
+                    <p className="mb-4">Interaktivní mapa není k dispozici</p>
+                    <Button 
+                      onClick={() => window.open('https://maps.google.com/?q=Skuhrov+13,+468+22+Železný+Brod,+Czech+Republic', '_blank')}
+                    >
+                      Otevřít v Google Maps
+                    </Button>
+                  </div>
+                </div>
+              </noscript>
             </div>
           </CardContent>
         </Card>
