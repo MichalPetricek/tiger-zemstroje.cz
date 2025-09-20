@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-  ArrowLeft,
   Phone,
   Envelope,
   MapPin,
@@ -37,7 +36,10 @@ interface FormData {
   consent: boolean;
 }
 
-export default function Rental({ onBack, onContactClick }: RentalProps) {
+export default function Rental({
+  onBack: _onBack,
+  onContactClick: _onContactClick,
+}: RentalProps) {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -74,6 +76,7 @@ export default function Rental({ onBack, onContactClick }: RentalProps) {
         consent: false,
       });
     } catch (error) {
+      console.error("Form submission error:", error);
       toast.error("Něco se pokazilo. Zkuste to prosím znovu.");
     }
   };
