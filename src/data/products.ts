@@ -9,7 +9,16 @@ export const products: Product[] = [
         power: '50 HP',
         category: 'Traktory',
         brand: 'TIGER',
-        image: '/api/placeholder/400/300',
+        image: '/src/assets/images/traktory/tiger-504/1.png',
+        images: [
+            '/src/assets/images/traktory/tiger-504/1.png',
+            '/src/assets/images/traktory/tiger-504/2.png',
+            '/src/assets/images/traktory/tiger-504/3.png',
+            '/src/assets/images/traktory/tiger-504/4.png',
+            '/src/assets/images/traktory/tiger-504/5.png',
+            '/src/assets/images/traktory/tiger-504/6.png',
+            '/src/assets/images/traktory/tiger-504/7.png'
+        ],
         badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
         description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Jednoduchá mechanika, 2letá záruka. Traktor není určen k registraci na SPZ.',
         specs: {

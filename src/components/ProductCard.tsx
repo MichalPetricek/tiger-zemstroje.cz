@@ -16,11 +16,17 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onSelect }: ProductCardProps) {
+  // Use the first image from images array if available, otherwise fallback to image field
+  const displayImage =
+    product.images && product.images.length > 0
+      ? product.images[0]
+      : product.image;
+
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
       <div className="aspect-square bg-muted relative overflow-hidden">
         <img
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />

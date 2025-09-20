@@ -6,6 +6,7 @@ export interface Product {
     category: string
     brand: string
     image: string
+    images?: string[] // Array of image URLs/paths for carousel (optional for backward compatibility)
     badges: string[]
     description: string
     specs: Record<string, string>
