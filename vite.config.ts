@@ -5,15 +5,8 @@ import { resolve } from 'path'
 
 const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
 
-// Base URL configuration:
-// - For GitHub Pages: '/Tiger-zemstroje.cz/'  
-// - For custom domain: '/' or remove base entirely
-const isCustomDomain = process.env.CUSTOM_DOMAIN === 'true'
-const baseUrl = isCustomDomain ? '/' : '/Tiger-zemstroje.cz/'
-
 // https://vite.dev/config/
 export default defineConfig({
-  base: baseUrl,
   plugins: [
     react(),
     tailwindcss(),
@@ -37,5 +30,6 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-  }
+  },
+  publicDir: 'public'
 });
