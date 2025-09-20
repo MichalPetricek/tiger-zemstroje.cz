@@ -12,6 +12,7 @@ export interface Product {
     features: string[]
     available: boolean
     documentation?: string // Path to PDF documentation file
+    youtubeUrl?: string // YouTube video URL for product demo/showcase
 }
 
 export interface NewsItem {

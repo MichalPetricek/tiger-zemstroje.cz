@@ -130,10 +130,16 @@ export default function ProductDetail({
                   variant="outline"
                   size="lg"
                 />
-                <Button size="lg" variant="outline">
-                  <Video className="w-5 h-5 mr-2" />
-                  Odkaz na video
-                </Button>
+                {product.youtubeUrl && (
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => window.open(product.youtubeUrl, "_blank")}
+                  >
+                    <Video className="w-5 h-5 mr-2" />
+                    Zobrazit video
+                  </Button>
+                )}
               </div>
             </div>
           </div>

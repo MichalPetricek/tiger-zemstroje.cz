@@ -28,20 +28,21 @@ export const products: Product[] = [
             'Možnost připojení nakladače TZ04D'
         ],
         available: true,
-        documentation: '/src/assets/docs/traktory/parametry_TIGER504.pdf'
+        documentation: '/src/assets/docs/traktory/parametry_TIGER504.pdf',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 504 demo
     },
     {
         id: 'tiger-704',
         name: 'TIGER 704',
         price: '449 000 Kč',
-        power: '51.5 kW (70 HP)',
+        power: '70 HP',
         category: 'Traktory',
         brand: 'TIGER',
         image: '/api/placeholder/400/300',
         badges: ['VÝKONNÝ', 'KLIMATIZACE'],
         description: 'Středně výkonný traktor s luxusní kabinou a klimatizací. Euro 3 motor s hydraulickým řízením a mechanickou převodovkou.',
         specs: {
-            'Výkon motoru': '51.5 kW (70 HP)',
+            'Výkon motoru': '70 HP',
             'Motor': 'Euro 3, diesel, 3800 ccm',
             'Převodovka': '12/12 rychlostí',
             'Typ řízení': 'Hydraulické',
@@ -64,20 +65,21 @@ export const products: Product[] = [
             'Kompatibilní s příslušenstvím'
         ],
         available: true,
-        documentation: '/src/assets/docs/traktory/parametry_TIGER704FMD-TB.pdf'
+        documentation: '/src/assets/docs/traktory/parametry_TIGER704FMD-TB.pdf',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 704 demo
     },
     {
         id: 'tiger-1004',
         name: 'TIGER 1004',
         price: '699 000 Kč',
-        power: '74 kW (100 HP)',
+        power: '100 HP',
         category: 'Traktory',
         brand: 'TIGER',
         image: '/api/placeholder/400/300',
         badges: ['VÝKONNÝ', 'KLIMATIZACE', 'PROFESIONÁLNÍ'],
         description: 'Středně výkonný traktor s luxusní kabinou, klimatizací a zadní kamerou. Euro 3 motor s hydraulickým řízením.',
         specs: {
-            'Výkon motoru': '74 kW (100 HP)',
+            'Výkon motoru': '100 HP',
             'Motor': 'Euro 3, diesel, 3300 ccm',
             'Převodovka': '12/12 rychlostí',
             'Typ řízení': 'Hydraulické',
@@ -108,14 +110,14 @@ export const products: Product[] = [
         id: 'tiger-1204',
         name: 'TIGER 1204',
         price: '899 000 Kč',
-        power: '88.3 kW (120 HP)',
+        power: '120 HP',
         category: 'Traktory',
         brand: 'TIGER',
         image: '/api/placeholder/400/300',
         badges: ['VÝKONNÝ', 'KLIMATIZACE', 'TĚŽKÁ KATEGORIE'],
         description: 'Výkonný traktor střední kategorie s luxusní kabinou a klimatizací. Euro 3 motor 6490 ccm s hydraulickým řízením pro náročnější práce.',
         specs: {
-            'Výkon motoru': '88.3 kW (120 HP)',
+            'Výkon motoru': '120 HP',
             'Motor': 'Euro 3, diesel, 6490 ccm',
             'Převodovka': '16/8 rychlostí',
             'Typ řízení': 'Hydraulické',
@@ -365,7 +367,8 @@ export const products: Product[] = [
             'Univerzální použití'
         ],
         available: true,
-        documentation: '/src/assets/docs/bagry BAT/bagr BAT08.pdf'
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT08.pdf',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro bagr BAT08 demo
     },
     {
         id: 'bat10',
@@ -539,7 +542,8 @@ export const products: Product[] = [
             'Jednoduchá údržba',
             'Spolehlivý provoz'
         ],
-        available: true
+        available: true,
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro MTECH 1160 demo
     },
     {
         id: 'mtech-45',
@@ -642,7 +646,7 @@ export const products: Product[] = [
         id: 'lizard-30',
         name: 'LIZARD 30',
         price: 'Na dotaz',
-        power: '58 kW',
+        power: '78 HP',
         category: 'Ještěrky',
         brand: 'LIZZARD-VZV',
         image: '/api/placeholder/400/300',
@@ -655,7 +659,7 @@ export const products: Product[] = [
             'Náklon': '≤ 35°',
             'Světlá výška': '280 mm',
             'Rozvor': '1850 mm',
-            'Výkon motoru': '58 kW',
+            'Výkon motoru': '78 HP',
             'Rychlost': '28 km/h',
             'Rozměry stroje': '3800×1850×2200 mm'
         },
@@ -666,13 +670,14 @@ export const products: Product[] = [
             'Variabilní zdvih 3-6 metrů',
             'Kompaktní rozměry pro manévrovatelnost'
         ],
-        available: true
+        available: true,
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro LIZARD 30 demo
     },
     {
         id: 'lizard-35',
         name: 'LIZARD 35',
         price: 'Na dotaz',
-        power: '58 kW',
+        power: '78 HP',
         category: 'Ještěrky',
         brand: 'LIZZARD-VZV',
         image: '/api/placeholder/400/300',
@@ -686,7 +691,7 @@ export const products: Product[] = [
             'Světlá výška': '280 mm',
             'Rozvor': '1850 mm',
             'Poloměr otáčení': '3500 mm',
-            'Motor': '58 kW',
+            'Motor': '78 HP',
             'Rychlost': '28 km/h',
             'Délky vidlí': '1220–1820 mm',
             'Rozměry': '3800×1850×2200 mm'
@@ -704,7 +709,7 @@ export const products: Product[] = [
         id: 'lizard-35-pro',
         name: 'LIZARD 35 PRO',
         price: 'Na dotaz',
-        power: '58 kW',
+        power: '78 HP',
         category: 'Ještěrky',
         brand: 'LIZZARD-VZV',
         image: '/api/placeholder/400/300',
@@ -718,7 +723,7 @@ export const products: Product[] = [
             'Světlá výška': '280 mm',
             'Rozvor': '1950 mm (prodloužený)',
             'Poloměr otáčení': '3500 mm',
-            'Motor': '58 kW',
+            'Motor': '78 HP',
             'Rychlost': '28 km/h',
             'Délky vidlí': '1220–1820 mm',
             'Rozměry': '3600×1850×2200 mm'
@@ -736,7 +741,7 @@ export const products: Product[] = [
         id: 'lizard-50',
         name: 'LIZARD 50',
         price: 'Na dotaz',
-        power: '76 kW',
+        power: '102 HP',
         category: 'Ještěrky',
         brand: 'LIZZARD-VZV',
         image: '/api/placeholder/400/300',
@@ -747,7 +752,7 @@ export const products: Product[] = [
             'Zdvih': '3–6 m',
             'Hmotnost': '7800 kg',
             'Světlá výška': '380 mm',
-            'Motor': '4válcový 4,8 l, 76 kW',
+            'Motor': '4válcový 4,8 l, 102 HP',
             'Rychlost': '28 km/h',
             'Pohon': '4×4',
             'Převodovka': 'Hydrodynamická'
