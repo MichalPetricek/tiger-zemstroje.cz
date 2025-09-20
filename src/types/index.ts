@@ -11,6 +11,7 @@ export interface Product {
     specs: Record<string, string>
     features: string[]
     available: boolean
+    documentation?: string // Path to PDF documentation file
 }
 
 export interface NewsItem {

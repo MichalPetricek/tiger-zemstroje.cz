@@ -1,40 +1,35 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ArrowRight } from '@phosphor-icons/react'
-
-interface Product {
-  id: string
-  name: string
-  price: string
-  power: string
-  category: string
-  brand: string
-  image: string
-  badges: string[]
-  description: string
-  specs: Record<string, string>
-  features: string[]
-  available: boolean
-}
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "@phosphor-icons/react";
+import { Product } from "@/types";
 
 interface ProductCardProps {
-  product: Product
-  onSelect?: (product: Product) => void
+  product: Product;
+  onSelect?: (product: Product) => void;
 }
 
 export default function ProductCard({ product, onSelect }: ProductCardProps) {
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
       <div className="aspect-square bg-muted relative overflow-hidden">
-        <img 
+        <img
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
           {product.badges.map((badge, index) => (
-            <Badge key={index} className="bg-accent text-accent-foreground text-xs font-bold">
+            <Badge
+              key={index}
+              className="bg-accent text-accent-foreground text-xs font-bold"
+            >
               {badge}
             </Badge>
           ))}
@@ -48,16 +43,21 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <CardTitle className="text-xl">{product.name}</CardTitle>
-            <CardDescription className="mt-2 line-clamp-3">{product.description}</CardDescription>
+            <CardDescription className="mt-2 line-clamp-3">
+              {product.description}
+            </CardDescription>
           </div>
-          <Badge variant="outline" className="ml-2 text-accent border-accent shrink-0">
+          <Badge
+            variant="outline"
+            className="ml-2 text-accent border-accent shrink-0"
+          >
             {product.power}
           </Badge>
         </div>
       </CardHeader>
 
       <CardContent className="pt-0">
-        <Button 
+        <Button
           className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
           onClick={() => onSelect?.(product)}
         >
@@ -66,5 +66,5 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

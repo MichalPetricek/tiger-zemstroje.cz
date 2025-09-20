@@ -27,112 +27,125 @@ export const products: Product[] = [
             'Jednoduchá mechanika',
             'Možnost připojení nakladače TZ04D'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_TIGER504.pdf'
     },
     {
         id: 'tiger-704',
         name: 'TIGER 704',
-        price: '299 000 Kč',
-        power: '70 HP',
+        price: '449 000 Kč',
+        power: '51.5 kW (70 HP)',
         category: 'Traktory',
         brand: 'TIGER',
         image: '/api/placeholder/400/300',
-        badges: ['VÝKONNÝ'],
-        description: 'Model s možností zvětšení rozchodu prostým otočením kol pro vyšší stabilitu. Nelze přihlásit na SPZ.',
+        badges: ['VÝKONNÝ', 'KLIMATIZACE'],
+        description: 'Středně výkonný traktor s luxusní kabinou a klimatizací. Euro 3 motor s hydraulickým řízením a mechanickou převodovkou.',
         specs: {
-            'Výkon motoru': '70 HP',
+            'Výkon motoru': '51.5 kW (70 HP)',
+            'Motor': 'Euro 3, diesel, 3800 ccm',
+            'Převodovka': '12/12 rychlostí',
+            'Typ řízení': 'Hydraulické',
             'Pohon': '4×4',
-            'Převodovka': 'Mechanická',
-            'Rozchod kol': 'Nastavitelný otočením kol',
-            'Registrace': 'Nelze přihlásit na SPZ'
+            'Rozměry (D×Š×V)': '4120×1710×2800 mm',
+            'Rozvor': '2060 mm',
+            'Světlá výška': '380 mm',
+            'Provozní hmotnost': '2880 kg',
+            'Nosnost nakladače': '600 kg',
+            'Kabina': 'Luxusní s klimatizací a zadní kamerou',
+            'Rychlost': 'až 32.19 km/h'
         },
         features: [
-            'Kompatibilní s nakladačem TZ04D',
-            'Rozšiřitelný rozchod pro stabilitu',
-            'Jednoduchá mechanika',
-            '2 roky záruky',
-            'Vyšší výkon pro náročnější práce'
+            'Luxusní kabina s klimatizací',
+            'Zadní kamera pro lepší přehled',
+            'Euro 3 motor pro nižší emise',
+            'Hydraulické řízení',
+            '12-rychlostní převodovka',
+            'Uzávěrka diferenciálu',
+            'Kompatibilní s příslušenstvím'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_TIGER704FMD-TB.pdf'
     },
     {
-        id: 'tiger-904',
-        name: 'TIGER 904',
-        price: '399 000 Kč',
-        power: '90 HP',
+        id: 'tiger-1004',
+        name: 'TIGER 1004',
+        price: '699 000 Kč',
+        power: '74 kW (100 HP)',
         category: 'Traktory',
         brand: 'TIGER',
         image: '/api/placeholder/400/300',
-        badges: ['VÝKONNÝ'],
-        description: 'Vyšší výkonová třída TIGER pro profesionální použití. Nelze přihlásit na SPZ.',
+        badges: ['VÝKONNÝ', 'KLIMATIZACE', 'PROFESIONÁLNÍ'],
+        description: 'Středně výkonný traktor s luxusní kabinou, klimatizací a zadní kamerou. Euro 3 motor s hydraulickým řízením.',
         specs: {
-            'Výkon motoru': '90 HP',
+            'Výkon motoru': '74 kW (100 HP)',
+            'Motor': 'Euro 3, diesel, 3300 ccm',
+            'Převodovka': '12/12 rychlostí',
+            'Typ řízení': 'Hydraulické',
             'Pohon': '4×4',
-            'Řada šasi': 'Těžší kategorie',
-            'Registrace': 'Nelze přihlásit na SPZ',
-            'Záruka': '2 roky'
+            'Rozměry (D×Š×V)': '4150×1710×2810 mm',
+            'Rozvor': '2060 mm',
+            'Světlá výška': '385 mm',
+            'Provozní hmotnost': '3260 kg',
+            'Nosnost nakladače': '800 kg',
+            'Kabina': 'Luxusní s klimatizací a zadní kamerou',
+            'Rychlost': 'až 33.59 km/h',
+            'Hydraulický průtok': '32 l/min'
         },
         features: [
-            'Vysoký výkon pro náročné práce',
-            'Robustní konstrukce těžšího šasi',
-            'Profesionální hydraulika',
-            'Lokální servis v ČR',
-            'Vhodný pro větší farmy'
+            'Luxusní kabina s klimatizací',
+            'Zadní kamera pro bezpečnost',
+            'Euro 3 motor s vyšším výkonem',
+            'Hydraulické řízení pro komfort',
+            '12-rychlostní převodovka',
+            'Uzávěrka diferenciálu',
+            'Vyšší nosnost nakladače (800 kg)',
+            'Profesionální hydraulické systémy'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_TIGER1004FMD-TB.pdf'
     },
     {
-        id: 'tiger-1504',
-        name: 'TIGER 1504',
+        id: 'tiger-1204',
+        name: 'TIGER 1204',
         price: '899 000 Kč',
-        power: '150 HP',
+        power: '88.3 kW (120 HP)',
         category: 'Traktory',
         brand: 'TIGER',
         image: '/api/placeholder/400/300',
-        badges: ['VÝKONNÝ', 'PROFESIONÁLNÍ'],
-        description: 'Výkonný traktor ze série těžších šasi TB/TD. Profesionální stroj pro náročné zemědělské podniky.',
+        badges: ['VÝKONNÝ', 'KLIMATIZACE', 'TĚŽKÁ KATEGORIE'],
+        description: 'Výkonný traktor střední kategorie s luxusní kabinou a klimatizací. Euro 3 motor 6490 ccm s hydraulickým řízením pro náročnější práce.',
         specs: {
-            'Výkon motoru': '150 HP',
-            'Řada šasi': 'TB/TD - těžší konstrukce',
-            'Výkonová třída': 'Až 300 HP v řadě',
-            'Kabina': 'Klimatizovaná',
-            'Hydraulika': 'Profesionální'
+            'Výkon motoru': '88.3 kW (120 HP)',
+            'Motor': 'Euro 3, diesel, 6490 ccm',
+            'Převodovka': '16/8 rychlostí',
+            'Typ řízení': 'Hydraulické',
+            'Pohon': '4×4',
+            'Rozměry (D×Š×V)': '4600×2080×3080 mm',
+            'Rozvor': '2520 mm',
+            'Světlá výška': '370 mm',
+            'Provozní hmotnost': '4230 kg',
+            'Nosnost nakladače': '1200 kg',
+            'Kabina': 'Luxusní s klimatizací a zadní kamerou',
+            'Rychlost': 'až 32.23 km/h',
+            'Hydraulický průtok': '50 l/min',
+            'Objem palivové nádrže': '300 l'
         },
         features: [
-            'Těžší šasi pro náročné podmínky',
-            'Klimatizovaná kabina',
-            'Profesionální hydraulický systém',
-            'Vysoká nosnost a stabilita',
-            'Pro velkoprodukční zemědělství'
+            'Větší výkon pro náročnější práce',
+            'Luxusní kabina s klimatizací',
+            'Zadní kamera pro bezpečnost',
+            'Velkoobjem motor 6,5 l Euro 3',
+            'Hydraulické řízení s vyšší účinností',
+            '16-rychlostní převodovka',
+            'Uzávěrka diferenciálu',
+            'Vysoká nosnost nakladače (1200 kg)',
+            'Profesionální hydraulika 50 l/min',
+            'Velká palivová nádrž (300 l)'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_TIGER1204FMD-TD.pdf'
     },
-    {
-        id: 'tiger-2504',
-        name: 'TIGER 2504',
-        price: '1 299 000 Kč',
-        power: '250 HP',
-        category: 'Traktory',
-        brand: 'TIGER',
-        image: '/api/placeholder/400/300',
-        badges: ['NEJVÝKONNĚJŠÍ', 'PROFESIONÁLNÍ'],
-        description: 'Nejvýkonnější traktor v naší nabídce ze série těžších šasi TB/TD. Pro velké zemědělské podniky s nejvyšším nasazením.',
-        specs: {
-            'Výkon motoru': '250 HP',
-            'Řada šasi': 'TB/TD - nejtěžší konstrukce',
-            'Výkonové pokrytí': 'Až 300 HP v této řadě',
-            'Kabina': 'Luxusní s klimatizací',
-            'Hydraulika': 'Heavy-duty profesionální'
-        },
-        features: [
-            'Maximální výkon a efektivita',
-            'Nejtěžší šasi pro extrémní zátěž',
-            'Luxusní kabina s plným vybavením',
-            'Nejmodernější hydraulické systémy',
-            'Pro největší zemědělské podniky'
-        ],
-        available: true
-    },
+
     // Traktory - JINMA
     {
         id: 'jinma-254e',
@@ -161,7 +174,8 @@ export const products: Product[] = [
             'Nízká spotřeba paliva',
             'Jednoduchá obsluha a údržba'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_JINMA254E.pdf'
     },
     // Traktory - YTO NLY série
     {
@@ -188,7 +202,8 @@ export const products: Product[] = [
             'Vysoká pracovní účinnost',
             'Ergonomické ovládání'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_YTO_NLY954.pdf'
     },
     {
         id: 'yto-nly1054',
@@ -214,7 +229,8 @@ export const products: Product[] = [
             'Profesionální hydraulické systémy',
             'Optimální pro střední farmy'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_YTO_NLY1054.pdf'
     },
     {
         id: 'yto-nly1154',
@@ -240,7 +256,8 @@ export const products: Product[] = [
             'High-flow hydraulické systémy',
             'Pro nejnáročnější zemědělské aplikace'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_YTO_NLY1154.pdf'
     },
     // Traktory - YTO NMF série
     {
@@ -267,7 +284,8 @@ export const products: Product[] = [
             'Spolehlivý a ekonomický motor',
             'Výborný poměr cena/výkon'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_YTO_NMF554C.pdf'
     },
     {
         id: 'yto-nmf604c',
@@ -293,7 +311,8 @@ export const products: Product[] = [
             'Větší výkonové rezervy',
             'Optimální pro střední farmy'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_YTO_NMF604C.pdf'
     },
     {
         id: 'yto-nmf704c',
@@ -319,7 +338,8 @@ export const products: Product[] = [
             'Pro náročnější zemědělské aplikace',
             'Maximální výkon v kompaktní kategorii'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/traktory/parametry_YTO_NMF704C.pdf'
     },
     // Bagry
     {
@@ -344,7 +364,8 @@ export const products: Product[] = [
             'Ekonomický provoz',
             'Univerzální použití'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT08.pdf'
     },
     {
         id: 'bat10',
@@ -368,7 +389,8 @@ export const products: Product[] = [
             'Robustnější konstrukce',
             'Profesionální použití'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT10.pdf'
     },
     {
         id: 'bat12',
@@ -392,7 +414,8 @@ export const products: Product[] = [
             'Stabilní a bezpečný',
             'Nízké provozní náklady'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT12.pdf'
     },
     {
         id: 'bat15',
@@ -416,7 +439,8 @@ export const products: Product[] = [
             'Stabilní podvozek',
             'Profesionální hydraulika'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT15.pdf'
     },
     {
         id: 'bat17',
@@ -440,7 +464,8 @@ export const products: Product[] = [
             'Komfortní kabina',
             'Nízké emise'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT17.pdf'
     },
     {
         id: 'bat18',
@@ -464,7 +489,8 @@ export const products: Product[] = [
             'Luxusní kabina',
             'Pro nejnáročnější aplikace'
         ],
-        available: true
+        available: true,
+        documentation: '/src/assets/docs/bagry BAT/bagr BAT18.pdf'
     },
     // Nakladače
     {

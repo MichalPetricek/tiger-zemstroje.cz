@@ -1,37 +1,33 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
-import { ArrowLeft, Phone, Envelope, Star, DownloadSimple, Video } from '@phosphor-icons/react'
-
-interface Product {
-  id: string
-  name: string
-  price: string
-  power: string
-  category: string
-  brand: string
-  image: string
-  badges: string[]
-  description: string
-  specs: Record<string, string>
-  features: string[]
-  available: boolean
-}
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Phone, Envelope, Star, Video } from "@phosphor-icons/react";
+import DocumentDownload from "@/components/DocumentDownload";
+import { Product } from "@/types";
 
 interface ProductDetailProps {
-  product: Product
-  onBack: () => void
-  onContact: () => void
+  product: Product;
+  onBack: () => void;
+  onContact: () => void;
 }
 
-export default function ProductDetail({ product, onBack, onContact }: ProductDetailProps) {
+export default function ProductDetail({
+  product,
+  onBack,
+  onContact,
+}: ProductDetailProps) {
   return (
     <div className="min-h-screen bg-background py-4 px-4">
       <div className="container mx-auto">
         {/* Back button */}
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           onClick={onBack}
           className="mb-4 hover:text-accent"
         >
@@ -43,19 +39,22 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
           {/* Product Image */}
           <div className="space-y-4">
             <div className="aspect-square rounded-2xl bg-card p-8 flex items-center justify-center relative overflow-hidden">
-              <img 
+              <img
                 src={product.image}
                 alt={product.name}
                 className="w-full h-full object-contain"
               />
               <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                 {product.badges.map((badge, index) => (
-                  <Badge key={index} className="bg-accent text-accent-foreground text-xs font-bold">
+                  <Badge
+                    key={index}
+                    className="bg-accent text-accent-foreground text-xs font-bold"
+                  >
                     {badge}
                   </Badge>
                 ))}
               </div>
-              {product.price !== 'Na dotaz' && (
+              {product.price !== "Na dotaz" && (
                 <div className="absolute bottom-4 right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold text-lg">
                   {product.price}
                 </div>
@@ -67,17 +66,25 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
           <div className="space-y-6">
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <h1 className="text-3xl lg:text-4xl font-bold">{product.name}</h1>
+                <h1 className="text-3xl lg:text-4xl font-bold">
+                  {product.name}
+                </h1>
                 <Badge variant="outline" className="text-accent border-accent">
                   {product.power}
                 </Badge>
               </div>
-              <p className="text-xl text-muted-foreground mb-6">{product.description}</p>
-              
-              {product.price === 'Na dotaz' ? (
-                <div className="text-2xl font-bold text-accent">Cena na dotaz</div>
+              <p className="text-xl text-muted-foreground mb-6">
+                {product.description}
+              </p>
+
+              {product.price === "Na dotaz" ? (
+                <div className="text-2xl font-bold text-accent">
+                  Cena na dotaz
+                </div>
               ) : (
-                <div className="text-3xl font-bold text-accent">{product.price}</div>
+                <div className="text-3xl font-bold text-accent">
+                  {product.price}
+                </div>
               )}
             </div>
 
@@ -87,7 +94,10 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
               <div className="grid gap-3">
                 {product.features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-2">
-                    <Star className="w-5 h-5 text-accent flex-shrink-0" weight="fill" />
+                    <Star
+                      className="w-5 h-5 text-accent flex-shrink-0"
+                      weight="fill"
+                    />
                     <span>{feature}</span>
                   </div>
                 ))}
@@ -98,8 +108,8 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
             <div className="space-y-4">
               {/* Main action buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
                   onClick={onContact}
                 >
@@ -111,13 +121,15 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
                   Kontaktovat obchod
                 </Button>
               </div>
-              
+
               {/* Documentation and video buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" variant="outline">
-                  <DownloadSimple className="w-5 h-5 mr-2" />
-                  Stažení dokumentace
-                </Button>
+                <DocumentDownload
+                  documentPath={product.documentation}
+                  productName={product.name}
+                  variant="outline"
+                  size="lg"
+                />
                 <Button size="lg" variant="outline">
                   <Video className="w-5 h-5 mr-2" />
                   Odkaz na video
@@ -139,9 +151,12 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 {Object.entries(product.specs).map(([key, value]) => (
-                  <div key={key} className="flex justify-between items-center py-2">
+                  <div
+                    key={key}
+                    className="flex justify-between items-center py-2"
+                  >
                     <span className="text-muted-foreground capitalize">
-                      {key.replace('_', ' ')}:
+                      {key.replace("_", " ")}:
                     </span>
                     <span className="font-medium">{value}</span>
                   </div>
@@ -203,5 +218,5 @@ export default function ProductDetail({ product, onBack, onContact }: ProductDet
         </div>
       </div>
     </div>
-  )
+  );
 }

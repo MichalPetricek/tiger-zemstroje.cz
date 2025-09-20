@@ -40,19 +40,26 @@ export default function Navigation({
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`text-sm transition-colors ${
-                  location.pathname === item.path
-                    ? "text-accent font-semibold"
-                    : "text-foreground hover:text-accent"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const isActive =
+                location.pathname === item.path ||
+                (item.path === "/products" &&
+                  location.pathname.startsWith("/products"));
+
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`text-sm transition-colors ${
+                    isActive
+                      ? "text-accent font-semibold"
+                      : "text-foreground hover:text-accent"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Contact Info & Theme Toggle */}
@@ -140,20 +147,27 @@ export default function Navigation({
 
                   {/* Navigation items */}
                   <div className="flex flex-col py-6 space-y-4">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.path}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={`text-lg py-2 px-4 rounded-lg transition-colors text-left ${
-                          location.pathname === item.path
-                            ? "text-accent font-semibold bg-accent/10"
-                            : "text-foreground hover:text-accent hover:bg-accent/5"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    {navigation.map((item) => {
+                      const isActive =
+                        location.pathname === item.path ||
+                        (item.path === "/products" &&
+                          location.pathname.startsWith("/products"));
+
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`text-lg py-2 px-4 rounded-lg transition-colors text-left ${
+                            isActive
+                              ? "text-accent font-semibold bg-accent/10"
+                              : "text-foreground hover:text-accent hover:bg-accent/5"
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                      );
+                    })}
                   </div>
 
                   <Separator />
