@@ -5,7 +5,9 @@ import { Phone, Envelope, List, Moon, Sun } from "@phosphor-icons/react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { useTheme } from "@/contexts/ThemeContext";
-import { logoBlack, logoWhite } from "@/assets";
+// Import logos as URL paths
+const logoBlack = "/assets/images/logo-black.svg";
+const logoWhite = "/assets/images/logo-white.svg";
 import Icon from "@mdi/react";
 import { mdiFacebook, mdiInstagram, mdiYoutube } from "@mdi/js";
 import { NavigationItem } from "@/types";

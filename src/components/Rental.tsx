@@ -160,7 +160,7 @@ export default function Rental({ onBack, onContactClick }: RentalProps) {
               <CardContent className="p-0">
                 <div className="aspect-video bg-muted overflow-hidden mb-4">
                   <img
-                    src="/src/assets/images/traktory/tiger-504/1.png"
+                    src="/assets/images/tiger-504/1.png"
                     alt="TIGER 504 s nakladačem"
                     className="w-full h-full object-cover"
                   />
