@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "tsc -b --noCheck && vite build",
     "build:github": "npm run build",
-    "build:custom": "CUSTOM_DOMAIN=true npm run build",
     "build:check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -15,8 +14,7 @@
     "type-check": "tsc --noEmit --skipLibCheck",
     "clean": "rm -rf dist node_modules/.vite",
     "predeploy": "npm run build:github",
-    "deploy": "gh-pages -d dist",
-    "deploy:custom": "npm run build:custom && gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
