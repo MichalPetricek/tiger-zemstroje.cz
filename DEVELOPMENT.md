@@ -213,6 +213,7 @@ The app supports both light and dark modes:
 
 ### Assets:
 
-- Logo variants are in `src/assets/images/`
-- Import assets using: `import logo from '@/assets/images/logo.svg'`
+- Logo variants are in `public/images/`
+- Import assets using: `src="/images/logo.svg"`
+- Assets are served from the public directory
 - Placeholder images use `/api/placeholder/` URLs

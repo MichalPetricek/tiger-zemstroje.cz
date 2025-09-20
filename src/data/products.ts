@@ -9,15 +9,15 @@ export const products: Product[] = [
         power: '50 HP',
         category: 'Traktory',
         brand: 'TIGER',
-        image: '/assets/images/tiger-504/1.png',
+        image: '/images/tiger-504/1.png',
         images: [
-            '/assets/images/tiger-504/1.png',
-            '/assets/images/tiger-504/2.png',
-            '/assets/images/tiger-504/3.png',
-            '/assets/images/tiger-504/4.png',
-            '/assets/images/tiger-504/5.png',
-            '/assets/images/tiger-504/6.png',
-            '/assets/images/tiger-504/7.png'
+            '/images/tiger-504/1.png',
+            '/images/tiger-504/2.png',
+            '/images/tiger-504/3.png',
+            '/images/tiger-504/4.png',
+            '/images/tiger-504/5.png',
+            '/images/tiger-504/6.png',
+            '/images/tiger-504/7.png'
         ],
         badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
         description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Jednoduchá mechanika, 2letá záruka. Traktor není určen k registraci na SPZ.',
@@ -37,7 +37,7 @@ export const products: Product[] = [
             'Možnost připojení nakladače TZ04D'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_TIGER504.pdf',
+        documentation: '/docs/traktory/parametry_TIGER504.pdf',
         youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 504 demo
     },
     {
@@ -74,7 +74,7 @@ export const products: Product[] = [
             'Kompatibilní s příslušenstvím'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_TIGER704FMD-TB.pdf',
+        documentation: '/docs/traktory/parametry_TIGER704FMD-TB.pdf',
         youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 704 demo
     },
     {
@@ -113,7 +113,7 @@ export const products: Product[] = [
             'Profesionální hydraulické systémy'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_TIGER1004FMD-TB.pdf'
+        documentation: '/docs/traktory/parametry_TIGER1004FMD-TB.pdf'
     },
     {
         id: 'tiger-1204',
@@ -154,7 +154,7 @@ export const products: Product[] = [
             'Velká palivová nádrž (300 l)'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_TIGER1204FMD-TD.pdf'
+        documentation: '/docs/traktory/parametry_TIGER1204FMD-TD.pdf'
     },
 
     // Traktory - JINMA
@@ -186,7 +186,7 @@ export const products: Product[] = [
             'Jednoduchá obsluha a údržba'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_JINMA254E.pdf'
+        documentation: '/docs/traktory/parametry_JINMA254E.pdf'
     },
     // Traktory - YTO NLY série
     {
@@ -214,7 +214,7 @@ export const products: Product[] = [
             'Ergonomické ovládání'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_YTO_NLY954.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NLY954.pdf'
     },
     {
         id: 'yto-nly1054',
@@ -241,7 +241,7 @@ export const products: Product[] = [
             'Optimální pro střední farmy'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_YTO_NLY1054.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NLY1054.pdf'
     },
     {
         id: 'yto-nly1154',
@@ -268,7 +268,7 @@ export const products: Product[] = [
             'Pro nejnáročnější zemědělské aplikace'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_YTO_NLY1154.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NLY1154.pdf'
     },
     // Traktory - YTO NMF série
     {
@@ -296,7 +296,7 @@ export const products: Product[] = [
             'Výborný poměr cena/výkon'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_YTO_NMF554C.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NMF554C.pdf'
     },
     {
         id: 'yto-nmf604c',
@@ -323,7 +323,7 @@ export const products: Product[] = [
             'Optimální pro střední farmy'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_YTO_NMF604C.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NMF604C.pdf'
     },
     {
         id: 'yto-nmf704c',
@@ -350,7 +350,7 @@ export const products: Product[] = [
             'Maximální výkon v kompaktní kategorii'
         ],
         available: true,
-        documentation: '/assets/docs/traktory/parametry_YTO_NMF704C.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NMF704C.pdf'
     },
     // Bagry
     {
@@ -376,7 +376,7 @@ export const products: Product[] = [
             'Univerzální použití'
         ],
         available: true,
-        documentation: '/assets/docs/bagry BAT/bagr BAT08.pdf',
+        documentation: '/docs/bagry BAT/bagr BAT08.pdf',
         youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro bagr BAT08 demo
     },
     {
@@ -402,7 +402,7 @@ export const products: Product[] = [
             'Profesionální použití'
         ],
         available: true,
-        documentation: '/assets/docs/bagry BAT/bagr BAT10.pdf'
+        documentation: '/docs/bagry BAT/bagr BAT10.pdf'
     },
     {
         id: 'bat12',
@@ -427,7 +427,7 @@ export const products: Product[] = [
             'Nízké provozní náklady'
         ],
         available: true,
-        documentation: '/assets/docs/bagry BAT/bagr BAT12.pdf'
+        documentation: '/docs/bagry BAT/bagr BAT12.pdf'
     },
     {
         id: 'bat15',
@@ -452,7 +452,7 @@ export const products: Product[] = [
             'Profesionální hydraulika'
         ],
         available: true,
-        documentation: '/assets/docs/bagry BAT/bagr BAT15.pdf'
+        documentation: '/docs/bagry BAT/bagr BAT15.pdf'
     },
     {
         id: 'bat17',
@@ -477,7 +477,7 @@ export const products: Product[] = [
             'Nízké emise'
         ],
         available: true,
-        documentation: '/assets/docs/bagry BAT/bagr BAT17.pdf'
+        documentation: '/docs/bagry BAT/bagr BAT17.pdf'
     },
     {
         id: 'bat18',
@@ -502,7 +502,7 @@ export const products: Product[] = [
             'Pro nejnáročnější aplikace'
         ],
         available: true,
-        documentation: '/assets/docs/bagry BAT/bagr BAT18.pdf'
+        documentation: '/docs/bagry BAT/bagr BAT18.pdf'
     },
     // Nakladače
     {

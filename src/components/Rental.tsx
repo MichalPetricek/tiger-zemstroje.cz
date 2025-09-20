@@ -163,7 +163,7 @@ export default function Rental({
               <CardContent className="p-0">
                 <div className="aspect-video bg-muted overflow-hidden mb-4">
                   <img
-                    src="/assets/images/tiger-504/1.png"
+                    src="/images/tiger-504/1.png"
                     alt="TIGER 504 s nakladačem"
                     className="w-full h-full object-cover"
                   />
