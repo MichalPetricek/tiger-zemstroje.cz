@@ -1,11 +1,24 @@
-import { Button } from '@/components/ui/button'
-
 interface FooterProps {
-  onProductsClick: () => void
-  onSubsidiesClick: () => void
+  onTraktoryClick: () => void;
+  onNakladaceClick: () => void;
+  onBagryClick: () => void;
+  onJesterkyClick: () => void;
+  onPrislusenstviClick: () => void;
+  onSubsidiesClick: () => void;
+  onServiceClick: () => void;
+  onRentalClick: () => void;
 }
 
-export default function Footer({ onProductsClick, onSubsidiesClick }: FooterProps) {
+export default function Footer({
+  onTraktoryClick,
+  onNakladaceClick,
+  onBagryClick,
+  onJesterkyClick,
+  onPrislusenstviClick,
+  onSubsidiesClick,
+  onServiceClick,
+  onRentalClick,
+}: FooterProps) {
   return (
     <footer className="bg-card border-t border-border py-12 px-4">
       <div className="container mx-auto">
@@ -20,23 +33,35 @@ export default function Footer({ onProductsClick, onSubsidiesClick }: FooterProp
           <div>
             <h3 className="font-semibold mb-4">Produkty</h3>
             <div className="space-y-2 text-sm">
-              <button 
-                onClick={onProductsClick} 
+              <button
+                onClick={onTraktoryClick}
                 className="block text-muted-foreground hover:text-foreground text-left"
               >
-                Traktory TIGER
+                Traktory
               </button>
-              <button 
-                onClick={onProductsClick} 
+              <button
+                onClick={onNakladaceClick}
                 className="block text-muted-foreground hover:text-foreground text-left"
               >
-                Nakladače MANITECH
+                Nakladače
               </button>
-              <button 
-                onClick={onProductsClick} 
+              <button
+                onClick={onBagryClick}
                 className="block text-muted-foreground hover:text-foreground text-left"
               >
-                VZV LIZZARD
+                Bagry
+              </button>
+              <button
+                onClick={onJesterkyClick}
+                className="block text-muted-foreground hover:text-foreground text-left"
+              >
+                Ještěrky
+              </button>
+              <button
+                onClick={onPrislusenstviClick}
+                className="block text-muted-foreground hover:text-foreground text-left"
+              >
+                Příslušenství
               </button>
             </div>
           </div>
@@ -44,15 +69,24 @@ export default function Footer({ onProductsClick, onSubsidiesClick }: FooterProp
           <div>
             <h3 className="font-semibold mb-4">Služby</h3>
             <div className="space-y-2 text-sm">
-              <a href="#service" className="block text-muted-foreground hover:text-foreground">Servis</a>
-              <a href="#rental" className="block text-muted-foreground hover:text-foreground">Pronájem</a>
-              <button 
-                onClick={onSubsidiesClick} 
+              <button
+                onClick={onServiceClick}
+                className="block text-muted-foreground hover:text-foreground text-left"
+              >
+                Servis
+              </button>
+              <button
+                onClick={onRentalClick}
+                className="block text-muted-foreground hover:text-foreground text-left"
+              >
+                Pronájem
+              </button>
+              <button
+                onClick={onSubsidiesClick}
                 className="block text-muted-foreground hover:text-foreground text-left"
               >
                 Dotace
               </button>
-              <a href="#" className="block text-muted-foreground hover:text-foreground">Financování</a>
             </div>
           </div>
 
@@ -61,7 +95,11 @@ export default function Footer({ onProductsClick, onSubsidiesClick }: FooterProp
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>zemstroje@gmail.com</p>
               <p>+420 601 017 000</p>
-              <p>Skuhrov 13<br/>468 22 Železný Brod</p>
+              <p>
+                Skuhrov 13
+                <br />
+                468 22 Železný Brod
+              </p>
             </div>
           </div>
         </div>
@@ -73,5 +111,5 @@ export default function Footer({ onProductsClick, onSubsidiesClick }: FooterProp
         </div>
       </div>
     </footer>
-  )
+  );
 }

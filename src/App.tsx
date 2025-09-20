@@ -96,8 +96,16 @@ function AppContent() {
       </Routes>
 
       <Footer
-        onProductsClick={() => navigate("/products")}
+        onTraktoryClick={() => navigate("/products?category=Traktory")}
+        onNakladaceClick={() => navigate("/products?category=Nakladače")}
+        onBagryClick={() => navigate("/products?category=Bagry")}
+        onJesterkyClick={() => navigate("/products?category=Ještěrky")}
+        onPrislusenstviClick={() =>
+          navigate("/products?category=Příslušenství")
+        }
         onSubsidiesClick={() => navigate("/subsidies")}
+        onServiceClick={() => navigate("/service")}
+        onRentalClick={() => navigate("/rental")}
       />
 
       {/* Contact Form Modal */}
