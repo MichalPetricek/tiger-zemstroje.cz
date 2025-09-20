@@ -23,6 +23,15 @@ export interface NewsItem {
     featured: boolean
 }
 
+export interface SubsidyProgram {
+    region: string
+    territory: string
+    support: string
+    deadline: string
+    type: string
+    municipalities: string
+}
+
 export type ViewType = 'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'
 
 export interface NavigationItem {

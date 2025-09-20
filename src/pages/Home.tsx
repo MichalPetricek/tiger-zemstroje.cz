@@ -14,7 +14,8 @@ import {
   Envelope,
 } from "@phosphor-icons/react";
 import ProductCard from "@/components/ProductCard";
-import { products, news } from "@/data/products";
+import { products } from "@/data/products";
+import { news } from "@/data/news";
 import { Product } from "@/types";
 
 interface HomeProps {
