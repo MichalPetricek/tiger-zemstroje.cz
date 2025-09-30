@@ -24,7 +24,7 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
 
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col pt-0">
-      <div className="aspect-square bg-muted relative overflow-hidden">
+      <div className="aspect-[4/3] bg-muted relative overflow-hidden">
         <img
           src={displayImage}
           alt={product.name}

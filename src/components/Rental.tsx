@@ -161,7 +161,7 @@ export default function Rental({
             {/* Product Image */}
             <Card className="overflow-hidden">
               <CardContent className="p-0">
-                <div className="aspect-video bg-muted overflow-hidden mb-4">
+                <div className="aspect-[4/3] bg-muted overflow-hidden mb-4">
                   <img
                     src="/images/tiger-504/1.png"
                     alt="TIGER 504 s nakladačem"

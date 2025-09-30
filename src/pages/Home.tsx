@@ -89,7 +89,7 @@ export default function Home({ onContactClick, onProductSelect }: HomeProps) {
             </div>
 
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-card overflow-hidden flex items-center justify-center">
+              <div className="aspect-[4/3] rounded-2xl bg-card overflow-hidden flex items-center justify-center">
                 <img
                   src="/images/tiger-504/1.png"
                   alt="TIGER 504 Traktor"

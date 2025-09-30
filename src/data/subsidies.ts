@@ -64,5 +64,13 @@ export const subsidyPrograms: SubsidyProgram[] = [
         deadline: "15. 9. – 16. 10. 2025",
         type: "Zemědělská, lesnická a nezemědělská činnost",
         municipalities: "Boudy, Cerhonice, Dobev, Drhovle, Horosedly, Kestřany, Kožlí, Králova Lhota, Lety, Minice, Mirotice, Mirovice, Mišovice, Nerestce, Nevězice, Orlík nad Vltavou, Ostrovec, Probulov, Předotice, Rakovice, Smetanova Lhota, Varvažov, Vráž, Čimelice, Čížová"
+    },
+    {
+        region: "Lípa pro venkov",
+        territory: "Středočeský kraj",
+        support: "max. 50%",
+        deadline: "17. 10. – 7. 11. 2025",
+        type: "Zemědělská, lesnická a nezemědělská činnost",
+        municipalities: "Adamov, Bernardov, Bludov, Bohdaneč, Bratčice, Bílé Podolí, Chabeřice, Chlístovice, Církvice, Dobrovítov, Dolní Pohleď, Drobovice, Hlízov, Horka II, Horušice, Hostovlice, Hraběšín, Kluky, Kobylnice, Košice, Krchleby, Kutná Hora, Křesetice, Ledečko, Malešov, Miskovice, Močovice, Nepoměřice, Nové Dvory, Onomyšl, Opatovice I, Paběnice, Pertoltice, Petrovice I, Petrovice II, Podveky, Potěhy, Rataje nad Sázavou, Rašovice, Samopše, Schořov, Semtěš, Skvrňov, Slavošov, Soběšín, Souňov, Starkoč, Staňkovice, Suchdol, Sudějov, Svatý Mikuláš, Tupadly, Třebešice, Třebonín, Třebětín, Uhlířské Janovice, Vavřinec, Vidice, Vinaře, Vlastějovice, Vlkaneč, Vodranty, Vrdy, Zbizuby, Zbraslavice, Zbýšov, Zruč nad Sázavou, Úmonín, Úžice, Čejkovice, Černíny, Červené Janovice, Čestín, Čáslav, Řendějov, Šebestěnice, Štipoklasy, Žehušice, Žleby"
     }
 ]

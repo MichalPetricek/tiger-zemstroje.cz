@@ -9,6 +9,44 @@ export const products: Product[] = [
         power: '50 HP',
         category: 'Traktory',
         brand: 'TIGER',
+        image: '/images/tiger-504/1.jpg',
+        images: [
+            '/images/tiger-504/1.jpg',
+            '/images/tiger-504/2.jpg',
+            '/images/tiger-504/3.jpg',
+            '/images/tiger-504/4.jpg',
+            '/images/tiger-504/5.jpg',
+            '/images/tiger-504/6.jpg',
+            '/images/tiger-504/7.jpg'
+        ],
+        badges: ['CENOVÁ BOMBA', 'NEJPRODÁVANĚJŠÍ'],
+        description: 'Nejlevnější traktor s výkonem 50 HP na českém trhu. Jednoduchá mechanika, 2letá záruka. Traktor není určen k registraci na SPZ.',
+        specs: {
+            'Výkon motoru': '50 HP',
+            'Pohon': '4×4',
+            'Převodovka': '8F/8R',
+            'Hmotnost (vč. nakladače)': 'cca 2100 kg',
+            'Přední nakladač': 'TZ04D (nosnost ~400 kg)',
+            'Záruka': '2 roky'
+        },
+        features: [
+            'Přímý dovoz od výrobce',
+            'Bez prostředníků - nejlepší cena',
+            'Lokální servis v ČR',
+            'Jednoduchá mechanika',
+            'Možnost připojení nakladače TZ04D'
+        ],
+        available: true,
+        documentation: '/docs/traktory/parametry_TIGER504.pdf',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 504 demo
+    },
+    {
+        id: 'tiger-504',
+        name: 'TIGER 504',
+        price: '199 000 Kč',
+        power: '50 HP',
+        category: 'Příslušenství',
+        brand: 'TIGER',
         image: '/images/tiger-504/1.png',
         images: [
             '/images/tiger-504/1.png',

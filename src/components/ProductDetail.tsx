@@ -124,7 +124,7 @@ export default function ProductDetail({
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Product Image(s) */}
           <div className="space-y-4">
-            <div className="aspect-square rounded-2xl bg-card relative overflow-hidden">
+            <div className="aspect-[4/3] rounded-2xl bg-card relative overflow-hidden">
               {allImages.length > 1 ? (
                 // Carousel for multiple images
                 <Carousel
