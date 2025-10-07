@@ -104,6 +104,116 @@ export default function Home({ onContactClick, onProductSelect }: HomeProps) {
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section id="about" className="py-12 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">O nás</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              TIGER CZ s.r.o. – rodinná firma, přímý prodejce zemědělské a
+              stavební techniky
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold">
+                  Rodinná firma s osobním přístupem
+                </h3>
+                <p className="text-muted-foreground">
+                  Jsme rodinná firma, nikoli velký korporát s byrokracií. Díky
+                  tomu jednáme rychle, přímo a bez zbytečného papírování. Každý
+                  zákazník je pro nás důležitý a nabízíme osobní přístup od
+                  prvního kontaktu až po dlouhodobou podporu.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold">
+                  Přímý dovoz bez prostředníků
+                </h3>
+                <p className="text-muted-foreground">
+                  Spolupracujeme přímo s předními čínskými výrobci, se kterými
+                  máme nadstandardní osobní kontakty a dlouhodobé vztahy. Díky
+                  tomu máme zajištěnou perfektní kvalitu výroby a stabilní
+                  dodávky.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 gap-4">
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Shield className="w-6 h-6 text-accent" weight="fill" />
+                      <h4 className="font-semibold">Férový přístup</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Hrajeme fér – otevřeně říkáme, že techniku necháváme
+                      vyrábět u prověřených výrobců.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Wrench className="w-6 h-6 text-accent" weight="fill" />
+                      <h4 className="font-semibold">Výroba na míru</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Na přání zákazníka umíme nechat vyrobit traktor přesně na
+                      míru – od výkonu až po barvu.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Star className="w-6 h-6 text-accent" weight="fill" />
+                      <h4 className="font-semibold">
+                        Jednoduchost a spolehlivost
+                      </h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Naše stroje jsou snadno servisovatelné a nevyžadují
+                      složitou elektroniku ani drahou diagnostiku.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center bg-card/50 rounded-2xl p-8">
+            <h3 className="text-xl font-bold mb-4">
+              Komplexní služby pro naše zákazníky
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-2 h-2 bg-accent rounded-full"></div>
+                <span>Úvěrové a leasingové financování</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-2 h-2 bg-accent rounded-full"></div>
+                <span>Zákonné pojištění</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-2 h-2 bg-accent rounded-full"></div>
+                <span>Dotační programy</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-2 h-2 bg-accent rounded-full"></div>
+                <span>Poprodejní servis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section id="products" className="py-12 px-4 bg-card/50">
         <div className="container mx-auto">

@@ -21,8 +21,9 @@ import {
   CheckCircle,
   Phone,
   Envelope,
-  CurrencyEur,
+  File,
   Calendar,
+  CreditCard,
   Info,
   MagnifyingGlass,
   X,
@@ -104,7 +105,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
 
             <Card>
               <CardHeader className="text-center">
-                <CurrencyEur className="w-12 h-12 text-accent mx-auto mb-4" />
+                <File className="w-12 h-12 text-accent mx-auto mb-4" />
                 <CardTitle>Kompletní administrace</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
@@ -117,7 +118,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
 
             <Card>
               <CardHeader className="text-center">
-                <Calendar className="w-12 h-12 text-accent mx-auto mb-4" />
+                <CreditCard className="w-12 h-12 text-accent mx-auto mb-4" />
                 <CardTitle>Vyúčtování dotace</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
@@ -134,7 +135,7 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
             <Card className="border-accent/20 bg-accent/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-accent">
-                  <CurrencyEur className="w-6 h-6" />
+                  <File className="w-6 h-6" />
                   Nemáte dostatek prostředků?
                 </CardTitle>
               </CardHeader>
