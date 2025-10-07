@@ -159,25 +159,23 @@ export default function Rental({
             </div>
 
             {/* Product Image */}
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="aspect-[4/3] bg-muted overflow-hidden mb-4">
-                  <img
-                    src="/images/tiger-504/1.png"
-                    alt="TIGER 504 s nakladačem"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6 pt-0">
-                  <h3 className="text-lg font-semibold mb-2">
-                    TIGER 504 s nakladačem TZ04D
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Liberecký kraj • rychlé dodání • férové ceny
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="overflow-hidden rounded-lg border bg-card">
+              <div className="aspect-[4/3] bg-muted overflow-hidden">
+                <img
+                  src="/images/tiger-504/7.jpg"
+                  alt="TIGER 504 s nakladačem"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold mb-2">
+                  TIGER 504 s nakladačem TZ04D
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Liberecký kraj • rychlé dodání • férové ceny
+                </p>
+              </div>
+            </div>
 
             {/* Specifications */}
             <Card>

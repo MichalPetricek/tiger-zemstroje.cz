@@ -45,6 +45,7 @@ export default function ProductDetail({
     product.images && product.images.length > 0
       ? product.images
       : [product.image];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
   const [fullscreenImageIndex, setFullscreenImageIndex] = useState(0);
