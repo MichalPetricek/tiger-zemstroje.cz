@@ -37,17 +37,12 @@ interface SubsidiesProps {
 export default function Subsidies({ onContactClick }: SubsidiesProps) {
   const [municipalityFilter, setMunicipalityFilter] = useState("");
   const [territoryFilter, setTerritoryFilter] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
 
-  // Get unique territories and types for filter options
+  // Get unique territories for filter options
   const territories = useMemo(() => {
     return [
       ...new Set(subsidyPrograms.map((program) => program.territory)),
     ].sort();
-  }, []);
-
-  const types = useMemo(() => {
-    return [...new Set(subsidyPrograms.map((program) => program.type))].sort();
   }, []);
 
   // Filter subsidies based on selected criteria
@@ -60,19 +55,17 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
           .includes(municipalityFilter.toLowerCase());
       const matchesTerritory =
         !territoryFilter || program.territory === territoryFilter;
-      const matchesType = !typeFilter || program.type === typeFilter;
 
-      return matchesMunicipality && matchesTerritory && matchesType;
+      return matchesMunicipality && matchesTerritory;
     });
-  }, [municipalityFilter, territoryFilter, typeFilter]);
+  }, [municipalityFilter, territoryFilter]);
 
   const clearFilters = () => {
     setMunicipalityFilter("");
     setTerritoryFilter("");
-    setTypeFilter("");
   };
 
-  const hasActiveFilters = municipalityFilter || territoryFilter || typeFilter;
+  const hasActiveFilters = municipalityFilter || territoryFilter;
 
   return (
     <div className="min-h-screen">
@@ -186,11 +179,11 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
                 Filtrovat dotační programy
               </CardTitle>
               <CardDescription>
-                Najděte dotační programy podle obce, kraje nebo typu podpory
+                Najděte dotační programy podle obce nebo kraje
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="municipality-filter">Hledat podle obce</Label>
                   <Input
@@ -213,21 +206,6 @@ export default function Subsidies({ onContactClick }: SubsidiesProps) {
                       {territories.map((territory) => (
                         <SelectItem key={territory} value={territory}>
                           {territory}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="type-filter">Typ podpory</Label>
-                  <Select value={typeFilter} onValueChange={setTypeFilter}>
-                    <SelectTrigger id="type-filter">
-                      <SelectValue placeholder="Vyberte typ" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {types.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
                         </SelectItem>
                       ))}
                     </SelectContent>
