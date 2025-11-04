@@ -19,6 +19,7 @@ import {
   CreditCard,
 } from "@phosphor-icons/react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 
 interface RentalProps {
   onBack?: () => void;
@@ -60,8 +61,44 @@ export default function Rental({
     }
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // EmailJS configuration
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      // Check if EmailJS is configured
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS není správně nakonfigurován. Zkontrolujte .env soubor.')
+        toast.error('Omlouváme se, formulář momentálně nefunguje. Kontaktujte nás prosím telefonicky.')
+        return
+      }
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.fullName,
+        from_email: formData.email,
+        phone: formData.phone,
+        interest: 'Pronájem - TIGER 504 s nakladačem',
+        message: `TYP POŽADAVKU: Pronájem traktoru
+
+ADRESA: ${formData.address}
+
+ZAČÁTEK PRONÁJMU: ${formData.startDate}
+KONEC PRONÁJMU: ${formData.endDate}
+
+POZNÁMKA:
+${formData.note || 'Žádná poznámka'}`,
+        to_email: 'zemstroje@gmail.com',
+      }
+
+      // Send email via EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      )
+
       toast.success("Rezervace byla odeslána! Brzy vás kontaktujeme.");
 
       // Reset form
@@ -77,7 +114,7 @@ export default function Rental({
       });
     } catch (error) {
       console.error("Form submission error:", error);
-      toast.error("Něco se pokazilo. Zkuste to prosím znovu.");
+      toast.error("Nepodařilo se odeslat zprávu. Zkuste to prosím znovu nebo nás kontaktujte telefonicky.");
     }
   };
 

@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
 import { toast } from 'sonner'
+import emailjs from '@emailjs/browser'
+import { products } from '@/data/products'
 
 interface ContactFormProps {
   open: boolean
@@ -34,23 +36,57 @@ export default function ContactForm({ open, onOpenChange }: ContactFormProps) {
 
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    toast.success('Vaše zpráva byla odeslána! Ozveme se vám co nejdříve.')
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      interest: '',
-      message: '',
-      consent: false
-    })
-    
-    setIsSubmitting(false)
-    onOpenChange(false)
+    try {
+      // EmailJS configuration
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      // Check if EmailJS is configured
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS není správně nakonfigurován. Zkontrolujte .env soubor.')
+        toast.error('Omlouváme se, formulář momentálně nefunguje. Kontaktujte nás prosím telefonicky.')
+        setIsSubmitting(false)
+        return
+      }
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Neuvedeno',
+        interest: formData.interest || 'Neuvedeno',
+        message: formData.message || 'Žádná zpráva',
+        to_email: 'zemstroje@gmail.com', // Můžeš změnit podle potřeby
+      }
+
+      // Send email via EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      )
+      
+      toast.success('Vaše zpráva byla odeslána! Ozveme se vám co nejdříve.')
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        interest: '',
+        message: '',
+        consent: false
+      })
+      
+      onOpenChange(false)
+    } catch (error) {
+      console.error('Chyba při odesílání e-mailu:', error)
+      toast.error('Nepodařilo se odeslat zprávu. Zkuste to prosím znovu nebo nás kontaktujte telefonicky.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (field: string, value: string | boolean) => {
@@ -107,15 +143,18 @@ export default function ContactForm({ open, onOpenChange }: ContactFormProps) {
             <Label>Zájem o produkt</Label>
             <Select value={formData.interest} onValueChange={(value) => handleChange('interest', value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Vyberte produkt" />
+                <SelectValue placeholder="Vyberte produkt nebo službu" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="tiger-504">TIGER 504</SelectItem>
-                <SelectItem value="tiger-704">TIGER 704</SelectItem>
-                <SelectItem value="manitech">MANITECH nakladač</SelectItem>
-                <SelectItem value="lizzard">LIZZARD VZV</SelectItem>
+                <SelectItem value="general">Obecný dotaz</SelectItem>
+                {products.map((product) => (
+                  <SelectItem key={product.id} value={product.name}>
+                    {product.name}
+                  </SelectItem>
+                ))}
                 <SelectItem value="service">Servis</SelectItem>
                 <SelectItem value="rental">Pronájem</SelectItem>
+                <SelectItem value="subsidies">Dotace</SelectItem>
                 <SelectItem value="other">Jiné</SelectItem>
               </SelectContent>
             </Select>

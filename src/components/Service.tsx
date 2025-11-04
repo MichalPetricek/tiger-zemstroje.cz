@@ -17,12 +17,13 @@ import {
   Toolbox
 } from '@phosphor-icons/react'
 import { toast } from 'sonner'
+import emailjs from '@emailjs/browser'
 
 interface ServiceProps {
   onContactClick: () => void
 }
 
-export default function Service({ onContactClick }: ServiceProps) {
+export default function Service({ onContactClick: _onContactClick }: ServiceProps) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -35,7 +36,7 @@ export default function Service({ onContactClick }: ServiceProps) {
     marketingConsent: false
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     if (!formData.gdprConsent) {
@@ -48,21 +49,66 @@ export default function Service({ onContactClick }: ServiceProps) {
       return
     }
 
-    // Simulate form submission
-    toast.success('Formulář byl úspěšně odeslán. Náš technik vás brzy kontaktuje!')
-    
-    // Reset form
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      machineType: '',
-      issueDescription: '',
-      preferredDate: '',
-      contactMethod: 'phone',
-      gdprConsent: false,
-      marketingConsent: false
-    })
+    try {
+      // EmailJS configuration
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      // Check if EmailJS is configured
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS není správně nakonfigurován. Zkontrolujte .env soubor.')
+        toast.error('Omlouváme se, formulář momentálně nefunguje. Kontaktujte nás prosím telefonicky.')
+        return
+      }
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        interest: `Servis - ${formData.machineType}`,
+        message: `TYP POŽADAVKU: Servis
+
+TYP STROJE: ${formData.machineType}
+
+POPIS ZÁVADY:
+${formData.issueDescription}
+
+PREFEROVANÉ DATUM: ${formData.preferredDate || 'Neuvedeno'}
+
+PREFEROVANÝ ZPŮSOB KONTAKTU: ${formData.contactMethod === 'phone' ? 'Telefonicky' : 'E-mailem'}
+
+MARKETING: ${formData.marketingConsent ? 'Souhlasí se zasíláním obchodních sdělení' : 'Nesouhlasí se zasíláním obchodních sdělení'}`,
+        to_email: 'servis@zemstroje.cz',
+      }
+
+      // Send email via EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      )
+      
+      toast.success('Formulář byl úspěšně odeslán. Náš technik vás brzy kontaktuje!')
+      
+      // Reset form
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        machineType: '',
+        issueDescription: '',
+        preferredDate: '',
+        contactMethod: 'phone',
+        gdprConsent: false,
+        marketingConsent: false
+      })
+    } catch (error) {
+      console.error('Chyba při odesílání e-mailu:', error)
+      toast.error('Nepodařilo se odeslat zprávu. Zkuste to prosím znovu nebo nás kontaktujte telefonicky.')
+    }
   }
 
   const serviceFeatures = [
