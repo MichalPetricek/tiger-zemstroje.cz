@@ -11,6 +11,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 const Home = React.lazy(() => import("@/pages/Home"));
 const StrojePage = React.lazy(() => import("@/pages/Stroje"));
 const ProductDetailPage = React.lazy(() => import("@/pages/ProductDetail"));
+const ManufacturersPage = React.lazy(() => import("@/pages/ManufacturersPage"));
 const SubsidiesPage = React.lazy(() => import("@/pages/SubsidiesPage"));
 const ServicePage = React.lazy(() => import("@/pages/ServicePage"));
 const ContactsPage = React.lazy(() => import("@/pages/ContactsPage"));
@@ -36,6 +37,7 @@ export default function AppRouter() {
   const navigation: NavigationItem[] = [
     { name: "Domů", href: "#home", path: "/" },
     { name: "Produkty", href: "#products", path: "/products" },
+    { name: "Výrobci", href: "#manufacturers", path: "/vyrobci" },
     { name: "Servis", href: "#service", path: "/service" },
     { name: "Pronájem", href: "#rental", path: "/rental" },
     { name: "Dotace", href: "#subsidies", path: "/subsidies" },
@@ -70,6 +72,7 @@ export default function AppRouter() {
               />
             }
           />
+          <Route path="/vyrobci" element={<ManufacturersPage />} />
           <Route
             path="/service"
             element={

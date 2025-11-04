@@ -33,7 +33,14 @@ export interface SubsidyProgram {
     municipalities: string
 }
 
-export type ViewType = 'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental'
+export interface Manufacturer {
+    id: string
+    name: string
+    description: string
+    youtubeVideoId: string
+}
+
+export type ViewType = 'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental' | 'manufacturers'
 
 export interface NavigationItem {
     name: string
