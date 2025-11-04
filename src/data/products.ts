@@ -44,7 +44,7 @@ export const products: Product[] = [
         ],
         available: true,
         documentation: '/docs/traktory/parametry_TIGER504.pdf',
-        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 504 demo
+        youtubeUrl: 'https://www.youtube.com/watch?v=gd9Vu1-E2WA'
     },
     {
         id: 'tiger-704',
@@ -53,7 +53,19 @@ export const products: Product[] = [
         power: '70 HP',
         category: 'Traktory',
         brand: 'TIGER',
-        image: '/api/placeholder/400/300',
+        image: '/images/TIGER%20704/%201.jpg',
+        images: [
+            '/images/TIGER%20704/%201.jpg',
+            '/images/TIGER%20704/%202.jpg',
+            '/images/TIGER%20704/%203.jpg',
+            '/images/TIGER%20704/%204.jpg',
+            '/images/TIGER%20704/%205.jpg',
+            '/images/TIGER%20704/%206.jpg',
+            '/images/TIGER%20704/%207.jpg',
+            '/images/TIGER%20704/%208.jpg',
+            '/images/TIGER%20704/%209.jpg',
+            '/images/TIGER%20704/%2010.jpg'
+        ],
         badges: ['VÝKONNÝ', 'KLIMATIZACE'],
         description: 'Středně výkonný traktor s kabinou a klimatizací. Traktor nelze registrovat na SPZ',
         specs: {
@@ -74,7 +86,7 @@ export const products: Product[] = [
         ],
         available: true,
         documentation: '/docs/traktory/parametry_TIGER704FMD-TB.pdf',
-        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro TIGER 704 demo
+        youtubeUrl: 'https://www.youtube.com/watch?v=dn2C5I7fX_g'
     },
     {
         id: 'tiger-704FMD',
@@ -83,7 +95,39 @@ export const products: Product[] = [
         power: '70 HP',
         category: 'Traktory',
         brand: 'TIGER',
-        image: '/api/placeholder/400/300',
+        image: '/images/TIGER704FMD/%201.jpg',
+        images: [
+            '/images/TIGER704FMD/%201.jpg',
+            '/images/TIGER704FMD/%202.jpg',
+            '/images/TIGER704FMD/%203.jpg',
+            '/images/TIGER704FMD/%204.jpg',
+            '/images/TIGER704FMD/%205.jpg',
+            '/images/TIGER704FMD/%206.jpg',
+            '/images/TIGER704FMD/%207.jpg',
+            '/images/TIGER704FMD/%208.jpg',
+            '/images/TIGER704FMD/%209.jpg',
+            '/images/TIGER704FMD/%2010.jpg',
+            '/images/TIGER704FMD/%2011.jpg',
+            '/images/TIGER704FMD/%2012.jpg',
+            '/images/TIGER704FMD/%2013.jpg',
+            '/images/TIGER704FMD/%2014.jpg',
+            '/images/TIGER704FMD/%2015.jpg',
+            '/images/TIGER704FMD/%2016.jpg',
+            '/images/TIGER704FMD/%2017.jpg',
+            '/images/TIGER704FMD/%2018.jpg',
+            '/images/TIGER704FMD/%2019.jpg',
+            '/images/TIGER704FMD/%2020.jpg',
+            '/images/TIGER704FMD/%2021.jpg',
+            '/images/TIGER704FMD/%2022.jpg',
+            '/images/TIGER704FMD/%2023.jpg',
+            '/images/TIGER704FMD/%2024.jpg',
+            '/images/TIGER704FMD/%2025.jpg',
+            '/images/TIGER704FMD/%2026.jpg',
+            '/images/TIGER704FMD/%2027.jpg',
+            '/images/TIGER704FMD/%2028.jpg',
+            '/images/TIGER704FMD/%2029.jpg',
+            '/images/TIGER704FMD/%2030.jpg'
+        ],
         badges: ['VÝKONNÝ', 'KLIMATIZACE', 'PROFESIONÁLNÍ'],
         description: 'Středně výkonný traktor s luxusní kabinou, klimatizací a zadní kamerou. Zesílený rám TB – vhodný pro univerzální práci v náročnějším terénu.Traktor nelze registrovat na SPZ.',
         specs: {
@@ -112,7 +156,25 @@ export const products: Product[] = [
         power: '100 HP',
         category: 'Traktory',
         brand: 'TIGER',
-        image: '/api/placeholder/400/300',
+        image: '/images/TIGER1004FMD/%201.jpg',
+        images: [
+            '/images/TIGER1004FMD/%201.jpg',
+            '/images/TIGER1004FMD/%202.jpg',
+            '/images/TIGER1004FMD/%203.jpg',
+            '/images/TIGER1004FMD/%204.jpg',
+            '/images/TIGER1004FMD/%205.jpg',
+            '/images/TIGER1004FMD/%206.jpg',
+            '/images/TIGER1004FMD/%207.jpg',
+            '/images/TIGER1004FMD/%208.jpg',
+            '/images/TIGER1004FMD/%209.jpg',
+            '/images/TIGER1004FMD/%2010.jpg',
+            '/images/TIGER1004FMD/%2011.jpg',
+            '/images/TIGER1004FMD/%2012.jpg',
+            '/images/TIGER1004FMD/%2013.jpg',
+            '/images/TIGER1004FMD/%2015.jpg',
+            '/images/TIGER1004FMD/%2017.jpg',
+            '/images/TIGER1004FMD/%2018.jpg'
+        ],
         badges: ['VÝKONNÝ', 'KLIMATIZACE', 'PROFESIONÁLNÍ'],
         description: 'Středně výkonný traktor s luxusní kabinou, klimatizací a zadní kamerou. Zesílený rám 4WD – vhodný pro univerzální práci v náročnějším terénu. Traktor nelze registrovat na SPZ.',
         specs: {
@@ -141,7 +203,25 @@ export const products: Product[] = [
         power: '120 HP',
         category: 'Traktory',
         brand: 'TIGER',
-        image: '/api/placeholder/400/300',
+        image: '/images/TIGER1204FMD/%201.jpg',
+        images: [
+            '/images/TIGER1204FMD/%201.jpg',
+            '/images/TIGER1204FMD/%202.jpg',
+            '/images/TIGER1204FMD/%203.jpg',
+            '/images/TIGER1204FMD/%204.jpg',
+            '/images/TIGER1204FMD/%205.jpg',
+            '/images/TIGER1204FMD/%206.jpg',
+            '/images/TIGER1204FMD/%207.jpg',
+            '/images/TIGER1204FMD/%208.jpg',
+            '/images/TIGER1204FMD/%209.jpg',
+            '/images/TIGER1204FMD/%2010.jpg',
+            '/images/TIGER1204FMD/%2011.jpg',
+            '/images/TIGER1204FMD/%2012.jpg',
+            '/images/TIGER1204FMD/%2013.jpg',
+            '/images/TIGER1204FMD/%2015.jpg',
+            '/images/TIGER1204FMD/%2017.jpg',
+            '/images/TIGER1204FMD/%2018.jpg'
+        ],
         badges: ['VÝKONNÝ', 'KLIMATIZACE', 'TĚŽKÁ KATEGORIE'],
         description: 'Výkonný traktor střední kategorie s luxusní kabinou a klimatizací. Těžké robustní šasi 4WD – určeno pro profesionální zemědělské nasazení. Traktor nelze registrovat na SPZ.',
         specs: {
@@ -174,7 +254,23 @@ export const products: Product[] = [
         power: '25 HP',
         category: 'Traktory',
         brand: 'JINMA',
-        image: '/api/placeholder/400/300',
+        image: '/images/JINMA254E/%201.jpg',
+        images: [
+            '/images/JINMA254E/%201.jpg',
+            '/images/JINMA254E/%202.jpg',
+            '/images/JINMA254E/%203.jpg',
+            '/images/JINMA254E/%204.jpg',
+            '/images/JINMA254E/%205.jpg',
+            '/images/JINMA254E/%206.jpg',
+            '/images/JINMA254E/%207.JPG',
+            '/images/JINMA254E/%208.JPG',
+            '/images/JINMA254E/%209.JPG',
+            '/images/JINMA254E/%2010.JPG',
+            '/images/JINMA254E/%2011.JPG',
+            '/images/JINMA254E/%2012.JPG',
+            '/images/JINMA254E/%2013.JPG',
+            '/images/JINMA254E/%2014.JPG'
+        ],
         badges: ['KOMPAKTNÍ'],
         description: 'Kompaktní 25HP traktor s možností 4×4, jednoduchá mechanika pro menší farmy a zahrady. Traktor schválený pro provoz na pozemních komunikacích – lze registrovat na SPZ',
         specs: {
@@ -196,7 +292,8 @@ export const products: Product[] = [
             'Možnost instalace předního nakladače s lopatou 4v1 s nosností 450 kg'
         ],
         available: true,
-        documentation: '/docs/traktory/parametry_JINMA254E.pdf'
+        documentation: '/docs/traktory/parametry_JINMA254E.pdf',
+        youtubeUrl: 'https://www.youtube.com/watch?v=syMEHg3-n-8'
     },
     // Traktory - YTO NLY série
     {
@@ -206,7 +303,17 @@ export const products: Product[] = [
         power: '95 HP',
         category: 'Traktory',
         brand: 'YTO',
-        image: '/api/placeholder/400/300',
+        image: '/images/YTO_NLY/%201.jpg',
+        images: [
+            '/images/YTO_NLY/%201.jpg',
+            '/images/YTO_NLY/%202.jpg',
+            '/images/YTO_NLY/%203.jpg',
+            '/images/YTO_NLY/%204.jpg',
+            '/images/YTO_NLY/%205.jpg',
+            '/images/YTO_NLY/%206.jpg',
+            '/images/YTO_NLY/%207.jpg',
+            '/images/YTO_NLY/%208.jpg'
+        ],
         badges: ['KLIMATIZACE'],
         description: 'Profesionální traktor z řady NLY s motorem YTO Stage V (nízké vibrace / hluk) a vysokou pracovní účinností. Traktor schválený pro provoz na pozemních komunikacích – lze registrovat na SPZ',
         specs: {
@@ -225,7 +332,8 @@ export const products: Product[] = [
             'Plně uzavřená čtyřsloupková kabina – široký výhled, klimatizace, topení'
         ],
         available: true,
-        documentation: '/docs/traktory/parametry_YTO_NLY954.pdf'
+        documentation: '/docs/traktory/parametry_YTO_NLY954.pdf',
+        youtubeUrl: 'https://www.youtube.com/watch?v=BFAVBC1pHJ8'
     },
     {
         id: 'yto-nly1054',
@@ -234,7 +342,17 @@ export const products: Product[] = [
         power: '105 HP',
         category: 'Traktory',
         brand: 'YTO',
-        image: '/api/placeholder/400/300',
+        image: '/images/YTO_NLY/%201.jpg',
+        images: [
+            '/images/YTO_NLY/%201.jpg',
+            '/images/YTO_NLY/%202.jpg',
+            '/images/YTO_NLY/%203.jpg',
+            '/images/YTO_NLY/%204.jpg',
+            '/images/YTO_NLY/%205.jpg',
+            '/images/YTO_NLY/%206.jpg',
+            '/images/YTO_NLY/%207.jpg',
+            '/images/YTO_NLY/%208.jpg'
+        ],
         badges: ['KLIMATIZACE', 'VÝKONNÝ'],
         description: 'Výkonný traktor z řady NLY s motorem Stage V a vysokou pracovní účinností pro středně velké zemědělské podniky. Traktor schválený pro provoz na pozemních komunikacích – lze registrovat na SPZ',
         specs: {
@@ -262,7 +380,17 @@ export const products: Product[] = [
         power: '115 HP',
         category: 'Traktory',
         brand: 'YTO',
-        image: '/api/placeholder/400/300',
+        image: '/images/YTO_NLY/%201.jpg',
+        images: [
+            '/images/YTO_NLY/%201.jpg',
+            '/images/YTO_NLY/%202.jpg',
+            '/images/YTO_NLY/%203.jpg',
+            '/images/YTO_NLY/%204.jpg',
+            '/images/YTO_NLY/%205.jpg',
+            '/images/YTO_NLY/%206.jpg',
+            '/images/YTO_NLY/%207.jpg',
+            '/images/YTO_NLY/%208.jpg'
+        ],
         badges: ['KLIMATIZACE', 'VÝKONNÝ'],
         description: 'Nejsilnější model v NLY sérii s motorem Stage V, maximálním výkonem a komfortem pro náročné aplikace. Traktor schválený pro provoz na pozemních komunikacích – lze registrovat na SPZ',
         specs: {
@@ -291,7 +419,18 @@ export const products: Product[] = [
         power: '55 HP',
         category: 'Traktory',
         brand: 'YTO',
-        image: '/api/placeholder/400/300',
+        image: '/images/YTO_NMF/%201.jpg',
+        images: [
+            '/images/YTO_NMF/%201.jpg',
+            '/images/YTO_NMF/%202.jpg',
+            '/images/YTO_NMF/%203.jpg',
+            '/images/YTO_NMF/%204.jpg',
+            '/images/YTO_NMF/%205.jpg',
+            '/images/YTO_NMF/%206.jpg',
+            '/images/YTO_NMF/%207.jpg',
+            '/images/YTO_NMF/%208.jpg',
+            '/images/YTO_NMF/%209.jpg'
+        ],
         badges: ['UNIVERZÁLNÍ'],
         description: 'Kompaktní traktor z řady NMF určené pro menší a střední farmy. Univerzální použití s výborným poměrem cena/výkon. Traktor schválený pro provoz na pozemních komunikacích – lze registrovat na SPZ',
         specs: {
@@ -320,7 +459,18 @@ export const products: Product[] = [
         power: '60 HP',
         category: 'Traktory',
         brand: 'YTO',
-        image: '/api/placeholder/400/300',
+        image: '/images/YTO_NMF/%201.jpg',
+        images: [
+            '/images/YTO_NMF/%201.jpg',
+            '/images/YTO_NMF/%202.jpg',
+            '/images/YTO_NMF/%203.jpg',
+            '/images/YTO_NMF/%204.jpg',
+            '/images/YTO_NMF/%205.jpg',
+            '/images/YTO_NMF/%206.jpg',
+            '/images/YTO_NMF/%207.jpg',
+            '/images/YTO_NMF/%208.jpg',
+            '/images/YTO_NMF/%209.jpg'
+        ],
         badges: ['UNIVERZÁLNÍ'],
         description: 'Výkonnější model NMF série pro středně náročné práce na menších a středních farmách.',
         specs: {
@@ -349,7 +499,18 @@ export const products: Product[] = [
         power: '70 HP',
         category: 'Traktory',
         brand: 'YTO',
-        image: '/api/placeholder/400/300',
+        image: '/images/YTO_NMF/%201.jpg',
+        images: [
+            '/images/YTO_NMF/%201.jpg',
+            '/images/YTO_NMF/%202.jpg',
+            '/images/YTO_NMF/%203.jpg',
+            '/images/YTO_NMF/%204.jpg',
+            '/images/YTO_NMF/%205.jpg',
+            '/images/YTO_NMF/%206.jpg',
+            '/images/YTO_NMF/%207.jpg',
+            '/images/YTO_NMF/%208.jpg',
+            '/images/YTO_NMF/%209.jpg'
+        ],
         badges: ['UNIVERZÁLNÍ', 'VÝKONNÝ'],
         description: 'Nejsilnější model NMF série pro náročnější zemědělské práce na středních farmách.',
         specs: {
@@ -379,7 +540,22 @@ export const products: Product[] = [
         power: '10 HP',
         category: 'Bagry',
         brand: 'BAT',
-        image: '/api/placeholder/400/300',
+        image: '/images/Bagry_BAT/%201.jpg',
+        images: [
+            '/images/Bagry_BAT/%201.jpg',
+            '/images/Bagry_BAT/%202.jpg',
+            '/images/Bagry_BAT/%203.jpg',
+            '/images/Bagry_BAT/%204.jpg',
+            '/images/Bagry_BAT/%205.jpg',
+            '/images/Bagry_BAT/%206.jpg',
+            '/images/Bagry_BAT/%207.jpg',
+            '/images/Bagry_BAT/%208.jpg',
+            '/images/Bagry_BAT/%209.jpg',
+            '/images/Bagry_BAT/%2010.jpg',
+            '/images/Bagry_BAT/%2011.jpg',
+            '/images/Bagry_BAT/%2012.jpg',
+            '/images/Bagry_BAT/%2013.jpg'
+        ],
         badges: ['KOMPAKTNÍ'],
         description: 'Kompaktní bagr pro menší stavební práce.',
         specs: {
@@ -401,7 +577,7 @@ export const products: Product[] = [
         ],
         available: true,
         documentation: '/docs/bagry BAT/bagr BAT08.pdf',
-        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro bagr BAT08 demo
+        youtubeUrl: 'https://www.youtube.com/watch?v=9wR6Xfo1_OM'
     },
     {
         id: 'bat10',
@@ -410,7 +586,22 @@ export const products: Product[] = [
         power: '10 HP',
         category: 'Bagry',
         brand: 'BAT',
-        image: '/api/placeholder/400/300',
+        image: '/images/Bagry_BAT/%201.jpg',
+        images: [
+            '/images/Bagry_BAT/%201.jpg',
+            '/images/Bagry_BAT/%202.jpg',
+            '/images/Bagry_BAT/%203.jpg',
+            '/images/Bagry_BAT/%204.jpg',
+            '/images/Bagry_BAT/%205.jpg',
+            '/images/Bagry_BAT/%206.jpg',
+            '/images/Bagry_BAT/%207.jpg',
+            '/images/Bagry_BAT/%208.jpg',
+            '/images/Bagry_BAT/%209.jpg',
+            '/images/Bagry_BAT/%2010.jpg',
+            '/images/Bagry_BAT/%2011.jpg',
+            '/images/Bagry_BAT/%2012.jpg',
+            '/images/Bagry_BAT/%2013.jpg'
+        ],
         badges: ['KOMPAKTNÍ'],
         description: 'Kompaktní bagr pro menší stavební práce.',
         specs: {
@@ -440,7 +631,22 @@ export const products: Product[] = [
         power: '10 HP',
         category: 'Bagry',
         brand: 'BAT',
-        image: '/api/placeholder/400/300',
+        image: '/images/Bagry_BAT/%201.jpg',
+        images: [
+            '/images/Bagry_BAT/%201.jpg',
+            '/images/Bagry_BAT/%202.jpg',
+            '/images/Bagry_BAT/%203.jpg',
+            '/images/Bagry_BAT/%204.jpg',
+            '/images/Bagry_BAT/%205.jpg',
+            '/images/Bagry_BAT/%206.jpg',
+            '/images/Bagry_BAT/%207.jpg',
+            '/images/Bagry_BAT/%208.jpg',
+            '/images/Bagry_BAT/%209.jpg',
+            '/images/Bagry_BAT/%2010.jpg',
+            '/images/Bagry_BAT/%2011.jpg',
+            '/images/Bagry_BAT/%2012.jpg',
+            '/images/Bagry_BAT/%2013.jpg'
+        ],
         badges: ['KOMPAKTNÍ'],
         description: 'Kompaktní bagr pro střední stavební práce.',
         specs: {
@@ -467,7 +673,22 @@ export const products: Product[] = [
         power: '30 HP',
         category: 'Bagry',
         brand: 'BAT',
-        image: '/api/placeholder/400/300',
+        image: '/images/Bagry_BAT/%201.jpg',
+        images: [
+            '/images/Bagry_BAT/%201.jpg',
+            '/images/Bagry_BAT/%202.jpg',
+            '/images/Bagry_BAT/%203.jpg',
+            '/images/Bagry_BAT/%204.jpg',
+            '/images/Bagry_BAT/%205.jpg',
+            '/images/Bagry_BAT/%206.jpg',
+            '/images/Bagry_BAT/%207.jpg',
+            '/images/Bagry_BAT/%208.jpg',
+            '/images/Bagry_BAT/%209.jpg',
+            '/images/Bagry_BAT/%2010.jpg',
+            '/images/Bagry_BAT/%2011.jpg',
+            '/images/Bagry_BAT/%2012.jpg',
+            '/images/Bagry_BAT/%2013.jpg'
+        ],
         badges: ['STŘEDNĚ VELKÝ'],
         description: 'Určen pro přesné zemní práce na menších stavbách, zahradách a v omezených prostorech.',
         specs: {
@@ -495,7 +716,22 @@ export const products: Product[] = [
         power: '30 HP',
         category: 'Bagry',
         brand: 'BAT',
-        image: '/api/placeholder/400/300',
+        image: '/images/Bagry_BAT/%201.jpg',
+        images: [
+            '/images/Bagry_BAT/%201.jpg',
+            '/images/Bagry_BAT/%202.jpg',
+            '/images/Bagry_BAT/%203.jpg',
+            '/images/Bagry_BAT/%204.jpg',
+            '/images/Bagry_BAT/%205.jpg',
+            '/images/Bagry_BAT/%206.jpg',
+            '/images/Bagry_BAT/%207.jpg',
+            '/images/Bagry_BAT/%208.jpg',
+            '/images/Bagry_BAT/%209.jpg',
+            '/images/Bagry_BAT/%2010.jpg',
+            '/images/Bagry_BAT/%2011.jpg',
+            '/images/Bagry_BAT/%2012.jpg',
+            '/images/Bagry_BAT/%2013.jpg'
+        ],
         badges: ['VÝKONNÝ'],
         description: 'Výkonný bagr s vysokou produktivitou práce.',
         specs: {
@@ -523,7 +759,22 @@ export const products: Product[] = [
         power: '39 HP',
         category: 'Bagry',
         brand: 'BAT',
-        image: '/api/placeholder/400/300',
+        image: '/images/Bagry_BAT/%201.jpg',
+        images: [
+            '/images/Bagry_BAT/%201.jpg',
+            '/images/Bagry_BAT/%202.jpg',
+            '/images/Bagry_BAT/%203.jpg',
+            '/images/Bagry_BAT/%204.jpg',
+            '/images/Bagry_BAT/%205.jpg',
+            '/images/Bagry_BAT/%206.jpg',
+            '/images/Bagry_BAT/%207.jpg',
+            '/images/Bagry_BAT/%208.jpg',
+            '/images/Bagry_BAT/%209.jpg',
+            '/images/Bagry_BAT/%2010.jpg',
+            '/images/Bagry_BAT/%2011.jpg',
+            '/images/Bagry_BAT/%2012.jpg',
+            '/images/Bagry_BAT/%2013.jpg'
+        ],
         badges: ['NEJSILNĚJŠÍ'],
         description: 'Nejsilnější minibagr v naší nabídce pro nejvýkonnější práce.',
         specs: {
@@ -553,7 +804,18 @@ export const products: Product[] = [
         power: '25 HP',
         category: 'Nakladače',
         brand: 'MANITECH',
-        image: '/api/placeholder/400/300',
+        image: '/images/MTECH_T135/%201.jpg',
+        images: [
+            '/images/MTECH_T135/%201.jpg',
+            '/images/MTECH_T135/%202.jpg',
+            '/images/MTECH_T135/%203.jpg',
+            '/images/MTECH_T135/%204.jpg',
+            '/images/MTECH_T135/%205.jpg',
+            '/images/MTECH_T135/%206.jpg',
+            '/images/MTECH_T135/%207.jpg',
+            '/images/MTECH_T135/%208.jpg',
+            '/images/MTECH_T135/%209.jpg'
+        ],
         badges: ['KOMPAKTNÍ'],
         description: 'Kompaktní teleskopický nakladač pro univerzální použití.',
         specs: {
@@ -581,7 +843,21 @@ export const products: Product[] = [
         power: '25 HP',
         category: 'Nakladače',
         brand: 'MANITECH',
-        image: '/api/placeholder/400/300',
+        image: '/images/MTECH1160/%201.jpg',
+        images: [
+            '/images/MTECH1160/%201.jpg',
+            '/images/MTECH1160/%202.jpg',
+            '/images/MTECH1160/%203.jpg',
+            '/images/MTECH1160/%204.jpg',
+            '/images/MTECH1160/%205.jpg',
+            '/images/MTECH1160/%206.jpg',
+            '/images/MTECH1160/%207.jpg',
+            '/images/MTECH1160/%208.jpg',
+            '/images/MTECH1160/%209.jpg',
+            '/images/MTECH1160/%2010.jpg',
+            '/images/MTECH1160/%2011.jpg',
+            '/images/MTECH1160/%2012.jpg'
+        ],
         badges: ['KLOUBOVÝ'],
         description: 'Výkonný kloubový kolový nakladač pro střední stavební práce.',
         specs: {
@@ -601,7 +877,7 @@ export const products: Product[] = [
             'Spolehlivý provoz'
         ],
         available: true,
-        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro MTECH 1160 demo
+        youtubeUrl: 'https://www.youtube.com/watch?v=RAgGIfBr5yc'
     },
     {
         id: 'mtech-45',
@@ -610,7 +886,19 @@ export const products: Product[] = [
         power: '50 HP',
         category: 'Nakladače',
         brand: 'MANITECH',
-        image: '/api/placeholder/400/300',
+        image: '/images/MTECH_4.5/%201.jpg',
+        images: [
+            '/images/MTECH_4.5/%201.jpg',
+            '/images/MTECH_4.5/%202.jpg',
+            '/images/MTECH_4.5/%203.jpg',
+            '/images/MTECH_4.5/%204.jpg',
+            '/images/MTECH_4.5/%205.jpg',
+            '/images/MTECH_4.5/%206.jpg',
+            '/images/MTECH_4.5/%207.jpg',
+            '/images/MTECH_4.5/%208.jpg',
+            '/images/MTECH_4.5/%209.jpg',
+            '/images/MTECH_4.5/%2010.jpg'
+        ],
         badges: ['KLOUBOVÝ'],
         description: 'Kloubový nakladač s nosností 1600 kg.',
         specs: {
@@ -634,7 +922,19 @@ export const products: Product[] = [
         power: '50 HP',
         category: 'Nakladače',
         brand: 'MANITECH',
-        image: '/api/placeholder/400/300',
+        image: '/images/MTECH_4.5/%201.jpg',
+        images: [
+            '/images/MTECH_4.5/%201.jpg',
+            '/images/MTECH_4.5/%202.jpg',
+            '/images/MTECH_4.5/%203.jpg',
+            '/images/MTECH_4.5/%204.jpg',
+            '/images/MTECH_4.5/%205.jpg',
+            '/images/MTECH_4.5/%206.jpg',
+            '/images/MTECH_4.5/%207.jpg',
+            '/images/MTECH_4.5/%208.jpg',
+            '/images/MTECH_4.5/%209.jpg',
+            '/images/MTECH_4.5/%2010.jpg'
+        ],
         badges: ['TELESKOPICKÝ'],
         description: 'Kloubový teleskopický nakladač s nosností 4.5 tuny.',
         specs: {
@@ -657,7 +957,26 @@ export const products: Product[] = [
         power: '70 HP',
         category: 'Nakladače',
         brand: 'MANITECH',
-        image: '/api/placeholder/400/300',
+        image: '/images/MTECH_5.5/%201.jpg',
+        images: [
+            '/images/MTECH_5.5/%201.jpg',
+            '/images/MTECH_5.5/%202.jpg',
+            '/images/MTECH_5.5/%203.jpg',
+            '/images/MTECH_5.5/%204.jpg',
+            '/images/MTECH_5.5/%205.jpg',
+            '/images/MTECH_5.5/%206.jpg',
+            '/images/MTECH_5.5/%207.jpg',
+            '/images/MTECH_5.5/%208.jpg',
+            '/images/MTECH_5.5/%209.jpg',
+            '/images/MTECH_5.5/%2010.jpg',
+            '/images/MTECH_5.5/%2011.jpg',
+            '/images/MTECH_5.5/%2012.jpg',
+            '/images/MTECH_5.5/%2013.jpg',
+            '/images/MTECH_5.5/%2014.jpg',
+            '/images/MTECH_5.5/%2015.jpg',
+            '/images/MTECH_5.5/%2016.jpg',
+            '/images/MTECH_5.5/%2017.jpg'
+        ],
         badges: ['KOLOVÝ'],
         description: 'Kloubový nakladač s nosností 2000 kg.',
         specs: {
@@ -680,7 +999,15 @@ export const products: Product[] = [
         power: '95 HP',
         category: 'Nakladače',
         brand: 'MANITECH',
-        image: '/api/placeholder/400/300',
+        image: '/images/MTECH_5.5T/MTECH_5.5T_1.jpg',
+        images: [
+            '/images/MTECH_5.5T/MTECH_5.5T_1.jpg',
+            '/images/MTECH_5.5T/MTECH_5.5T_2.jpg',
+            '/images/MTECH_5.5T/MTECH_5.5T_3.jpg',
+            '/images/MTECH_5.5T/MTECH_5.5T_4.jpg',
+            '/images/MTECH_5.5T/MTECH_5.5T_5.jpg',
+            '/images/MTECH_5.5T/MTECH_5.5T_6.jpg'
+        ],
         badges: ['TELESKOPICKÝ', 'OTOČNÝ', 'NEJSILNĚJŠÍ'],
         description: 'Nejsilnější otočný teleskopický nakladač v naší nabídce.',
         specs: {
@@ -726,8 +1053,7 @@ export const products: Product[] = [
             'Variabilní zdvih 3-6 metrů',
             'Kompaktní rozměry pro manévrovatelnost'
         ],
-        available: true,
-        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Placeholder pro LIZARD 30 demo
+        available: true
     },
     {
         id: 'lizard-35',

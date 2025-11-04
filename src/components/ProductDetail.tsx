@@ -315,14 +315,14 @@ export default function ProductDetail({
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4">
                 {Object.entries(product.specs).map(([key, value]) => (
                   <div
                     key={key}
-                    className="flex justify-between items-center py-2"
+                    className="py-2"
                   >
-                    <span className="text-muted-foreground capitalize">
-                      {key.replace("_", " ")}:
+                    <span className="text-muted-foreground">
+                      {key}:{" "}
                     </span>
                     <span className="font-medium">{value}</span>
                   </div>
