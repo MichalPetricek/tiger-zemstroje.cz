@@ -1,46 +1,42 @@
 export interface Product {
     id: string
     name: string
-    price: string
+    priceWithVat: number      // price including 21% VAT in CZK (0 = price on request)
+    priceWithoutVat: number   // price without VAT in CZK
     power: string
     category: string
     brand: string
     image: string
-    images?: string[] // Array of image URLs/paths for carousel (optional for backward compatibility)
+    images: string[]
     badges: string[]
     description: string
     specs: Record<string, string>
     features: string[]
     available: boolean
-    documentation?: string // Path to PDF documentation file
-    youtubeUrl?: string // YouTube video URL for product demo/showcase
+    documentation?: string
+    youtubeUrl?: string
+    sortOrder?: number
 }
 
 export interface NewsItem {
-    id: string
+    id: number
     title: string
     content: string
     date: string
-    featured: boolean
-}
-
-export interface SubsidyProgram {
-    region: string
-    territory: string
-    support: string
-    deadline: string
-    type: string
-    municipalities: string
+    images: string[]
+    youtubeUrl?: string
+    published: boolean
 }
 
 export interface Manufacturer {
     id: string
     name: string
     description: string
-    youtubeVideoId: string
+    youtubeVideoId?: string
+    sortOrder?: number
 }
 
-export type ViewType = 'home' | 'products' | 'product-detail' | 'subsidies' | 'service' | 'contacts' | 'rental' | 'manufacturers'
+export type ViewType = 'home' | 'products' | 'product-detail' | 'service' | 'contacts' | 'rental' | 'manufacturers' | 'news'
 
 export interface NavigationItem {
     name: string

@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -182,9 +183,10 @@ export default function ProductDetail({
               </div>
 
               {/* Price overlay */}
-              {product.price !== "Na dotaz" && (
-                <div className="absolute bottom-4 right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold text-lg z-10">
-                  {product.price}
+              {product.priceWithVat > 0 && (
+                <div className="absolute bottom-4 right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg z-10 text-right">
+                  <span className="font-bold text-lg block">{product.priceWithVat.toLocaleString("cs-CZ")} Kč s DPH</span>
+                  <span className="text-sm opacity-80">{product.priceWithoutVat.toLocaleString("cs-CZ")} Kč bez DPH</span>
                 </div>
               )}
             </div>
@@ -237,13 +239,18 @@ export default function ProductDetail({
                 {product.description}
               </p>
 
-              {product.price === "Na dotaz" ? (
-                <div className="text-2xl font-bold text-accent">
-                  Cena na dotaz
+              {product.priceWithVat > 0 ? (
+                <div>
+                  <div className="text-3xl font-bold text-accent">
+                    {product.priceWithVat.toLocaleString("cs-CZ")} Kč s DPH
+                  </div>
+                  <div className="text-lg text-muted-foreground mt-1">
+                    {product.priceWithoutVat.toLocaleString("cs-CZ")} Kč bez DPH
+                  </div>
                 </div>
               ) : (
-                <div className="text-3xl font-bold text-accent">
-                  {product.price}
+                <div className="text-2xl font-bold text-accent">
+                  Cena na dotaz
                 </div>
               )}
             </div>

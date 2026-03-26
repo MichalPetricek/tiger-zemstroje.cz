@@ -1,4 +1,5 @@
-import { useState } from 'react'
+"use client";
+import { useState, useEffect } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -8,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox'
 import { toast } from 'sonner'
 import emailjs from '@emailjs/browser'
-import { products } from '@/data/products'
+import { Product } from '@/types'
 
 interface ContactFormProps {
   open: boolean
@@ -16,6 +17,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ open, onOpenChange }: ContactFormProps) {
+  const [products, setProducts] = useState<Product[]>([])
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,6 +27,15 @@ export default function ContactForm({ open, onOpenChange }: ContactFormProps) {
     consent: false
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    if (open && products.length === 0) {
+      fetch('/api/products')
+        .then(r => r.json())
+        .then(d => setProducts(Array.isArray(d) ? d : []))
+        .catch(() => {});
+    }
+  }, [open, products.length]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,9 +49,9 @@ export default function ContactForm({ open, onOpenChange }: ContactFormProps) {
     
     try {
       // EmailJS configuration
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       // Check if EmailJS is configured
       if (!serviceId || !templateId || !publicKey) {

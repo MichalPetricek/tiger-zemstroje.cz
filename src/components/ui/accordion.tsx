@@ -1,3 +1,4 @@
+"use client";
 import { ComponentProps } from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import ChevronDownIcon from "lucide-react/dist/esm/icons/chevron-down"

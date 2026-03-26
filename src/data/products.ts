@@ -1,6 +1,7 @@
-import { Product } from '@/types'
+// Static product data - used only for initial database seeding
+// After seeding, products are managed via admin panel at /admin
 
-export const products: Product[] = [
+export const products: Record<string, unknown>[] = [
     // Traktory - TIGER
     {
         id: 'tiger-504',

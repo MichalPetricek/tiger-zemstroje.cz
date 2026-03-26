@@ -12,6 +12,10 @@ dist
 dist-ssr
 *-dist
 *.local
+.next
+out
+data.db
+uploads/
 
 # Editor directories and files
 .vscode/*

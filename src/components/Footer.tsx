@@ -1,24 +1,6 @@
-interface FooterProps {
-  onTraktoryClick: () => void;
-  onNakladaceClick: () => void;
-  onBagryClick: () => void;
-  onJesterkyClick: () => void;
-  onPrislusenstviClick: () => void;
-  onSubsidiesClick: () => void;
-  onServiceClick: () => void;
-  onRentalClick: () => void;
-}
+import Link from "next/link";
 
-export default function Footer({
-  onTraktoryClick,
-  onNakladaceClick,
-  onBagryClick,
-  onJesterkyClick,
-  onPrislusenstviClick,
-  onSubsidiesClick,
-  onServiceClick,
-  onRentalClick,
-}: FooterProps) {
+export default function Footer() {
   return (
     <footer className="bg-card border-t border-border py-12 px-4">
       <div className="container mx-auto">
@@ -32,75 +14,79 @@ export default function Footer({
 
           <div>
             <h3 className="font-semibold mb-4">Produkty</h3>
-            <div className="space-y-2 text-sm">
-              <button
-                onClick={onTraktoryClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+            <nav className="space-y-2 text-sm" aria-label="Kategorie produktů">
+              <Link
+                href="/products?category=Traktory"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Traktory
-              </button>
-              <button
-                onClick={onNakladaceClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+              </Link>
+              <Link
+                href="/products?category=Nakladače"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Nakladače
-              </button>
-              <button
-                onClick={onBagryClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+              </Link>
+              <Link
+                href="/products?category=Bagry"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Bagry
-              </button>
-              <button
-                onClick={onJesterkyClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+              </Link>
+              <Link
+                href="/products?category=Ještěrky"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Ještěrky
-              </button>
-              <button
-                onClick={onPrislusenstviClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+              </Link>
+              <Link
+                href="/products?category=Příslušenství"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Příslušenství
-              </button>
-            </div>
+              </Link>
+            </nav>
           </div>
 
           <div>
             <h3 className="font-semibold mb-4">Služby</h3>
-            <div className="space-y-2 text-sm">
-              <button
-                onClick={onServiceClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+            <nav className="space-y-2 text-sm" aria-label="Služby">
+              <Link
+                href="/service"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Servis
-              </button>
-              <button
-                onClick={onRentalClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+              </Link>
+              <Link
+                href="/rental"
+                className="block text-muted-foreground hover:text-foreground"
               >
                 Pronájem
-              </button>
-              <button
-                onClick={onSubsidiesClick}
-                className="block text-muted-foreground hover:text-foreground text-left"
+              </Link>
+              <Link
+                href="/news"
+                className="block text-muted-foreground hover:text-foreground"
               >
-                Dotace
-              </button>
-            </div>
+                Novinky
+              </Link>
+            </nav>
           </div>
 
           <div>
             <h3 className="font-semibold mb-4">Kontakt</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>zemstroje@gmail.com</p>
-              <p>+420 601 017 000</p>
+            <address className="space-y-2 text-sm text-muted-foreground not-italic">
+              <a href="mailto:zemstroje@gmail.com" className="block hover:text-foreground transition-colors">
+                zemstroje@gmail.com
+              </a>
+              <a href="tel:+420601017000" className="block hover:text-foreground transition-colors">
+                +420 601 017 000
+              </a>
               <p>
                 Skuhrov 13
                 <br />
                 468 22 Železný Brod
               </p>
-            </div>
+            </address>
           </div>
         </div>
 

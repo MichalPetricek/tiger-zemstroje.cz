@@ -1,21 +1,8 @@
+"use client";
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import ProductCard from '@/components/ProductCard'
-
-interface Product {
-  id: string
-  name: string
-  price: string
-  power: string
-  category: string
-  brand: string
-  image: string
-  badges: string[]
-  description: string
-  specs: Record<string, string>
-  features: string[]
-  available: boolean
-}
+import { Product } from '@/types'
 
 interface ProductsProps {
   products: Product[]
@@ -30,7 +17,6 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
     { id: 'Traktory', name: 'Traktory' },
     { id: 'Nakladače', name: 'Nakladače' },
     { id: 'Bagry', name: 'Bagry' },
-    { id: 'Ještěrky', name: 'Ještěrky' },
     { id: 'Příslušenství', name: 'Příslušenství' }
   ]
 
@@ -65,7 +51,7 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
 
         {/* Special content for Příslušenství */}
         {selectedCategory === 'Příslušenství' && (
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-8">
             <div className="bg-card border rounded-lg p-8 shadow-sm">
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold mb-3">Katalog příslušenství</h2>
@@ -96,6 +82,31 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
                 <p className="text-sm text-muted-foreground text-center">
                   V katalogu najdete: radlice, plečky, sněhové frézy, mulčovače, sekačky, shrnovače, diskové brány a další příslušenství.
                 </p>
+              </div>
+            </div>
+
+            {/* YouTube videos for accessories */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6 text-center">Videa příslušenství</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="aspect-video rounded-lg overflow-hidden border">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/syMEHg3-n-8"
+                    title="Příslušenství SAMTRA – Přehled"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+                <div className="aspect-video rounded-lg overflow-hidden border">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/BFAVBC1pHJ8"
+                    title="Příslušenství – Ukázky použití"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
               </div>
             </div>
           </div>

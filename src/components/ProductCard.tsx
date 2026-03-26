@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -9,6 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Product } from "@/types";
+
+function formatPrice(n: number): string {
+  return n.toLocaleString("cs-CZ") + " Kč";
+}
 
 interface ProductCardProps {
   product: Product;
@@ -40,8 +45,15 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
             </Badge>
           ))}
         </div>
-        <div className="absolute bottom-4 right-4 bg-background/90 backdrop-blur-sm px-3 py-2 rounded-lg">
-          <span className="font-bold text-accent">{product.price}</span>
+        <div className="absolute bottom-4 right-4 bg-background/90 backdrop-blur-sm px-3 py-2 rounded-lg text-right">
+          {product.priceWithVat > 0 ? (
+            <>
+              <span className="font-bold text-accent block">{formatPrice(product.priceWithVat)} s DPH</span>
+              <span className="text-xs text-muted-foreground">{formatPrice(product.priceWithoutVat)} bez DPH</span>
+            </>
+          ) : (
+            <span className="font-bold text-accent">Cena na dotaz</span>
+          )}
         </div>
       </div>
 

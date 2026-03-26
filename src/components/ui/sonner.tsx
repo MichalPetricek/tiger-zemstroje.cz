@@ -1,3 +1,4 @@
+"use client";
 import { CSSProperties } from "react"
 import { Toaster as Sonner, ToasterProps } from "sonner"
 import { useTheme } from "@/contexts/ThemeContext"

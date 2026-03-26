@@ -1,3 +1,4 @@
+"use client";
 import { ComponentProps } from "react"
 import * as MenubarPrimitive from "@radix-ui/react-menubar"
 import CheckIcon from "lucide-react/dist/esm/icons/check"

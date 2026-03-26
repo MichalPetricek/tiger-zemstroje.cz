@@ -1,10 +1,14 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, Envelope, List, Moon, Sun } from "@phosphor-icons/react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useContactForm } from "@/contexts/ContactFormContext";
 // Import logos as URL paths
 const logoBlack = "/images/logo-black.svg";
 const logoWhite = "/images/logo-white.svg";
@@ -14,24 +18,23 @@ import { NavigationItem } from "@/types";
 
 interface NavigationProps {
   navigation: NavigationItem[];
-  onContactClick: () => void;
 }
 
 export default function Navigation({
   navigation,
-  onContactClick,
 }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const location = useLocation();
+  const pathname = usePathname();
+  const { openContactForm } = useContactForm();
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" aria-label="Hlavní navigace">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <Link to="/">
+            <Link href="/">
               <img
                 src={theme === "light" ? logoBlack : logoWhite}
                 alt="TIGER CZ Logo"
@@ -44,14 +47,15 @@ export default function Navigation({
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => {
               const isActive =
-                location.pathname === item.path ||
+                pathname === item.path ||
                 (item.path === "/products" &&
-                  location.pathname.startsWith("/products"));
+                  pathname.startsWith("/products"));
 
               return (
                 <Link
                   key={item.name}
-                  to={item.path}
+                  href={item.path}
+                  aria-current={isActive ? "page" : undefined}
                   className={`text-sm transition-colors ${
                     isActive
                       ? "text-accent font-semibold"
@@ -80,7 +84,9 @@ export default function Navigation({
             </Button>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium">+420 601 017 000</span>
+              <a href="tel:+420601017000" className="text-sm font-medium hover:text-accent transition-colors">
+                +420 601 017 000
+              </a>
             </div>
             <Separator orientation="vertical" className="h-6" />
             <div className="flex items-center space-x-3">
@@ -151,15 +157,16 @@ export default function Navigation({
                   <div className="flex flex-col py-6 space-y-4">
                     {navigation.map((item) => {
                       const isActive =
-                        location.pathname === item.path ||
+                        pathname === item.path ||
                         (item.path === "/products" &&
-                          location.pathname.startsWith("/products"));
+                          pathname.startsWith("/products"));
 
                       return (
                         <Link
                           key={item.name}
-                          to={item.path}
+                          href={item.path}
                           onClick={() => setMobileMenuOpen(false)}
+                          aria-current={isActive ? "page" : undefined}
                           className={`text-lg py-2 px-4 rounded-lg transition-colors text-left ${
                             isActive
                               ? "text-accent font-semibold bg-accent/10"
@@ -179,9 +186,9 @@ export default function Navigation({
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3 px-4">
                         <Phone className="w-5 h-5 text-accent" />
-                        <span className="text-base font-medium">
+                        <a href="tel:+420601017000" className="text-base font-medium hover:text-accent transition-colors">
                           +420 601 017 000
-                        </span>
+                        </a>
                       </div>
 
                       <div className="px-4">
@@ -223,7 +230,7 @@ export default function Navigation({
                     <div className="px-4">
                       <Button
                         onClick={() => {
-                          onContactClick();
+                          openContactForm();
                           setMobileMenuOpen(false);
                         }}
                         className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"

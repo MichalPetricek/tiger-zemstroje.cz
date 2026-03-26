@@ -1,3 +1,4 @@
+"use client";
 import { ComponentProps } from "react"
 import { Slot } from "@radix-ui/react-slot"
 import ChevronRight from "lucide-react/dist/esm/icons/chevron-right"
