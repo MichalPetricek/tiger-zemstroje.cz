@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NewsItem } from "@/types";
+import { getNews } from "@/lib/data";
 
 function extractYouTubeId(url: string): string | null {
   const match = url.match(
@@ -11,7 +13,20 @@ function extractYouTubeId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-export default function NewsPageContent({ news }: { news: NewsItem[] }) {
+export default function NewsPageContent({ news: initialNews }: { news: NewsItem[] }) {
+  const [news, setNews] = useState<NewsItem[]>(initialNews);
+
+  useEffect(() => {
+    let active = true;
+    getNews()
+      .then((fresh) => {
+        if (active && fresh.length > 0) setNews(fresh);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <div className="py-8 px-4">

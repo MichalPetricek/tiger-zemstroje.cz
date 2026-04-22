@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -18,16 +19,36 @@ import {
 import ProductCard from "@/components/ProductCard";
 import { Product, NewsItem } from "@/types";
 import { useContactForm } from "@/contexts/ContactFormContext";
+import { getProducts, getNews } from "@/lib/data";
 
 export default function HomeContent({
-  products,
-  news,
+  products: initialProducts,
+  news: initialNews,
 }: {
   products: Product[];
   news: NewsItem[];
 }) {
   const router = useRouter();
   const { openContactForm } = useContactForm();
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [news, setNews] = useState<NewsItem[]>(initialNews);
+
+  useEffect(() => {
+    let active = true;
+    getProducts()
+      .then((fresh) => {
+        if (active && fresh.length > 0) setProducts(fresh);
+      })
+      .catch(() => {});
+    getNews()
+      .then((fresh) => {
+        if (active && fresh.length > 0) setNews(fresh);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleProductSelect = (product: Product) => {
     router.push(`/products/${product.id}`);
