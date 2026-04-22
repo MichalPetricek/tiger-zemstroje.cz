@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { getProducts } from "@/lib/data";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://jinma.cz";
 

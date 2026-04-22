@@ -44,3 +44,12 @@ export interface NavigationItem {
     path: string
     active?: boolean
 }
+
+export interface SubsidyProgram {
+    region: string
+    territory: string
+    support: string
+    deadline: string
+    type: string
+    municipalities: string
+}
