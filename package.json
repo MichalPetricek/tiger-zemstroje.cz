@@ -8,7 +8,9 @@
     "start": "npx serve out",
     "lint": "next lint",
     "type-check": "tsc --noEmit --skipLibCheck",
-    "clean": "rm -rf .next node_modules/.cache"
+    "clean": "rm -rf .next node_modules/.cache",
+    "seed:generate-sql": "node --import tsx scripts/generate-seed-sql.ts",
+    "seed:supabase": "node --import tsx scripts/seed-supabase.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -44,9 +46,9 @@
     "@radix-ui/react-toggle": "^1.1.2",
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
+    "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tanstack/react-query": "^5.83.1",
-    "@supabase/supabase-js": "^2.49.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -55,7 +57,6 @@
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^12.6.2",
     "input-otp": "^1.4.2",
-
     "lucide-react": "^0.484.0",
     "marked": "^15.0.7",
     "next": "^15.3.3",
@@ -77,7 +78,6 @@
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@tailwindcss/postcss": "^4.1.8",
-
     "@types/node": "^24.5.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -86,6 +86,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.0.0",
     "tailwindcss": "^4.1.11",
+    "tsx": "^4.21.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.38.0"
   }
