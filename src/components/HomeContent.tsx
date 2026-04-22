@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -20,20 +19,15 @@ import ProductCard from "@/components/ProductCard";
 import { Product, NewsItem } from "@/types";
 import { useContactForm } from "@/contexts/ContactFormContext";
 
-export default function HomeContent() {
+export default function HomeContent({
+  products,
+  news,
+}: {
+  products: Product[];
+  news: NewsItem[];
+}) {
   const router = useRouter();
   const { openContactForm } = useContactForm();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [news, setNews] = useState<NewsItem[]>([]);
-
-  useEffect(() => {
-    fetch("/api/products")
-      .then((r) => r.json())
-      .then((d) => setProducts(Array.isArray(d) ? d : []));
-    fetch("/api/news")
-      .then((r) => r.json())
-      .then((d) => setNews(Array.isArray(d) ? d : []));
-  }, []);
 
   const handleProductSelect = (product: Product) => {
     router.push(`/products/${product.id}`);

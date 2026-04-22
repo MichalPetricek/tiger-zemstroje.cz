@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ManufacturersContent from "@/components/ManufacturersContent";
+import { getManufacturers } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Výrobci – JINMA, YTO, SAMTRA | Přímý dovoz zemědělské techniky",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function VyrobciPage() {
-  return <ManufacturersContent />;
+export default async function VyrobciPage() {
+  const manufacturers = await getManufacturers();
+  return <ManufacturersContent manufacturers={manufacturers} />;
 }

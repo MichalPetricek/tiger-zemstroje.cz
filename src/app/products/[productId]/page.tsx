@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProduct } from "@/lib/db";
+import { getProduct, getProducts } from "@/lib/data";
 import ProductDetailContent from "@/components/ProductDetailContent";
 
-export const dynamic = "force-dynamic";
+// Generate all product pages at build time
+export async function generateStaticParams() {
+  try {
+    const products = await getProducts(true);
+    return products.map((p) => ({ productId: p.id }));
+  } catch {
+    return [];
+  }
+}
 
 // Generate dynamic metadata for each product
 export async function generateMetadata({
@@ -15,7 +23,7 @@ export async function generateMetadata({
 
   let product;
   try {
-    product = getProduct(productId);
+    product = await getProduct(productId);
   } catch {
     return { title: "Produkt nenalezen" };
   }
@@ -70,7 +78,7 @@ export default async function ProductDetailPage({
 
   let product;
   try {
-    product = getProduct(productId);
+    product = await getProduct(productId);
   } catch {
     notFound();
   }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Product } from "@/types";
+import { upsertProduct, uploadImage } from "@/lib/data";
 
 const CATEGORIES = ["Traktory", "Nakladače", "Bagry", "Ještěrky", "Příslušenství"];
 
@@ -75,19 +76,9 @@ export default function AdminProductForm({
     if (!file) return;
 
     setUploadingImage(true);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", `products/${product.id || "new"}`);
-
     try {
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (data.path) {
-        update({ images: [...product.images, data.path] });
-      }
+      const url = await uploadImage(file, `products/${product.id || "new"}`);
+      update({ images: [...product.images, url] });
     } catch {
       setError("Chyba při nahrávání obrázku");
     } finally {
@@ -137,27 +128,19 @@ export default function AdminProductForm({
       image: product.images.length > 0 ? product.images[0] : product.image,
     };
 
+    // Sanitize ID for new products
+    if (isNew) {
+      toSave.id = toSave.id
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "-")
+        .replace(/-+/g, "-");
+    }
+
     try {
-      const url = isNew
-        ? "/api/admin/products"
-        : `/api/admin/products/${product.id}`;
-      const method = isNew ? "POST" : "PUT";
-
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(toSave),
-      });
-
-      if (res.ok) {
-        router.push("/admin/products");
-        router.refresh();
-      } else {
-        const data = await res.json();
-        setError(data.error || "Chyba při ukládání");
-      }
-    } catch {
-      setError("Chyba připojení");
+      await upsertProduct(toSave);
+      router.push("/admin/products");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Chyba při ukládání");
     } finally {
       setSaving(false);
     }

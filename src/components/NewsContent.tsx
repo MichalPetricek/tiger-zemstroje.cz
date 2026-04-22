@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NewsItem } from "@/types";
@@ -12,26 +11,7 @@ function extractYouTubeId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-export default function NewsPageContent() {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/news")
-      .then((r) => r.json())
-      .then((d) => {
-        setNews(Array.isArray(d) ? d : []);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[50vh]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent" />
-      </div>
-    );
-  }
+export default function NewsPageContent({ news }: { news: NewsItem[] }) {
 
   return (
     <div className="py-8 px-4">

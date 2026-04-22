@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NewsItem } from "@/types";
+import { createNewsItem, updateNewsItem, uploadImage } from "@/lib/data";
 
 function emptyNewsItem(): Omit<NewsItem, "id"> & { id?: number } {
   return {
@@ -41,16 +42,9 @@ export default function AdminNewsForm({
     if (!file) return;
 
     setUploadingImage(true);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "news");
-
     try {
-      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
-      const data = await res.json();
-      if (data.path) {
-        update({ images: [...(item.images || []), data.path] });
-      }
+      const url = await uploadImage(file, "news");
+      update({ images: [...(item.images || []), url] });
     } catch {
       setError("Chyba při nahrávání obrázku");
     } finally {
@@ -68,24 +62,14 @@ export default function AdminNewsForm({
     setError("");
 
     try {
-      const url = isNew ? "/api/admin/news" : `/api/admin/news/${item.id}`;
-      const method = isNew ? "POST" : "PUT";
-
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(item),
-      });
-
-      if (res.ok) {
-        router.push("/admin/news");
-        router.refresh();
+      if (isNew) {
+        await createNewsItem(item as Omit<NewsItem, "id">);
       } else {
-        const data = await res.json();
-        setError(data.error || "Chyba při ukládání");
+        await updateNewsItem(item as NewsItem);
       }
-    } catch {
-      setError("Chyba připojení");
+      router.push("/admin/news");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Chyba při ukládání");
     } finally {
       setSaving(false);
     }

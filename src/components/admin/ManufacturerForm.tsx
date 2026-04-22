@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Manufacturer } from "@/types";
+import { upsertManufacturer } from "@/lib/data";
 
 function emptyManufacturer(): Manufacturer {
   return {
@@ -39,27 +40,19 @@ export default function AdminManufacturerForm({
     setSaving(true);
     setError("");
 
+    const toSave = { ...manufacturer };
+    if (isNew) {
+      toSave.id = toSave.id
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "-")
+        .replace(/-+/g, "-");
+    }
+
     try {
-      const url = isNew
-        ? "/api/admin/manufacturers"
-        : `/api/admin/manufacturers/${manufacturer.id}`;
-      const method = isNew ? "POST" : "PUT";
-
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(manufacturer),
-      });
-
-      if (res.ok) {
-        router.push("/admin/manufacturers");
-        router.refresh();
-      } else {
-        const data = await res.json();
-        setError(data.error || "Chyba při ukládání");
-      }
-    } catch {
-      setError("Chyba připojení");
+      await upsertManufacturer(toSave);
+      router.push("/admin/manufacturers");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Chyba při ukládání");
     } finally {
       setSaving(false);
     }

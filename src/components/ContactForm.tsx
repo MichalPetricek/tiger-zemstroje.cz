@@ -10,6 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { toast } from 'sonner'
 import emailjs from '@emailjs/browser'
 import { Product } from '@/types'
+import { getProducts } from '@/lib/data'
 
 interface ContactFormProps {
   open: boolean
@@ -30,9 +31,8 @@ export default function ContactForm({ open, onOpenChange }: ContactFormProps) {
 
   useEffect(() => {
     if (open && products.length === 0) {
-      fetch('/api/products')
-        .then(r => r.json())
-        .then(d => setProducts(Array.isArray(d) ? d : []))
+      getProducts()
+        .then(d => setProducts(d))
         .catch(() => {});
     }
   }, [open, products.length]);

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { signIn } from "@/lib/data";
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
@@ -17,19 +18,11 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        router.push("/admin");
-        router.refresh();
+      const { error: authError } = await signIn(password);
+      if (authError) {
+        setError("Nesprávné heslo");
       } else {
-        setError(data.error || "Přihlášení se nezdařilo");
+        router.push("/admin");
       }
     } catch {
       setError("Chyba připojení k serveru");

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
-import { getProducts } from "@/lib/db";
+import { getProducts } from "@/lib/data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://jinma.cz";
 
   // Static pages
@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamic product pages from database
   let productPages: MetadataRoute.Sitemap = [];
   try {
-    const products = getProducts(false);
+    const products = await getProducts(false);
     productPages = products.map((product) => ({
       url: `${baseUrl}/products/${product.id}`,
       lastModified: new Date(),

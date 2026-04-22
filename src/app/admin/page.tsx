@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAdminAuth } from "@/hooks/use-admin-auth";
+import { getStats, seedDatabase, signOut } from "@/lib/data";
 
 interface Stats {
   products: number;
@@ -14,32 +16,21 @@ interface Stats {
 }
 
 export default function AdminDashboard() {
+  const { authenticated, loading: authLoading } = useAdminAuth();
   const [stats, setStats] = useState<Stats | null>(null);
   const [seeding, setSeeding] = useState(false);
   const [seedMessage, setSeedMessage] = useState("");
   const router = useRouter();
 
   useEffect(() => {
-    loadStats();
-  }, []);
+    if (authenticated) loadStats();
+  }, [authenticated]);
 
   async function loadStats() {
     try {
-      const [p, m, n] = await Promise.all([
-        fetch("/api/admin/products").then((r) => r.json()),
-        fetch("/api/admin/manufacturers").then((r) => r.json()),
-        fetch("/api/admin/news").then((r) => r.json()),
-      ]);
-      const products = Array.isArray(p) ? p : [];
-      const categories = new Set(products.map((x: { category: string }) => x.category));
-      setStats({
-        products: products.length,
-        manufacturers: Array.isArray(m) ? m.length : 0,
-        news: Array.isArray(n) ? n.length : 0,
-        categories: categories.size,
-      });
+      const s = await getStats();
+      setStats(s);
     } catch {
-      // DB might not be seeded yet
       setStats({ products: 0, manufacturers: 0, news: 0, categories: 0 });
     }
   }
@@ -48,9 +39,8 @@ export default function AdminDashboard() {
     setSeeding(true);
     setSeedMessage("");
     try {
-      const res = await fetch("/api/admin/seed", { method: "POST" });
-      const data = await res.json();
-      setSeedMessage(data.message || "Hotovo");
+      const result = await seedDatabase();
+      setSeedMessage(result.message);
       loadStats();
     } catch {
       setSeedMessage("Chyba při plnění databáze");
@@ -60,10 +50,19 @@ export default function AdminDashboard() {
   }
 
   async function handleLogout() {
-    await fetch("/api/admin/logout", { method: "POST" });
+    await signOut();
     router.push("/admin/login");
-    router.refresh();
   }
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent" />
+      </div>
+    );
+  }
+
+  if (!authenticated) return null;
 
   return (
     <div className="min-h-screen bg-background">

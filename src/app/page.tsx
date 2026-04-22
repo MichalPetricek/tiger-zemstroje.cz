@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeContent from "@/components/HomeContent";
+import { getProducts, getNews } from "@/lib/data";
 
 export const metadata: Metadata = {
   title:
@@ -103,7 +104,10 @@ const homeJsonLd = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getProducts();
+  const news = await getNews(true);
+
   return (
     <>
       {homeJsonLd.map((ld, i) => (
@@ -113,7 +117,7 @@ export default function HomePage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
         />
       ))}
-      <HomeContent />
+      <HomeContent products={products} news={news} />
     </>
   );
 }

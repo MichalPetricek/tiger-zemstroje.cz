@@ -1,32 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import AdminProductForm from "@/components/admin/ProductForm";
 import { Product } from "@/types";
-import { use } from "react";
+import { useAdminAuth } from "@/hooks/use-admin-auth";
+import { getProduct } from "@/lib/data";
 
-export default function AdminProductEditPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(params);
+function EditContent() {
+  const { authenticated, loading: authLoading } = useAdminAuth();
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`/api/admin/products/${id}`)
-      .then((r) => {
-        if (!r.ok) throw new Error("Product not found");
-        return r.json();
+    if (!authenticated || !id) return;
+    getProduct(id)
+      .then((p) => {
+        if (p) setProduct(p);
+        else setError("Produkt nenalezen");
       })
-      .then((d) => setProduct(d))
       .catch(() => setError("Produkt nenalezen"))
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, authenticated]);
 
-  if (loading)
+  if (authLoading || loading)
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent" />
@@ -41,4 +42,18 @@ export default function AdminProductEditPage({
     );
 
   return <AdminProductForm initial={product} isNew={false} />;
+}
+
+export default function AdminProductEditPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent" />
+        </div>
+      }
+    >
+      <EditContent />
+    </Suspense>
+  );
 }

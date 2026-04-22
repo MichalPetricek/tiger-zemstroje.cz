@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import ProductsPageContent from "@/components/ProductsPageContent";
+import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Zemědělské stroje – Traktory, Bagry, Nakladače",
@@ -17,7 +18,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts();
+
   return (
     <Suspense
       fallback={
@@ -26,7 +29,7 @@ export default function ProductsPage() {
         </div>
       }
     >
-      <ProductsPageContent />
+      <ProductsPageContent products={products} />
     </Suspense>
   );
 }

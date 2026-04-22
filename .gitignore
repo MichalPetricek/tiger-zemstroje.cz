@@ -11,10 +11,11 @@ node_modules
 dist
 dist-ssr
 *-dist
-*.local
 .next
 out
 data.db
+data.db-shm
+data.db-wal
 uploads/
 
 # Editor directories and files
@@ -28,7 +29,6 @@ uploads/
 *.sln
 *.sw?
 
-.env
 **/agent-eval-report*
 packages
 pids

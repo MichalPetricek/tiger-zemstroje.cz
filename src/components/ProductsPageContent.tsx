@@ -5,17 +5,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Products from "@/components/Products";
 import { Product } from "@/types";
 
-export default function ProductsPageContent() {
+export default function ProductsPageContent({
+  products,
+}: {
+  products: Product[];
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>("Traktory");
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    fetch("/api/products")
-      .then((r) => r.json())
-      .then((d) => setProducts(Array.isArray(d) ? d : []));
-  }, []);
 
   useEffect(() => {
     const categoryParam = searchParams.get("category");

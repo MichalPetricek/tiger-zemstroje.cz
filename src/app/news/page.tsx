@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import NewsPageContent from "@/components/NewsContent";
+import { getNews } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Novinky – Aktuality ze světa zemědělské techniky | TIGER CZ",
@@ -17,16 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function NewsPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent" />
-        </div>
-      }
-    >
-      <NewsPageContent />
-    </Suspense>
-  );
+export default async function NewsPage() {
+  const news = await getNews(true);
+  return <NewsPageContent news={news} />;
 }

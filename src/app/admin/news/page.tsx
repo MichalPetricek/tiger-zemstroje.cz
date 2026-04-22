@@ -6,22 +6,35 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { NewsItem } from "@/types";
+import { useAdminAuth } from "@/hooks/use-admin-auth";
+import { getNews, deleteNewsItem } from "@/lib/data";
 
 export default function AdminNewsPage() {
+  const { authenticated, loading: authLoading } = useAdminAuth();
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    fetch("/api/admin/news")
-      .then((r) => r.json())
-      .then((d) => setNewsItems(Array.isArray(d) ? d : []));
-  }, []);
+    if (authenticated) {
+      getNews(false).then(setNewsItems).catch(() => setNewsItems([]));
+    }
+  }, [authenticated]);
 
   async function handleDelete(id: number) {
     if (!confirm("Opravdu smazat tuto novinku?")) return;
-    await fetch(`/api/admin/news/${id}`, { method: "DELETE" });
+    await deleteNewsItem(id);
     setNewsItems((prev) => prev.filter((n) => n.id !== id));
   }
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent" />
+      </div>
+    );
+  }
+
+  if (!authenticated) return null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -63,7 +76,7 @@ export default function AdminNewsPage() {
                 <tr
                   key={item.id}
                   className="border-b hover:bg-muted/50 cursor-pointer"
-                  onClick={() => router.push(`/admin/news/${item.id}`)}
+                  onClick={() => router.push(`/admin/news/edit?id=${item.id}`)}
                 >
                   <td className="py-2 px-3">
                     {item.images.length > 0 ? (
