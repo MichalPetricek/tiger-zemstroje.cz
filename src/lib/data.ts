@@ -1,6 +1,10 @@
 import { supabase } from "./supabase";
 import { Product, Manufacturer, NewsItem } from "@/types";
 
+function logReadFallback(scope: string, error: unknown) {
+  console.error(`[supabase:${scope}] Falling back to empty result`, error);
+}
+
 // ─── Transform helpers (snake_case DB → camelCase frontend) ───
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -106,7 +110,10 @@ export async function getProducts(includeHidden = false): Promise<Product[]> {
     query = query.neq("category", "Ještěrky");
   }
   const { data, error } = await query;
-  if (error) throw error;
+  if (error) {
+    logReadFallback("getProducts", error);
+    return [];
+  }
   return (data || []).map(toProduct);
 }
 
@@ -116,7 +123,10 @@ export async function getAllProducts(): Promise<Product[]> {
     .select("*")
     .order("sort_order")
     .order("name");
-  if (error) throw error;
+  if (error) {
+    logReadFallback("getAllProducts", error);
+    return [];
+  }
   return (data || []).map(toProduct);
 }
 
@@ -128,7 +138,10 @@ export async function getProduct(
     .select("*")
     .eq("id", id)
     .single();
-  if (error) return undefined;
+  if (error) {
+    logReadFallback(`getProduct:${id}`, error);
+    return undefined;
+  }
   return data ? toProduct(data) : undefined;
 }
 
@@ -152,7 +165,10 @@ export async function getManufacturers(): Promise<Manufacturer[]> {
     .select("*")
     .order("sort_order")
     .order("name");
-  if (error) throw error;
+  if (error) {
+    logReadFallback("getManufacturers", error);
+    return [];
+  }
   return (data || []).map(toManufacturer);
 }
 
@@ -164,7 +180,10 @@ export async function getManufacturer(
     .select("*")
     .eq("id", id)
     .single();
-  if (error) return undefined;
+  if (error) {
+    logReadFallback(`getManufacturer:${id}`, error);
+    return undefined;
+  }
   return data ? toManufacturer(data) : undefined;
 }
 
@@ -195,7 +214,10 @@ export async function getNews(publishedOnly = true): Promise<NewsItem[]> {
     query = query.eq("published", true);
   }
   const { data, error } = await query;
-  if (error) throw error;
+  if (error) {
+    logReadFallback("getNews", error);
+    return [];
+  }
   return (data || []).map(toNewsItem);
 }
 
@@ -207,7 +229,10 @@ export async function getNewsItem(
     .select("*")
     .eq("id", id)
     .single();
-  if (error) return undefined;
+  if (error) {
+    logReadFallback(`getNewsItem:${id}`, error);
+    return undefined;
+  }
   return data ? toNewsItem(data) : undefined;
 }
 
