@@ -1,8 +1,69 @@
 import { supabase } from "./supabase";
 import { Product, Manufacturer, NewsItem } from "@/types";
+import { products as seedProducts } from "@/data/products";
+import { manufacturers as seedManufacturers } from "@/data/manufacturers";
+import { news as seedNews } from "@/data/news";
 
 function logReadFallback(scope: string, error: unknown) {
-  console.error(`[supabase:${scope}] Falling back to empty result`, error);
+  console.error(`[supabase:${scope}] Falling back to bundled static data`, error);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function fromStaticProduct(product: any, sortOrder: number): Product {
+  let priceWithVat = 0;
+  if (typeof product.price === "string") {
+    priceWithVat = parseInt(product.price.replace(/[^\d]/g, ""), 10) || 0;
+  } else if (typeof product.priceWithVat === "number") {
+    priceWithVat = product.priceWithVat;
+  }
+
+  return {
+    id: product.id,
+    name: product.name,
+    priceWithVat,
+    priceWithoutVat: priceWithVat > 0 ? Math.round(priceWithVat / 1.21) : 0,
+    power: product.power,
+    category: product.category,
+    brand: product.brand,
+    image: product.image,
+    images: product.images || [],
+    badges: product.badges || [],
+    description: product.description,
+    specs: product.specs || {},
+    features: product.features || [],
+    available: Boolean(product.available),
+    documentation: product.documentation || undefined,
+    youtubeUrl: product.youtubeUrl || undefined,
+    sortOrder,
+  };
+}
+
+function getBundledProducts(includeHidden = true): Product[] {
+  const items = seedProducts.map((product, index) =>
+    fromStaticProduct(product, index)
+  );
+  return includeHidden
+    ? items
+    : items.filter((product) => product.category !== "Ještěrky");
+}
+
+function getBundledManufacturers(): Manufacturer[] {
+  return seedManufacturers.map((manufacturer, index) => ({
+    ...manufacturer,
+    sortOrder: manufacturer.sortOrder ?? index,
+  }));
+}
+
+function getBundledNews(): NewsItem[] {
+  return seedNews.map((item, index) => ({
+    id: index + 1,
+    title: item.title,
+    content: item.content,
+    date: item.date,
+    images: [],
+    youtubeUrl: undefined,
+    published: true,
+  }));
 }
 
 // ─── Transform helpers (snake_case DB → camelCase frontend) ───
@@ -112,9 +173,10 @@ export async function getProducts(includeHidden = false): Promise<Product[]> {
   const { data, error } = await query;
   if (error) {
     logReadFallback("getProducts", error);
-    return [];
+    return getBundledProducts(includeHidden);
   }
-  return (data || []).map(toProduct);
+  const products = (data || []).map(toProduct);
+  return products.length > 0 ? products : getBundledProducts(includeHidden);
 }
 
 export async function getAllProducts(): Promise<Product[]> {
@@ -125,9 +187,10 @@ export async function getAllProducts(): Promise<Product[]> {
     .order("name");
   if (error) {
     logReadFallback("getAllProducts", error);
-    return [];
+    return getBundledProducts(true);
   }
-  return (data || []).map(toProduct);
+  const products = (data || []).map(toProduct);
+  return products.length > 0 ? products : getBundledProducts(true);
 }
 
 export async function getProduct(
@@ -140,9 +203,11 @@ export async function getProduct(
     .single();
   if (error) {
     logReadFallback(`getProduct:${id}`, error);
-    return undefined;
+    return getBundledProducts(true).find((product) => product.id === id);
   }
-  return data ? toProduct(data) : undefined;
+  return data
+    ? toProduct(data)
+    : getBundledProducts(true).find((product) => product.id === id);
 }
 
 export async function upsertProduct(product: Product): Promise<void> {
@@ -167,9 +232,10 @@ export async function getManufacturers(): Promise<Manufacturer[]> {
     .order("name");
   if (error) {
     logReadFallback("getManufacturers", error);
-    return [];
+    return getBundledManufacturers();
   }
-  return (data || []).map(toManufacturer);
+  const manufacturers = (data || []).map(toManufacturer);
+  return manufacturers.length > 0 ? manufacturers : getBundledManufacturers();
 }
 
 export async function getManufacturer(
@@ -182,9 +248,11 @@ export async function getManufacturer(
     .single();
   if (error) {
     logReadFallback(`getManufacturer:${id}`, error);
-    return undefined;
+    return getBundledManufacturers().find((manufacturer) => manufacturer.id === id);
   }
-  return data ? toManufacturer(data) : undefined;
+  return data
+    ? toManufacturer(data)
+    : getBundledManufacturers().find((manufacturer) => manufacturer.id === id);
 }
 
 export async function upsertManufacturer(m: Manufacturer): Promise<void> {
@@ -216,9 +284,10 @@ export async function getNews(publishedOnly = true): Promise<NewsItem[]> {
   const { data, error } = await query;
   if (error) {
     logReadFallback("getNews", error);
-    return [];
+    return getBundledNews();
   }
-  return (data || []).map(toNewsItem);
+  const news = (data || []).map(toNewsItem);
+  return news.length > 0 ? news : getBundledNews();
 }
 
 export async function getNewsItem(
@@ -231,9 +300,9 @@ export async function getNewsItem(
     .single();
   if (error) {
     logReadFallback(`getNewsItem:${id}`, error);
-    return undefined;
+    return getBundledNews().find((item) => item.id === id);
   }
-  return data ? toNewsItem(data) : undefined;
+  return data ? toNewsItem(data) : getBundledNews().find((item) => item.id === id);
 }
 
 export async function createNewsItem(
@@ -309,15 +378,9 @@ export async function seedDatabase() {
     return { seeded: false, message: "Databáze je již naplněna" };
   }
 
-  const { products: staticProducts } = await import("@/data/products");
-  const { manufacturers: staticManufacturers } = await import(
-    "@/data/manufacturers"
-  );
-  const { news: staticNews } = await import("@/data/news");
-
   // Insert products
   let sortOrder = 0;
-  for (const p of staticProducts) {
+  for (const p of seedProducts) {
     let priceWithVat = 0;
     if (typeof p.price === "string") {
       priceWithVat =
@@ -350,8 +413,8 @@ export async function seedDatabase() {
   }
 
   // Insert manufacturers
-  for (let i = 0; i < staticManufacturers.length; i++) {
-    const m = staticManufacturers[i];
+  for (let i = 0; i < seedManufacturers.length; i++) {
+    const m = seedManufacturers[i];
     await upsertManufacturer({
       id: m.id,
       name: m.name,
@@ -362,7 +425,7 @@ export async function seedDatabase() {
   }
 
   // Insert news
-  for (const n of staticNews) {
+  for (const n of seedNews) {
     await createNewsItem({
       title: n.title,
       content: n.content,
@@ -377,9 +440,9 @@ export async function seedDatabase() {
     seeded: true,
     message: "Databáze úspěšně naplněna",
     counts: {
-      products: staticProducts.length,
-      manufacturers: staticManufacturers.length,
-      news: staticNews.length,
+      products: seedProducts.length,
+      manufacturers: seedManufacturers.length,
+      news: seedNews.length,
     },
   };
 }
@@ -399,6 +462,16 @@ export async function getStats() {
   const categories = new Set(
     (p.data || []).map((r: { category: string }) => r.category)
   ).size;
+
+  if (!products && !(m.count || 0) && !(n.count || 0)) {
+    const bundledProducts = getBundledProducts(true);
+    return {
+      products: bundledProducts.length,
+      manufacturers: getBundledManufacturers().length,
+      news: getBundledNews().length,
+      categories: new Set(bundledProducts.map((item) => item.category)).size,
+    };
+  }
 
   return {
     products,
