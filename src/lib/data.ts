@@ -161,22 +161,48 @@ function fromNewsItem(item: Omit<NewsItem, "id"> & { id?: number }) {
 
 // ─── Product CRUD ───
 
+/**
+ * Merges Supabase rows over bundled data by id.
+ * Supabase row overrides bundled entry; bundled entries missing in Supabase are kept.
+ * Sort by sort_order (from Supabase if present, else bundled index), then name.
+ */
+function mergeProducts(
+  supabaseRows: Product[],
+  includeHidden: boolean
+): Product[] {
+  const bundled = getBundledProducts(true);
+  const bySupabaseId = new Map(supabaseRows.map((p) => [p.id, p]));
+  const merged: Product[] = bundled.map((b) => bySupabaseId.get(b.id) ?? b);
+  // Add any Supabase-only rows not in bundled (admin-created products)
+  const bundledIds = new Set(bundled.map((b) => b.id));
+  for (const row of supabaseRows) {
+    if (!bundledIds.has(row.id)) merged.push(row);
+  }
+  const filtered = includeHidden
+    ? merged
+    : merged.filter((p) => p.category !== "Ještěrky");
+  filtered.sort((a, b) => {
+    const soA = a.sortOrder ?? 0;
+    const soB = b.sortOrder ?? 0;
+    if (soA !== soB) return soA - soB;
+    return a.name.localeCompare(b.name);
+  });
+  return filtered;
+}
+
 export async function getProducts(includeHidden = false): Promise<Product[]> {
-  let query = supabase
+  const query = supabase
     .from("products")
     .select("*")
     .order("sort_order")
     .order("name");
-  if (!includeHidden) {
-    query = query.neq("category", "Ještěrky");
-  }
   const { data, error } = await query;
   if (error) {
     logReadFallback("getProducts", error);
     return getBundledProducts(includeHidden);
   }
-  const products = (data || []).map(toProduct);
-  return products.length > 0 ? products : getBundledProducts(includeHidden);
+  const rows = (data || []).map(toProduct);
+  return mergeProducts(rows, includeHidden);
 }
 
 export async function getAllProducts(): Promise<Product[]> {
@@ -189,8 +215,8 @@ export async function getAllProducts(): Promise<Product[]> {
     logReadFallback("getAllProducts", error);
     return getBundledProducts(true);
   }
-  const products = (data || []).map(toProduct);
-  return products.length > 0 ? products : getBundledProducts(true);
+  const rows = (data || []).map(toProduct);
+  return mergeProducts(rows, true);
 }
 
 export async function getProduct(
@@ -200,7 +226,7 @@ export async function getProduct(
     .from("products")
     .select("*")
     .eq("id", id)
-    .single();
+    .maybeSingle();
   if (error) {
     logReadFallback(`getProduct:${id}`, error);
     return getBundledProducts(true).find((product) => product.id === id);
@@ -224,6 +250,23 @@ export async function deleteProduct(id: string): Promise<void> {
 
 // ─── Manufacturer CRUD ───
 
+function mergeManufacturers(rows: Manufacturer[]): Manufacturer[] {
+  const bundled = getBundledManufacturers();
+  const byId = new Map(rows.map((m) => [m.id, m]));
+  const merged: Manufacturer[] = bundled.map((b) => byId.get(b.id) ?? b);
+  const bundledIds = new Set(bundled.map((b) => b.id));
+  for (const row of rows) {
+    if (!bundledIds.has(row.id)) merged.push(row);
+  }
+  merged.sort((a, b) => {
+    const soA = a.sortOrder ?? 0;
+    const soB = b.sortOrder ?? 0;
+    if (soA !== soB) return soA - soB;
+    return a.name.localeCompare(b.name);
+  });
+  return merged;
+}
+
 export async function getManufacturers(): Promise<Manufacturer[]> {
   const { data, error } = await supabase
     .from("manufacturers")
@@ -234,8 +277,8 @@ export async function getManufacturers(): Promise<Manufacturer[]> {
     logReadFallback("getManufacturers", error);
     return getBundledManufacturers();
   }
-  const manufacturers = (data || []).map(toManufacturer);
-  return manufacturers.length > 0 ? manufacturers : getBundledManufacturers();
+  const rows = (data || []).map(toManufacturer);
+  return mergeManufacturers(rows);
 }
 
 export async function getManufacturer(
@@ -245,7 +288,7 @@ export async function getManufacturer(
     .from("manufacturers")
     .select("*")
     .eq("id", id)
-    .single();
+    .maybeSingle();
   if (error) {
     logReadFallback(`getManufacturer:${id}`, error);
     return getBundledManufacturers().find((manufacturer) => manufacturer.id === id);
@@ -287,6 +330,7 @@ export async function getNews(publishedOnly = true): Promise<NewsItem[]> {
     return getBundledNews();
   }
   const news = (data || []).map(toNewsItem);
+  // If Supabase has any news rows, trust Supabase fully (news has no stable bundled id to merge on).
   return news.length > 0 ? news : getBundledNews();
 }
 
@@ -297,7 +341,7 @@ export async function getNewsItem(
     .from("news")
     .select("*")
     .eq("id", id)
-    .single();
+    .maybeSingle();
   if (error) {
     logReadFallback(`getNewsItem:${id}`, error);
     return getBundledNews().find((item) => item.id === id);
