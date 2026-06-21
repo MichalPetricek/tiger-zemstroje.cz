@@ -28,6 +28,13 @@ export default function Navigation({
   const pathname = usePathname();
   const { openContactForm } = useContactForm();
 
+  // Při statickém exportu má pathname koncové lomítko (trailingSlash: true),
+  // např. "/news/" – normalizujeme, ať sedí s cestami v navigaci ("/news").
+  const currentPath =
+    pathname !== "/" && pathname.endsWith("/")
+      ? pathname.slice(0, -1)
+      : pathname;
+
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" aria-label="Hlavní navigace">
       <div className="container mx-auto px-4 py-4">
@@ -47,9 +54,9 @@ export default function Navigation({
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => {
               const isActive =
-                pathname === item.path ||
+                currentPath === item.path ||
                 (item.path === "/products" &&
-                  pathname.startsWith("/products"));
+                  currentPath.startsWith("/products"));
 
               return (
                 <Link
