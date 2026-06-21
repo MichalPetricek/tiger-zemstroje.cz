@@ -124,31 +124,48 @@ CREATE POLICY "Authenticated users can delete news"
   USING (true);
 
 -- ==========================================
--- Storage bucket for images
+-- Storage bucket for images + PDF documentation
 -- ==========================================
--- Create via Supabase Dashboard:
--- 1. Go to Storage → New Bucket
--- 2. Name: "images"
--- 3. Public bucket: YES
--- 4. Max file size: 10 MB
--- 5. Allowed MIME types: image/jpeg, image/png, image/webp, image/avif
+-- (Stejný obsah je i v samostatném supabase-storage-setup.sql)
 
--- Storage policy: Anyone can read, authenticated can upload
--- Run these after creating the bucket:
+-- Public bucket "images" (max 10 MB, obrázky + PDF)
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES (
+  'images',
+  'images',
+  true,
+  10485760,
+  ARRAY['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'application/pdf']
+)
+ON CONFLICT (id) DO UPDATE
+  SET public = true,
+      file_size_limit = 10485760,
+      allowed_mime_types = EXCLUDED.allowed_mime_types;
 
--- CREATE POLICY "Public image access"
---   ON storage.objects FOR SELECT
---   USING (bucket_id = 'images');
+-- Storage policies: anyone can read, authenticated can upload/update/delete
+DROP POLICY IF EXISTS "Public image access" ON storage.objects;
+CREATE POLICY "Public image access"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'images');
 
--- CREATE POLICY "Authenticated users can upload images"
---   ON storage.objects FOR INSERT
---   TO authenticated
---   WITH CHECK (bucket_id = 'images');
+DROP POLICY IF EXISTS "Authenticated users can upload images" ON storage.objects;
+CREATE POLICY "Authenticated users can upload images"
+  ON storage.objects FOR INSERT
+  TO authenticated
+  WITH CHECK (bucket_id = 'images');
 
--- CREATE POLICY "Authenticated users can delete images"
---   ON storage.objects FOR DELETE
---   TO authenticated
---   USING (bucket_id = 'images');
+DROP POLICY IF EXISTS "Authenticated users can update images" ON storage.objects;
+CREATE POLICY "Authenticated users can update images"
+  ON storage.objects FOR UPDATE
+  TO authenticated
+  USING (bucket_id = 'images')
+  WITH CHECK (bucket_id = 'images');
+
+DROP POLICY IF EXISTS "Authenticated users can delete images" ON storage.objects;
+CREATE POLICY "Authenticated users can delete images"
+  ON storage.objects FOR DELETE
+  TO authenticated
+  USING (bucket_id = 'images');
 
 -- ==========================================
 -- Create admin user (run once)

@@ -7,12 +7,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NewsItem } from "@/types";
 import { createNewsItem, updateNewsItem, uploadImage } from "@/lib/data";
+import { parseNewsDate } from "@/lib/utils";
+
+function todayISO(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+/** Převede libovolný formát data (ISO i český) na ISO "YYYY-MM-DD" pro <input type="date">. */
+function toISODate(value: string | undefined | null): string {
+  if (!value) return "";
+  if (/^\d{4}-\d{2}-\d{2}/.test(value.trim())) return value.trim().slice(0, 10);
+  const ts = parseNewsDate(value);
+  if (!ts) return "";
+  const d = new Date(ts);
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${m}-${day}`;
+}
 
 function emptyNewsItem(): Omit<NewsItem, "id"> & { id?: number } {
   return {
     title: "",
     content: "",
-    date: new Date().toLocaleDateString("cs-CZ"),
+    date: todayISO(),
     images: [],
     youtubeUrl: "",
     published: true,
@@ -26,7 +43,9 @@ export default function AdminNewsForm({
   initial?: NewsItem;
   isNew: boolean;
 }) {
-  const [item, setItem] = useState(initial || emptyNewsItem());
+  const [item, setItem] = useState(
+    initial ? { ...initial, date: toISODate(initial.date) } : emptyNewsItem()
+  );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -118,12 +137,12 @@ export default function AdminNewsForm({
             <div>
               <label className="text-sm font-medium block mb-1">Datum</label>
               <Input
+                type="date"
                 value={item.date}
                 onChange={(e) => update({ date: e.target.value })}
-                placeholder="1. 1. 2025"
               />
               <p className="text-xs text-muted-foreground mt-1">
-                Formát: den. měsíc. rok
+                Vyberte datum z kalendáře. Novinky se řadí od nejnovější.
               </p>
             </div>
 

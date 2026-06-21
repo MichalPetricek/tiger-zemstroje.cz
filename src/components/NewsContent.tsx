@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NewsItem } from "@/types";
 import { getNews } from "@/lib/data";
+import { formatNewsDate } from "@/lib/utils";
 
 function extractYouTubeId(url: string): string | null {
   const match = url.match(
@@ -62,7 +63,7 @@ export default function NewsPageContent({ news: initialNews }: { news: NewsItem[
                     <CardHeader>
                       <div className="flex items-center gap-3 mb-2">
                         <Badge variant="outline" className="text-accent border-accent">
-                          {item.date}
+                          {formatNewsDate(item.date)}
                         </Badge>
                       </div>
                       <CardTitle className="text-2xl">{item.title}</CardTitle>

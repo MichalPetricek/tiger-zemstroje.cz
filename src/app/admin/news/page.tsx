@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { NewsItem } from "@/types";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
 import { getNews, deleteNewsItem } from "@/lib/data";
+import { formatNewsDate } from "@/lib/utils";
 
 export default function AdminNewsPage() {
   const { authenticated, loading: authLoading } = useAdminAuth();
@@ -92,7 +93,7 @@ export default function AdminNewsPage() {
                     )}
                   </td>
                   <td className="py-2 px-3 font-medium">{item.title}</td>
-                  <td className="py-2 px-3">{item.date}</td>
+                  <td className="py-2 px-3">{formatNewsDate(item.date)}</td>
                   <td className="py-2 px-3">
                     {item.youtubeUrl ? (
                       <Badge className="bg-green-600">Ano</Badge>

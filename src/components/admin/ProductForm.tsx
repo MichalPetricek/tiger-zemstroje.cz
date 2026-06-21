@@ -56,7 +56,9 @@ export default function AdminProductForm({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadingDoc, setUploadingDoc] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const docInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   function update(fields: Partial<Product>) {
@@ -84,6 +86,23 @@ export default function AdminProductForm({
     } finally {
       setUploadingImage(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }
+
+  async function handleDocUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingDoc(true);
+    setError("");
+    try {
+      const url = await uploadImage(file, `docs/${product.id || "novy"}`);
+      update({ documentation: url });
+    } catch {
+      setError("Chyba při nahrávání PDF");
+    } finally {
+      setUploadingDoc(false);
+      if (docInputRef.current) docInputRef.current.value = "";
     }
   }
 
@@ -185,7 +204,7 @@ export default function AdminProductForm({
                   value={product.id}
                   onChange={(e) => update({ id: e.target.value })}
                   disabled={!isNew}
-                  placeholder="tiger-504"
+                  placeholder="např. nazev-modelu"
                 />
                 <p className="text-xs text-muted-foreground mt-1">
                   URL adresa produktu, jen malá písmena a pomlčky
@@ -198,7 +217,7 @@ export default function AdminProductForm({
                 <Input
                   value={product.name}
                   onChange={(e) => update({ name: e.target.value })}
-                  placeholder="TIGER 504"
+                  placeholder="např. TIGER 504"
                 />
               </div>
             </div>
@@ -396,12 +415,16 @@ export default function AdminProductForm({
               <label className="text-sm font-medium block mb-1">
                 Specifikace (řádek = Klíč: Hodnota)
               </label>
+              <p className="text-xs text-muted-foreground mb-1">
+                Šedý text níže je pouze příklad – začněte psát a vyplňte vlastní
+                hodnoty.
+              </p>
               <textarea
                 value={specsText}
                 onChange={(e) => setSpecsText(e.target.value)}
                 rows={8}
                 className="w-full px-3 py-2 border rounded-md bg-background resize-y font-mono text-sm"
-                placeholder={`Motor: 4válcový diesel, 2392 ccm\nVýkon: 50 HP\nPřevodovka: 8+2 mechanická`}
+                placeholder={`Příklad:\nMotor: 4válcový diesel, 2392 ccm\nVýkon: 50 HP\nPřevodovka: 8+2 mechanická`}
               />
             </div>
 
@@ -447,12 +470,48 @@ export default function AdminProductForm({
 
             <div>
               <label className="text-sm font-medium block mb-1">
-                Dokumentace (cesta k PDF)
+                Dokumentace (PDF s technickými parametry)
+              </label>
+
+              {product.documentation && (
+                <div className="flex items-center gap-3 mb-2 text-sm">
+                  <a
+                    href={product.documentation}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent underline break-all"
+                  >
+                    Zobrazit nahrané PDF
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => update({ documentation: "" })}
+                    className="text-red-500 hover:underline whitespace-nowrap"
+                  >
+                    Odebrat
+                  </button>
+                </div>
+              )}
+
+              <input
+                ref={docInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleDocUpload}
+                className="text-sm"
+                disabled={uploadingDoc}
+              />
+              {uploadingDoc && (
+                <p className="text-sm text-muted-foreground mt-1">Nahrávám PDF...</p>
+              )}
+
+              <label className="text-sm font-medium block mt-3 mb-1">
+                Nebo zadat cestu k PDF ručně
               </label>
               <Input
                 value={product.documentation || ""}
                 onChange={(e) => update({ documentation: e.target.value })}
-                placeholder="/docs/traktory/tiger-504.pdf"
+                placeholder="např. /docs/traktory/model.pdf"
               />
             </div>
           </section>

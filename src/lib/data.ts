@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { parseNewsDate } from "./utils";
 import { Product, Manufacturer, NewsItem } from "@/types";
 import { products as seedProducts } from "@/data/products";
 import { manufacturers as seedManufacturers } from "@/data/manufacturers";
@@ -162,25 +163,17 @@ function fromNewsItem(item: Omit<NewsItem, "id"> & { id?: number }) {
 // ─── Product CRUD ───
 
 /**
- * Merges Supabase rows over bundled data by id.
- * Supabase row overrides bundled entry; bundled entries missing in Supabase are kept.
- * Sort by sort_order (from Supabase if present, else bundled index), then name.
+ * Sorts (sort_order, then name) and optionally hides "Ještěrky".
+ * Supabase je zdroj pravdy – bundled data se používají jen jako fallback
+ * při chybě připojení (viz volání níže), proto se zde už nemerguje.
  */
-function mergeProducts(
-  supabaseRows: Product[],
+function sortAndFilterProducts(
+  rows: Product[],
   includeHidden: boolean
 ): Product[] {
-  const bundled = getBundledProducts(true);
-  const bySupabaseId = new Map(supabaseRows.map((p) => [p.id, p]));
-  const merged: Product[] = bundled.map((b) => bySupabaseId.get(b.id) ?? b);
-  // Add any Supabase-only rows not in bundled (admin-created products)
-  const bundledIds = new Set(bundled.map((b) => b.id));
-  for (const row of supabaseRows) {
-    if (!bundledIds.has(row.id)) merged.push(row);
-  }
   const filtered = includeHidden
-    ? merged
-    : merged.filter((p) => p.category !== "Ještěrky");
+    ? rows
+    : rows.filter((p) => p.category !== "Ještěrky");
   filtered.sort((a, b) => {
     const soA = a.sortOrder ?? 0;
     const soB = b.sortOrder ?? 0;
@@ -202,7 +195,7 @@ export async function getProducts(includeHidden = false): Promise<Product[]> {
     return getBundledProducts(includeHidden);
   }
   const rows = (data || []).map(toProduct);
-  return mergeProducts(rows, includeHidden);
+  return sortAndFilterProducts(rows, includeHidden);
 }
 
 export async function getAllProducts(): Promise<Product[]> {
@@ -216,7 +209,7 @@ export async function getAllProducts(): Promise<Product[]> {
     return getBundledProducts(true);
   }
   const rows = (data || []).map(toProduct);
-  return mergeProducts(rows, true);
+  return sortAndFilterProducts(rows, true);
 }
 
 export async function getProduct(
@@ -231,9 +224,8 @@ export async function getProduct(
     logReadFallback(`getProduct:${id}`, error);
     return getBundledProducts(true).find((product) => product.id === id);
   }
-  return data
-    ? toProduct(data)
-    : getBundledProducts(true).find((product) => product.id === id);
+  // Supabase je zdroj pravdy: když řádek neexistuje (smazaný), vrať undefined (404).
+  return data ? toProduct(data) : undefined;
 }
 
 export async function upsertProduct(product: Product): Promise<void> {
@@ -250,21 +242,15 @@ export async function deleteProduct(id: string): Promise<void> {
 
 // ─── Manufacturer CRUD ───
 
-function mergeManufacturers(rows: Manufacturer[]): Manufacturer[] {
-  const bundled = getBundledManufacturers();
-  const byId = new Map(rows.map((m) => [m.id, m]));
-  const merged: Manufacturer[] = bundled.map((b) => byId.get(b.id) ?? b);
-  const bundledIds = new Set(bundled.map((b) => b.id));
-  for (const row of rows) {
-    if (!bundledIds.has(row.id)) merged.push(row);
-  }
-  merged.sort((a, b) => {
+function sortManufacturers(rows: Manufacturer[]): Manufacturer[] {
+  const sorted = [...rows];
+  sorted.sort((a, b) => {
     const soA = a.sortOrder ?? 0;
     const soB = b.sortOrder ?? 0;
     if (soA !== soB) return soA - soB;
     return a.name.localeCompare(b.name);
   });
-  return merged;
+  return sorted;
 }
 
 export async function getManufacturers(): Promise<Manufacturer[]> {
@@ -278,7 +264,7 @@ export async function getManufacturers(): Promise<Manufacturer[]> {
     return getBundledManufacturers();
   }
   const rows = (data || []).map(toManufacturer);
-  return mergeManufacturers(rows);
+  return sortManufacturers(rows);
 }
 
 export async function getManufacturer(
@@ -293,9 +279,8 @@ export async function getManufacturer(
     logReadFallback(`getManufacturer:${id}`, error);
     return getBundledManufacturers().find((manufacturer) => manufacturer.id === id);
   }
-  return data
-    ? toManufacturer(data)
-    : getBundledManufacturers().find((manufacturer) => manufacturer.id === id);
+  // Supabase je zdroj pravdy: když řádek neexistuje (smazaný), vrať undefined.
+  return data ? toManufacturer(data) : undefined;
 }
 
 export async function upsertManufacturer(m: Manufacturer): Promise<void> {
@@ -316,22 +301,31 @@ export async function deleteManufacturer(id: string): Promise<void> {
 // ─── News CRUD ───
 
 export async function getNews(publishedOnly = true): Promise<NewsItem[]> {
-  let query = supabase
-    .from("news")
-    .select("*")
-    .order("date", { ascending: false })
-    .order("id", { ascending: false });
+  let query = supabase.from("news").select("*");
   if (publishedOnly) {
     query = query.eq("published", true);
   }
   const { data, error } = await query;
   if (error) {
     logReadFallback("getNews", error);
-    return getBundledNews();
+    return sortNews(getBundledNews());
   }
   const news = (data || []).map(toNewsItem);
   // If Supabase has any news rows, trust Supabase fully (news has no stable bundled id to merge on).
-  return news.length > 0 ? news : getBundledNews();
+  return sortNews(news.length > 0 ? news : getBundledNews());
+}
+
+/**
+ * Řadí novinky sestupně podle data (nejnovější první).
+ * Datum tolerantně parsuje (ISO i český formát), takže řazení funguje
+ * i pro smíšené formáty. Stejné datum řadí podle id sestupně.
+ */
+function sortNews(items: NewsItem[]): NewsItem[] {
+  return [...items].sort((a, b) => {
+    const diff = parseNewsDate(b.date) - parseNewsDate(a.date);
+    if (diff !== 0) return diff;
+    return (b.id ?? 0) - (a.id ?? 0);
+  });
 }
 
 export async function getNewsItem(

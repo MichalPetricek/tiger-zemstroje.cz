@@ -20,6 +20,7 @@ import ProductCard from "@/components/ProductCard";
 import { Product, NewsItem } from "@/types";
 import { useContactForm } from "@/contexts/ContactFormContext";
 import { getProducts, getNews } from "@/lib/data";
+import { formatNewsDate } from "@/lib/utils";
 
 export default function HomeContent({
   products: initialProducts,
@@ -355,7 +356,7 @@ export default function HomeContent({
               <Card key={item.id}>
                 <CardHeader>
                   <div className="text-sm text-accent font-medium">
-                    {item.date}
+                    {formatNewsDate(item.date)}
                   </div>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
                 </CardHeader>

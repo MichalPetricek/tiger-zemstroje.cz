@@ -86,7 +86,7 @@ export const products: Record<string, unknown>[] = [
             'Záruka 2 roky nebo 500 motohodin'
         ],
         available: true,
-        documentation: '/docs/traktory/parametry_TIGER704FMD-TB.pdf',
+        documentation: '/docs/traktory/parametry_TIGER704.pdf',
         youtubeUrl: 'https://www.youtube.com/watch?v=dn2C5I7fX_g'
     },
     {
