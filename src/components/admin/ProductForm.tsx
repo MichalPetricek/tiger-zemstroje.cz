@@ -57,6 +57,8 @@ export default function AdminProductForm({
   const [error, setError] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingDoc, setUploadingDoc] = useState(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const docInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -112,6 +114,14 @@ export default function AdminProductForm({
       images: newImages,
       image: newImages.length > 0 ? newImages[0] : product.image,
     });
+  }
+
+  function moveImage(from: number, to: number) {
+    if (from === to || from < 0 || to < 0) return;
+    const newImages = [...product.images];
+    const [moved] = newImages.splice(from, 1);
+    newImages.splice(to, 0, moved);
+    update({ images: newImages, image: newImages[0] });
   }
 
   async function handleSave() {
@@ -335,16 +345,46 @@ export default function AdminProductForm({
               📸 Doporučený rozměr: <strong>800×600 px</strong> (poměr 4:3),
               formát JPG nebo WebP, max 10 MB. První fotka je hlavní.
             </p>
+            {product.images.length > 1 && (
+              <p className="text-sm text-muted-foreground">
+                ↔️ Pořadí fotek změníte přetažením (drag &amp; drop). První fotka
+                je hlavní.
+              </p>
+            )}
 
             {/* Current images */}
             {product.images.length > 0 && (
               <div className="grid grid-cols-4 gap-3">
                 {product.images.map((img, i) => (
-                  <div key={i} className="relative group">
+                  <div
+                    key={i}
+                    draggable
+                    onDragStart={() => setDragIndex(i)}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      if (dragOverIndex !== i) setDragOverIndex(i);
+                    }}
+                    onDrop={() => {
+                      if (dragIndex !== null) moveImage(dragIndex, i);
+                      setDragIndex(null);
+                      setDragOverIndex(null);
+                    }}
+                    onDragEnd={() => {
+                      setDragIndex(null);
+                      setDragOverIndex(null);
+                    }}
+                    className={`relative group cursor-move rounded transition-all ${
+                      dragIndex === i ? "opacity-40" : ""
+                    } ${
+                      dragOverIndex === i && dragIndex !== i
+                        ? "ring-2 ring-accent ring-offset-2"
+                        : ""
+                    }`}
+                  >
                     <img
                       src={img}
                       alt={`Obrázek ${i + 1}`}
-                      className="w-full aspect-[4/3] object-cover rounded border"
+                      className="w-full aspect-[4/3] object-cover rounded border pointer-events-none"
                     />
                     {i === 0 && (
                       <span className="absolute top-1 left-1 bg-accent text-accent-foreground text-xs px-1 rounded">
@@ -352,6 +392,7 @@ export default function AdminProductForm({
                       </span>
                     )}
                     <button
+                      type="button"
                       onClick={() => removeImage(i)}
                       className="absolute top-1 right-1 bg-red-500 text-white w-5 h-5 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity"
                     >
