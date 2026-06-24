@@ -17,10 +17,24 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
     { id: 'Traktory', name: 'Traktory' },
     { id: 'Nakladače', name: 'Nakladače' },
     { id: 'Bagry', name: 'Bagry' },
+    { id: 'Ještěrky', name: 'Ještěrky' },
     { id: 'Příslušenství', name: 'Příslušenství' }
   ]
 
   const filteredProducts = products.filter(product => product.category === selectedCategory)
+
+  // Extract the YouTube video ID from any common URL format so we can embed it.
+  const getYoutubeId = (url?: string): string | null => {
+    if (!url) return null
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/)
+    return match ? match[1] : null
+  }
+
+  const accessoryVideos = selectedCategory === 'Příslušenství'
+    ? filteredProducts
+        .map(product => ({ product, videoId: getYoutubeId(product.youtubeUrl) }))
+        .filter((entry): entry is { product: Product; videoId: string } => entry.videoId !== null)
+    : []
 
   return (
     <div className="py-8 px-4">
@@ -85,40 +99,38 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
               </div>
             </div>
 
-            {/* YouTube videos for accessories */}
-            <div>
-              <h2 className="text-2xl font-bold mb-6 text-center">Videa příslušenství</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="aspect-video rounded-lg overflow-hidden border">
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/syMEHg3-n-8"
-                    title="Příslušenství SAMTRA – Přehled"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
-                </div>
-                <div className="aspect-video rounded-lg overflow-hidden border">
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/BFAVBC1pHJ8"
-                    title="Příslušenství – Ukázky použití"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
+            {/* YouTube videos for accessories – generated from added products */}
+            {accessoryVideos.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-6 text-center">Videa příslušenství</h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {accessoryVideos.map(({ product, videoId }) => (
+                    <div key={product.id}>
+                      <div className="aspect-video rounded-lg overflow-hidden border">
+                        <iframe
+                          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                          title={product.name}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full"
+                        />
+                      </div>
+                      <p className="mt-2 text-center font-medium">{product.name}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
           </div>
         )}
 
         {/* Products grid */}
-        {selectedCategory !== 'Příslušenství' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredProducts.length > 0 && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
             {filteredProducts.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
+              <ProductCard
+                key={product.id}
+                product={product}
                 onSelect={onProductSelect}
               />
             ))}

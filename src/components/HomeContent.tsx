@@ -55,6 +55,21 @@ export default function HomeContent({
     router.push(`/products/${product.id}`);
   };
 
+  // Featured tractor for the hero – driven by the editable product so admin
+  // changes (price, name, image, power) are reflected on the home page.
+  const featured =
+    products.find((p) => p.id === "tiger-504") ??
+    products.find((p) => p.category === "Traktory") ??
+    products[0];
+
+  const featuredImage = featured?.image ?? "/images/tiger-504/7.jpg";
+  const featuredName = featured?.name ?? "TIGER 504";
+  const featuredPower = featured?.power ?? "50 HP";
+  const featuredPrice =
+    featured && featured.priceWithVat > 0
+      ? `${featured.priceWithVat.toLocaleString("cs-CZ")} Kč`
+      : "Cena na dotaz";
+
   return (
     <div>
       {/* Hero Section */}
@@ -68,10 +83,10 @@ export default function HomeContent({
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                   Nejlevnější traktor s výkonem
-                  <span className="text-accent"> 50 HP</span> na českém trhu
+                  <span className="text-accent"> {featuredPower}</span> na českém trhu
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                  TIGER 504 - plný výkon za cenu běžných zahradních traktorů
+                  {featuredName} - plný výkon za cenu běžných zahradních traktorů
                 </p>
               </div>
 
@@ -96,7 +111,7 @@ export default function HomeContent({
                   className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
                   onClick={openContactForm}
                 >
-                  Rezervovat za 199 000 Kč
+                  Rezervovat za {featuredPrice}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
                 <Button size="lg" variant="outline" asChild>
@@ -106,8 +121,7 @@ export default function HomeContent({
                   size="lg"
                   variant="outline"
                   onClick={() => {
-                    const tiger504 = products.find((p) => p.id === "tiger-504");
-                    if (tiger504) handleProductSelect(tiger504);
+                    if (featured) handleProductSelect(featured);
                   }}
                 >
                   Zobrazit specifikace
@@ -118,13 +132,13 @@ export default function HomeContent({
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl bg-card overflow-hidden flex items-center justify-center">
                 <img
-                  src="/images/tiger-504/7.jpg"
-                  alt="TIGER 504 Traktor"
+                  src={featuredImage}
+                  alt={`${featuredName} Traktor`}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-bold text-lg">
-                199 000 Kč
+                {featuredPrice}
               </div>
             </div>
           </div>
