@@ -23,19 +23,6 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
 
   const filteredProducts = products.filter(product => product.category === selectedCategory)
 
-  // Extract the YouTube video ID from any common URL format so we can embed it.
-  const getYoutubeId = (url?: string): string | null => {
-    if (!url) return null
-    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/)
-    return match ? match[1] : null
-  }
-
-  const accessoryVideos = selectedCategory === 'Příslušenství'
-    ? filteredProducts
-        .map(product => ({ product, videoId: getYoutubeId(product.youtubeUrl) }))
-        .filter((entry): entry is { product: Product; videoId: string } => entry.videoId !== null)
-    : []
-
   return (
     <div className="py-8 px-4">
       <div className="container mx-auto">
@@ -99,28 +86,6 @@ export default function Products({ products, onProductSelect, onBack: _onBack, s
               </div>
             </div>
 
-            {/* YouTube videos for accessories – generated from added products */}
-            {accessoryVideos.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-bold mb-6 text-center">Videa příslušenství</h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {accessoryVideos.map(({ product, videoId }) => (
-                    <div key={product.id}>
-                      <div className="aspect-video rounded-lg overflow-hidden border">
-                        <iframe
-                          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-                          title={product.name}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full"
-                        />
-                      </div>
-                      <p className="mt-2 text-center font-medium">{product.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         )}
 
